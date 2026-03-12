@@ -8,7 +8,7 @@
 @keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 @keyframes glow { 0%,100%{opacity:1} 50%{opacity:0.7} }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; }
+html, body { height:100%; } body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; min-height:100vh; overflow-x:hidden; }
 .header { background:linear-gradient(135deg,#1a1a1a,#252525); padding:10px 16px; position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:10px; border-bottom:2px solid transparent; border-image:linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#FF69B4,#9400D3,#0080FF,#00CED1,#FFD700) 1; box-shadow:0 4px 20px rgba(0,0,0,0.8); }
 .header-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; box-shadow:0 0 15px #FFD700, 0 0 30px rgba(255,165,0,0.5); animation:glow 2s infinite; }
 .header-title { font-size:17px; font-weight:800; background:linear-gradient(90deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#FFD700); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 4s linear infinite; }
@@ -34,109 +34,3 @@ body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max
 .post-price { font-size:17px; font-weight:900; background:linear-gradient(90deg,#00FF7F,#00CED1,#00BFFF,#00FF7F); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 3s linear infinite; }
 .post-price.sold-price { background:none !important; -webkit-text-fill-color:#555 !important; text-decoration:line-through; font-size:14px; animation:none; }
 .sold-text { font-size:12px; color:#00CC66; font-weight:700; }
-.post-meta { font-size:11px; color:#666; margin-top:5px; line-height:1.7; }
-.post-contact { font-size:12px; margin-top:5px; color:#888; }
-.post-contact a { color:#FFA500; text-decoration:none; font-weight:600; }
-.post-hashtag { font-size:11px; color:#3a3a3a; margin-top:4px; }
-.post-footer { padding:8px 12px 12px; display:flex; gap:8px; }
-.btn-buy { flex:1; border:none; border-radius:10px; padding:10px 6px; font-size:13px; font-weight:800; cursor:pointer; color:#000; background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347,#FF1493,#FFD700); background-size:300%; animation:shimmer 3s linear infinite; box-shadow:0 0 16px rgba(255,215,0,0.4); }
-.btn-cart { flex:1; border:1.5px solid #333; border-radius:10px; padding:10px 6px; font-size:13px; font-weight:700; cursor:pointer; color:#ccc; background:rgba(255,255,255,0.04); }
-.btn-sold-only { flex:1; background:#1a1a1a; color:#444; border:1px solid #2a2a2a; border-radius:10px; padding:10px; font-size:13px; text-align:center; }
-.bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:linear-gradient(135deg,#111,#1c1c1c); display:flex; border-top:2px solid transparent; border-image:linear-gradient(90deg,#FFD700,#FF1493,#0080FF,#00FF7F,#FFD700) 1; box-shadow:0 -4px 20px rgba(0,0,0,0.8); }
-.nav-item { flex:1; padding:10px 0 8px; text-align:center; cursor:pointer; }
-.nav-icon { font-size:22px; }
-.nav-label { font-size:10px; color:#555; margin-top:2px; display:block; }
-.nav-item.active .nav-icon { filter:drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 16px #FFA500); }
-.nav-item.active .nav-label { background:linear-gradient(90deg,#FFD700,#FFA500); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
-.tab-page { display:none; }
-.tab-page.active { display:block; }
-.empty { text-align:center; padding:60px 20px; color:#444; font-size:14px; }
-</style>
-</head>
-<body>
-<div class="header">
-  <div class="header-avatar">🔫</div>
-  <div class="header-info">
-    <div class="header-title">Flashbang Skins</div>
-    <div class="header-stats">
-      <span>👥 200,000 members</span>
-      <span><span class="online-dot"></span> 2,000 online</span>
-    </div>
-  </div>
-</div>
-<div class="tab-page active" id="tab-market">
-  <div class="feed">
-    <div class="post">
-      <div class="post-header"><div class="seller-avatar">👤</div><div><div class="seller-name">@seller_uz</div></div><div class="post-time">1 kun oldin</div></div>
-      <div class="post-images"><div class="post-img"><span>💥</span></div><div class="post-img"><span>💥</span></div></div>
-      <div class="post-body">
-        <div class="post-title"><span class="star">★</span> AWP | Dragon Lore (Minimal Wear)</div>
-        <div class="post-price-row"><div class="post-price">12,000,000 UZS</div></div>
-        <div class="post-meta">💰 Narxi: 12,000,000 UZS<br>🎮 Float: 0.09 • Pattern: 503<br>📦 Sticker: 4x Titan Holo</div>
-        <div class="post-contact">📩 Bog'lanish uchun: <a href="https://t.me/kaccocii">@kaccocii</a></div>
-        <div class="post-hashtag">#awp #dragonlore #sniper</div>
-      </div>
-      <div class="post-footer">
-        <button class="btn-buy" onclick="buyItem('AWP | Dragon Lore')">🛒 Sotib olish</button>
-        <button class="btn-cart" onclick="addCart('AWP | Dragon Lore')">🧺 Savatcha</button>
-      </div>
-    </div>
-    <div class="post">
-      <div class="post-header"><div class="seller-avatar">👤</div><div><div class="seller-name">@cs2_trader</div></div><div class="post-time">5 soat oldin</div></div>
-      <div class="post-images">
-        <div class="post-img"><span>🗡️</span><div class="sold-overlay"><div class="sold-badge">SOTILDI</div></div></div>
-        <div class="post-img"><span>🗡️</span><div class="sold-overlay"><div class="sold-badge">SOTILDI</div></div></div>
-      </div>
-      <div class="post-body">
-        <div class="post-title"><span class="star">★</span> Karambit | Doppler (Factory New)</div>
-        <div class="post-price-row"><div class="post-price sold-price">4,500,000 UZS</div><div class="sold-text">✅ sotildi</div></div>
-        <div class="post-meta">💰 Narxi: 4,500,000 UZS<br>🎮 Float: 0.01 • Pattern: 412<br>📦 Sticker yoq</div>
-        <div class="post-contact">📩 Boglanish uchun: <a href="https://t.me/kaccocii">@kaccocii</a></div>
-        <div class="post-hashtag">#karambit #doppler #knife</div>
-      </div>
-      <div class="post-footer"><div class="btn-sold-only">✅ Sotildi</div></div>
-    </div>
-    <div class="post">
-      <div class="post-header"><div class="seller-avatar">👤</div><div><div class="seller-name">@skins_bazar</div></div><div class="post-time">2 soat oldin</div></div>
-      <div class="post-images"><div class="post-img"><span>🔫</span></div><div class="post-img"><span>🔫</span></div></div>
-      <div class="post-body">
-        <div class="post-title"><span class="star">★</span> AK-47 | Redline (Field-Tested)</div>
-        <div class="post-price-row"><div class="post-price">850,000 UZS</div></div>
-        <div class="post-meta">💰 Narxi: 850,000 UZS<br>🎮 Float: 0.24 • Pattern: 661<br>📦 Sticker yoq</div>
-        <div class="post-contact">📩 Boglanish uchun: <a href="https://t.me/kaccocii">@kaccocii</a></div>
-        <div class="post-hashtag">#ak47 #redline #rifle</div>
-      </div>
-      <div class="post-footer">
-        <button class="btn-buy" onclick="buyItem('AK-47 | Redline')">🛒 Sotib olish</button>
-        <button class="btn-cart" onclick="addCart('AK-47 | Redline')">🧺 Savatcha</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="tab-page" id="tab-cart"><div class="empty">🧺<br><br>Savatcha hozircha bosh</div></div>
-<div class="tab-page" id="tab-profile"><div class="empty">👤<br><br>Profilingiz</div></div>
-<div class="bottom-nav">
-  <div class="nav-item active" id="nav-market" onclick="switchTab('market')"><div class="nav-icon">🔫</div><span class="nav-label">FB SKINS</span></div>
-  <div class="nav-item" id="nav-cart" onclick="switchTab('cart')"><div class="nav-icon">🧺</div><span class="nav-label">Savatcha</span></div>
-  <div class="nav-item" id="nav-profile" onclick="switchTab('profile')"><div class="nav-icon">👤</div><span class="nav-label">Profil</span></div>
-</div>
-<script>
-function switchTab(t){
-  document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');
-  document.getElementById('nav-'+t).classList.add('active');
-}
-function buyItem(n){
-  if(window.Telegram&&window.Telegram.WebApp){window.Telegram.WebApp.showAlert('@kaccocii ga yozing: '+n);}
-  else{alert('@kaccocii ga yozing: '+n);}
-}
-function addCart(n){
-  if(window.Telegram&&window.Telegram.WebApp){window.Telegram.WebApp.showAlert('Savatchangizga qoshildi: '+n);}
-  else{alert('Savatchangizga qoshildi: '+n);}
-}
-if(window.Telegram&&window.Telegram.WebApp)window.Telegram.WebApp.ready();
-window.addEventListener('load',function(){window.scrollTo(0,document.body.scrollHeight);});
-</script>
-</body>
-</html>
