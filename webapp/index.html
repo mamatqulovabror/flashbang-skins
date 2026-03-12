@@ -5,33 +5,194 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flashbang Skins</title>
 <style>
-@keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-@keyframes glow { 0%,100%{opacity:1} 50%{opacity:0.7} }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; }
-.header { background:linear-gradient(135deg,#1a1a1a,#252525); padding:10px 16px; position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:10px; border-bottom:2px solid transparent; border-image:linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#FF69B4,#9400D3,#0080FF,#00CED1,#FFD700) 1; box-shadow:0 4px 20px rgba(0,0,0,0.8); }
-.header-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; box-shadow:0 0 15px #FFD700, 0 0 30px rgba(255,165,0,0.5); animation:glow 2s infinite; }
-.header-title { font-size:17px; font-weight:800; background:linear-gradient(90deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#FFD700); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 4s linear infinite; }
-.header-stats { font-size:11px; color:#999; margin-top:3px; display:flex; gap:10px; }
-.header-stats span { display:flex; align-items:center; gap:3px; }
-.online-dot { width:7px; height:7px; border-radius:50%; background:#00FF7F; display:inline-block; box-shadow:0 0 8px #00FF7F, 0 0 16px #00FF7F; animation:glow 1.5s infinite; }
-.feed { padding:8px 48px 80px 12px; display:flex; flex-direction:column-reverse; }
-.post { margin:6px 0; border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1a1a1a,#202020); position:relative; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
-.post::before { content:''; position:absolute; inset:0; border-radius:16px; padding:1.5px; background:linear-gradient(135deg,#FFD700,#FF8C00,#FF1493,#9400D3,#0080FF,#00CED1,#00FF7F,#FFD700); background-size:400%; -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:shimmer 4s linear infinite; pointer-events:none; }
-.post-header { padding:10px 12px 6px; display:flex; align-items:center; gap:8px; }
-.seller-avatar { width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#FF6347,#FFD700); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; box-shadow:0 0 10px rgba(255,165,0,0.5); }
-.seller-name { font-size:13px; font-weight:700; background:linear-gradient(90deg,#FFA500,#FFD700); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.post-time { font-size:10px; color:#555; margin-left:auto; }
-.post-images { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:#000; }
-.post-img { width:100%; aspect-ratio:4/3; background:linear-gradient(135deg,#0f0f0f,#1a1a1a); display:flex; align-items:center; justify-content:center; font-size:56px; position:relative; overflow:hidden; }
-.post-img span { filter:drop-shadow(0 0 16px rgba(255,215,0,0.6)); }
-.sold-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.65); display:flex; align-items:center; justify-content:center; }
-.sold-badge { font-size:16px; font-weight:900; padding:6px 16px; border-radius:8px; letter-spacing:2px; background:rgba(80,80,80,0.9); border:1.5px solid #777; color:#bbb; }
-.post-body { padding:10px 14px 6px; }
-.post-title { font-size:14px; font-weight:800; color:#f0f0f0; line-height:1.4; }
-.post-title .star { background:linear-gradient(90deg,#FFD700,#FFA500); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-right:2px; }
-.post-price-row { display:flex; align-items:center; gap:8px; margin-top:5px; }
-.post-price { font-size:17px; font-weight:900; background:linear-gradient(90deg,#00FF7F,#00CED1,#00BFFF,#00FF7F); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 3s linear infinite; }
-.post-price.sold-price { background:none !important; -webkit-text-fill-color:#555 !important; text-decoration:line-through; font-size:14px; animation:none; }
-.sold-text { font-size:12px; color:#00CC66; font-weight:700; }
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes glow{0%,100%{opacity:1}50%{opacity:0.7}}
+@keyframes rainbow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#0d0d0d;color:#fff;font-family:-apple-system,sans-serif;max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.header{background:linear-gradient(135deg,#1a1a1a,#252525);padding:10px 16px;position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#9370DB,#4169E1,#00CED1) 1;flex-shrink:0}
+.header-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.header-title{font-size:17px;font-weight:800;background:linear-gradient(90deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#9370DB,#4169E1,#00CED1,#FFD700);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
+.header-stats{font-size:11px;color:#999;margin-top:3px;display:flex;gap:10px}
+.header-stats span{display:flex;align-items:center;gap:3px}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#00FF7F;display:inline-block;box-shadow:0 0 8px #00FF7F;animation:glow 2s ease-in-out infinite}
+.feed{padding:8px 48px 80px 12px;display:flex;flex-direction:column-reverse;flex:1;overflow-y:auto}
+.post{margin:6px 0;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#1a1a1a,#202020);position:relative}
+.post::before{content:'';position:absolute;inset:0;border-radius:16px;padding:1.5px;background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#9370DB,#4169E1,#00CED1);background-size:300% 300%;animation:rainbow 4s ease infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.post-header{padding:10px 12px 6px;display:flex;align-items:center;gap:8px}
+.seller-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FF6347,#FFD700);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.seller-name{font-size:13px;font-weight:700;background:linear-gradient(90deg,#FFA500,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.post-time{font-size:10px;color:#555;margin-left:auto}
+.post-images{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#000}
+.post-img{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#0f0f0f,#1a1a1a);display:flex;align-items:center;justify-content:center;font-size:36px}
+.sold-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55)}
+.sold-badge{background:linear-gradient(135deg,#8B0000,#DC143C);color:#fff;font-size:13px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;border:1.5px solid #FF4444}
+.post-body{padding:10px 12px 6px}
+.skin-name{font-size:15px;font-weight:800;background:linear-gradient(90deg,#FFD700,#FFA500,#FF6347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.price-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.price{font-size:16px;font-weight:900;color:#FFD700}
+.price.sold{text-decoration:line-through;color:#555;font-size:13px}
+.price-sold-label{font-size:11px;color:#FF4444;font-weight:700;background:rgba(255,68,68,0.1);padding:2px 8px;border-radius:10px;border:1px solid #FF4444}
+.post-meta{font-size:11px;color:#666;margin-bottom:5px;display:flex;gap:8px;flex-wrap:wrap}
+.post-meta span{background:#1a1a1a;padding:2px 7px;border-radius:8px;border:1px solid #2a2a2a}
+.post-contact{font-size:12px;margin-bottom:5px}
+.post-contact a{color:#4169E1;text-decoration:none;font-weight:600}
+.post-hashtags{font-size:11px;color:#4a4a6a;margin-bottom:2px}
+.post-footer{padding:8px 12px 10px;display:flex;gap:6px}
+.btn{border:none;border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;flex:1}
+.btn-buy{background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347);color:#000;box-shadow:0 2px 8px rgba(255,165,0,0.3)}
+.btn-cart{background:transparent;border:1.5px solid #4169E1;color:#4169E1}
+.btn-sold-only{background:#1a1a1a;color:#444;border:1px solid #2a2a2a;cursor:not-allowed;flex:2}
+.bottom-nav{display:flex;background:linear-gradient(135deg,#111,#1a1a1a);border-top:2px solid transparent;border-image:linear-gradient(90deg,#FFD700,#FF6347,#DA70D6,#4169E1,#00CED1) 1;position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100}
+.nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;font-size:9px;color:#555;gap:3px;border:none;background:none;transition:color 0.2s}
+.nav-tab.active{color:#FFD700}
+.nav-tab .nav-icon{font-size:20px}
+</style>
+</head>
+<body>
 
+<div class="header">
+  <div class="header-avatar">🔫</div>
+  <div>
+    <div class="header-title">FB SKINS</div>
+    <div class="header-stats">
+      <span><span class="online-dot"></span> 247 online</span>
+      <span>⭐ 4.9</span>
+    </div>
+  </div>
+</div>
+
+<div class="feed" id="feed">
+
+  <div class="post">
+    <div class="post-header">
+      <div class="seller-avatar">🎮</div>
+      <div>
+        <div class="seller-name">@seller_uz</div>
+      </div>
+      <div class="post-time">1 kun oldin</div>
+    </div>
+    <div class="post-images">
+      <div class="post-img">🐉</div>
+      <div class="post-img">✨</div>
+    </div>
+    <div class="post-body">
+      <div class="skin-name">★ AWP | Dragon Lore</div>
+      <div class="price-row">
+        <div class="price">12 000 000 UZS</div>
+      </div>
+      <div class="post-meta">
+        <span>Float: 0.08</span>
+        <span>Pattern: 661</span>
+        <span>4x Katowice</span>
+      </div>
+      <div class="post-contact">Bog'lanish: <a href="https://t.me/kaccocii">@kaccocii</a></div>
+      <div class="post-hashtags">#awp #dragonlore #cs2skins #fbskins</div>
+    </div>
+    <div class="post-footer">
+      <button class="btn btn-buy" onclick="buyItem('AWP Dragon Lore')">💳 Sotib olish</button>
+      <button class="btn btn-cart" onclick="addCart('AWP Dragon Lore')">🧺 Savatcha</button>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <div class="seller-avatar">🔪</div>
+      <div>
+        <div class="seller-name">@cs2_trader</div>
+      </div>
+      <div class="post-time">5 soat oldin</div>
+    </div>
+    <div class="post-images" style="position:relative">
+      <div class="post-img">🔪</div>
+      <div class="post-img">💎</div>
+      <div class="sold-overlay">
+        <div class="sold-badge">SOTILDI</div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="skin-name">★ Karambit | Doppler</div>
+      <div class="price-row">
+        <div class="price sold">8 500 000 UZS</div>
+        <div class="price-sold-label">SOTILDI</div>
+      </div>
+      <div class="post-meta">
+        <span>Float: 0.01</span>
+        <span>Phase 2</span>
+      </div>
+      <div class="post-contact">Bog'lanish: <a href="https://t.me/kaccocii">@kaccocii</a></div>
+      <div class="post-hashtags">#karambit #doppler #knife #fbskins</div>
+    </div>
+    <div class="post-footer">
+      <button class="btn btn-sold-only">✗ Sotildi</button>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-header">
+      <div class="seller-avatar">🎯</div>
+      <div>
+        <div class="seller-name">@skins_bazar</div>
+      </div>
+      <div class="post-time">2 soat oldin</div>
+    </div>
+    <div class="post-images">
+      <div class="post-img">🔴</div>
+      <div class="post-img">⚡</div>
+    </div>
+    <div class="post-body">
+      <div class="skin-name">AK-47 | Redline</div>
+      <div class="price-row">
+        <div class="price">850 000 UZS</div>
+      </div>
+      <div class="post-meta">
+        <span>Float: 0.15</span>
+        <span>FT</span>
+      </div>
+      <div class="post-contact">Bog'lanish: <a href="https://t.me/kaccocii">@kaccocii</a></div>
+      <div class="post-hashtags">#ak47 #redline #cs2 #fbskins</div>
+    </div>
+    <div class="post-footer">
+      <button class="btn btn-buy" onclick="buyItem('AK-47 Redline')">💳 Sotib olish</button>
+      <button class="btn btn-cart" onclick="addCart('AK-47 Redline')">🧺 Savatcha</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+  <button class="nav-tab active" onclick="switchTab(this)">
+    <span class="nav-icon">🔫</span>FB SKINS
+  </button>
+  <button class="nav-tab" onclick="switchTab(this)">
+    <span class="nav-icon">🧺</span>Savatcha
+  </button>
+  <button class="nav-tab" onclick="switchTab(this)">
+    <span class="nav-icon">👤</span>Profil
+  </button>
+</div>
+
+<script>
+if(window.Telegram && window.Telegram.WebApp){
+  window.Telegram.WebApp.ready();
+  window.Telegram.WebApp.expand();
+}
+window.scrollTo(0, document.body.scrollHeight);
+function switchTab(el){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+function buyItem(name){
+  if(window.Telegram && window.Telegram.WebApp){
+    window.Telegram.WebApp.showAlert('Sotib olish: ' + name + '\nBog\'lanish: @kaccocii');
+  } else { alert('Bog\'lanish: @kaccocii'); }
+}
+function addCart(name){
+  if(window.Telegram && window.Telegram.WebApp){
+    window.Telegram.WebApp.showAlert(name + ' savatchaga qo\'shildi!');
+  } else { alert('Savatcha: ' + name); }
+}
+</script>
+</body>
+</html>
