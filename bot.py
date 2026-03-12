@@ -27,12 +27,12 @@ async def main():
     app = web.Application()
     app.router.add_get("/", handle_index)
     app.router.add_get("/index.html", handle_index)
+    port = int(os.environ.get("PORT", 8080))
     runner = web.AppRunner(app)
     await runner.setup()
-    site = web.TCPSite(runner, "0.0.0.0", 8080)
+    site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
     asyncio.run(main())
-
