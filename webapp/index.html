@@ -2,367 +2,51 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FB SKINS</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0e0e0e;
-  --card: #1a1a1a;
-  --border: #2a2a2a;
-  --accent: #f5a623;
-  --text: #ffffff;
-  --sub: #888888;
-  --sold: rgba(220,50,50,0.85);
-}
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  padding-bottom: 70px;
-}
-
-/* HEADER */
-.header {
-  position: sticky; top: 0; z-index: 100;
-  background: #111;
-  border-bottom: 1px solid var(--border);
-  padding: 12px 16px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.logo { display: flex; align-items: center; gap: 8px; }
-.logo-icon { font-size: 22px; }
-.logo-text { font-size: 18px; font-weight: 800; color: var(--accent); letter-spacing: 1px; }
-.header-badge {
-  background: var(--accent); color: #000;
-  font-size: 11px; font-weight: 700;
-  padding: 3px 8px; border-radius: 12px;
-}
-
-/* FILTER TABS */
-.filters {
-  display: flex; gap: 8px;
-  padding: 12px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.filters::-webkit-scrollbar { display: none; }
-.filter-btn {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--sub);
-  font-size: 13px; font-weight: 600;
-  white-space: nowrap; cursor: pointer;
-  transition: all 0.2s;
-}
-.filter-btn.active {
-  background: var(--accent); border-color: var(--accent);
-  color: #000;
-}
-
-/* FEED */
-.feed { padding: 0 12px; }
-
-/* SKIN CARD */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  position: relative;
-}
-.card-img-wrap {
-  position: relative;
-  background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
-  aspect-ratio: 16/9;
-  display: flex; align-items: center; justify-content: center;
-}
-.card-img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  padding: 12px;
-}
-.card-img-placeholder {
-  font-size: 60px;
-  opacity: 0.4;
-}
-.sold-badge {
-  position: absolute; inset: 0;
-  background: var(--sold);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; font-weight: 900;
-  letter-spacing: 4px; color: #fff;
-  backdrop-filter: blur(2px);
-}
-.card-body { padding: 12px 14px; }
-.card-weapon { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-.card-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.card-meta { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-.tag {
-  padding: 3px 8px; border-radius: 8px;
-  font-size: 11px; font-weight: 600;
-  background: #222; color: var(--sub);
-}
-.tag.wear-fn { color: #4caf50; }
-.tag.wear-mw { color: #8bc34a; }
-.tag.wear-ft { color: #cddc39; }
-.tag.wear-ww { color: #ff9800; }
-.tag.wear-bs { color: #f44336; }
-.card-footer { display: flex; align-items: center; justify-content: space-between; }
-.price { font-size: 20px; font-weight: 800; color: var(--accent); }
-.price span { font-size: 12px; color: var(--sub); font-weight: 400; }
-.buy-btn {
-  background: var(--accent); color: #000;
-  border: none; border-radius: 10px;
-  padding: 8px 18px; font-size: 14px; font-weight: 700;
-  cursor: pointer;
-}
-.buy-btn:disabled { background: #333; color: #666; cursor: default; }
-
-/* SELLER */
-.seller-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 14px 12px;
-  border-top: 1px solid var(--border);
-}
-.seller-avatar {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--accent); display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: #000;
-}
-.seller-name { font-size: 13px; color: var(--sub); }
-.seller-time { font-size: 11px; color: #555; margin-left: auto; }
-
-/* BOTTOM NAV */
-.bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: #111;
-  border-top: 1px solid var(--border);
-  display: flex;
-  z-index: 200;
-}
-.nav-item {
-  flex: 1; padding: 10px 0;
-  display: flex; flex-direction: column;
-  align-items: center; gap: 3px;
-  cursor: pointer;
-  background: none; border: none;
-  color: var(--sub);
-  transition: color 0.2s;
-}
-.nav-item.active { color: var(--accent); }
-.nav-icon { font-size: 20px; }
-.nav-label { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
-
-/* EMPTY STATE */
-.empty { text-align: center; padding: 60px 20px; color: var(--sub); }
-.empty-icon { font-size: 48px; margin-bottom: 12px; }
-
-/* SECTIONS */
-.section { display: none; }
-.section.active { display: block; }
-
-/* CART */
-.cart-empty { text-align: center; padding: 80px 20px; }
-.cart-empty-icon { font-size: 64px; margin-bottom: 16px; }
-.cart-empty-text { color: var(--sub); font-size: 16px; }
-
-/* PROFILE */
-.profile-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  margin: 16px;
-  padding: 24px;
-  text-align: center;
-}
-.profile-avatar {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 32px; font-weight: 800; color: #000;
-  margin: 0 auto 12px;
-}
-.profile-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-.profile-sub { color: var(--sub); font-size: 14px; margin-bottom: 20px; }
-.profile-stats { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.stat { flex: 1; padding: 14px; text-align: center; border-right: 1px solid var(--border); }
-.stat:last-child { border-right: none; }
-.stat-num { font-size: 22px; font-weight: 800; color: var(--accent); }
-.stat-label { font-size: 11px; color: var(--sub); margin-top: 2px; }
-.sell-btn {
-  display: block; width: calc(100% - 32px);
-  margin: 0 16px 12px;
-  padding: 14px;
-  background: var(--accent); color: #000;
-  border: none; border-radius: 14px;
-  font-size: 16px; font-weight: 700;
-  cursor: pointer;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#17212b; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; }
+.header { background:#242f3d; padding:12px 16px; display:flex; align-items:center; position:sticky; top:0; z-index:10; border-bottom:1px solid #2b3a4d; }
+.header-title { font-size:17px; font-weight:700; }
+.header-sub { font-size:12px; color:#7b8ea0; }
+.feed { padding:8px 0 70px; }
+.post { background:#242f3d; margin:6px 10px; border-radius:12px; overflow:hidden; }
+.post-header { padding:10px 14px 6px; display:flex; align-items:center; gap:8px; }
+.seller-avatar { width:34px; height:34px; border-radius:50%; background:#3a4f66; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.seller-name { font-size:14px; font-weight:600; color:#5bbef7; }
+.post-time { font-size:11px; color:#5a7a96; margin-left:auto; }
+.post-img-wrap { position:relative; width:100%; background:#1a2535; display:flex; align-items:center; justify-content:center; min-height:160px; }
+.post-img-emoji { font-size:80px; padding:20px; }
+.sold-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; }
+.sold-badge { background:rgba(220,50,50,0.9); color:#fff; font-size:22px; font-weight:800; padding:10px 28px; border-radius:8px; letter-spacing:2px; border:2px solid #ff4444; }
+.post-body { padding:10px 14px; }
+.skin-name { font-size:16px; font-weight:700; }
+.skin-meta { font-size:12px; color:#7b8ea0; margin-top:2px; }
+.skin-price { font-size:20px; font-weight:800; color:#4cd97b; margin-top:6px; }
+.post-footer { padding:8px 14px 12px; display:flex; gap:8px; }
+.btn-buy { flex:1; background:#2ea6f5; color:#fff; border:none; border-radius:8px; padding:10px; font-size:14px; font-weight:600; cursor:pointer; }
+.btn-sold-label { flex:1; background:#3a4f66; color:#7b8ea0; border:none; border-radius:8px; padding:10px; font-size:14px; text-align:center; }
+.bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:#242f3d; border-top:1px solid #2b3a4d; display:flex; }
+.nav-item { flex:1; padding:10px 0 8px; text-align:center; cursor:pointer; }
+.nav-icon { font-size:22px; }
+.nav-label { font-size:10px; color:#7b8ea0; margin-top:2px; display:block; }
+.nav-item.active .nav-label { color:#2ea6f5; }
+.tab-page { display:none; }
+.tab-page.active { display:block; }
+.empty { text-align:center; padding:60px 20px; color:#5a7a96; }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">
-    <div class="logo-icon">🔫</div>
-    <div class="logo-text">FB SKINS</div>
-  </div>
-  <div class="header-badge">CS2</div>
-</div>
-
-<!-- BOZOR SECTION -->
-<div id="sec-market" class="section active">
-  <!-- Filter tabs -->
-  <div class="filters">
-    <button class="filter-btn active" onclick="filterSkins(this,'all')">Hammasi</button>
-    <button class="filter-btn" onclick="filterSkins(this,'rifle')">🎯 Rifle</button>
-    <button class="filter-btn" onclick="filterSkins(this,'pistol')">🔫 Pistol</button>
-    <button class="filter-btn" onclick="filterSkins(this,'knife')">🔪 Knife</button>
-    <button class="filter-btn" onclick="filterSkins(this,'sniper')">🎯 Sniper</button>
-  </div>
-
-  <!-- Feed -->
-  <div class="feed" id="feed">
-    <!-- Cards will be inserted here -->
-  </div>
-</div>
-
-<!-- SAVATCHA SECTION -->
-<div id="sec-cart" class="section">
-  <div class="cart-empty">
-    <div class="cart-empty-icon">🛒</div>
-    <div class="cart-empty-text">Savatcha bo'sh</div>
-  </div>
-</div>
-
-<!-- PROFIL SECTION -->
-<div id="sec-profile" class="section">
-  <div class="profile-card">
-    <div class="profile-avatar" id="profile-avatar">?</div>
-    <div class="profile-name" id="profile-name">Foydalanuvchi</div>
-    <div class="profile-sub" id="profile-sub">@username</div>
-    <div class="profile-stats">
-      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Sotib olgan</div></div>
-      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Sotgan</div></div>
-      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Izoh</div></div>
-    </div>
-  </div>
-  <button class="sell-btn">+ Skin sotish</button>
-</div>
-
-<!-- BOTTOM NAV -->
-<nav class="bottom-nav">
-  <button class="nav-item active" id="nav-market" onclick="showSection('market')">
-    <div class="nav-icon">🔫</div>
-    <div class="nav-label">FB SKINS</div>
-  </button>
-  <button class="nav-item" id="nav-cart" onclick="showSection('cart')">
-    <div class="nav-icon">🛒</div>
-    <div class="nav-label">Savatcha</div>
-  </button>
-  <button class="nav-item" id="nav-profile" onclick="showSection('profile')">
-    <div class="nav-icon">👤</div>
-    <div class="nav-label">Profil</div>
-  </button>
-</nav>
-
-<script>
-// Telegram WebApp init
-const tg = window.Telegram?.WebApp;
-if (tg) {
-  tg.ready();
-  tg.expand();
-  const user = tg.initDataUnsafe?.user;
-  if (user) {
-    const name = (user.first_name + ' ' + (user.last_name || '')).trim();
-    document.getElementById('profile-name').textContent = name;
-    document.getElementById('profile-sub').textContent = '@' + (user.username || 'user');
-    document.getElementById('profile-avatar').textContent = name[0].toUpperCase();
-  }
-}
-
-// Demo skinlar ma'lumoti
-const skins = [
-  { id:1, weapon:'AK-47', name:'Asiimov', wear:'FT', float:'0.28', price:'1 200 000', category:'rifle', sold:false, seller:'AbrorboyCS2', time:'2 soat oldin', emoji:'🔫' },
-  { id:2, weapon:'AWP', name:'Dragon Lore', wear:'FN', float:'0.02', price:'45 000 000', category:'sniper', sold:false, seller:'KingOfSkins', time:'5 soat oldin', emoji:'🎯' },
-  { id:3, weapon:'Karambit', name:'Fade', wear:'FN', float:'0.01', price:'12 000 000', category:'knife', sold:true, seller:'TradeKing', time:'1 kun oldin', emoji:'🔪' },
-  { id:4, weapon:'M4A4', name:'Howl', wear:'MW', float:'0.12', price:'8 500 000', category:'rifle', sold:false, seller:'SkinMaster', time:'3 soat oldin', emoji:'🔫' },
-  { id:5, weapon:'Glock-18', name:'Fade', wear:'FN', float:'0.03', price:'2 300 000', category:'pistol', sold:false, seller:'GlockGod', time:'6 soat oldin', emoji:'🔫' },
-  { id:6, weapon:'Desert Eagle', name:'Blaze', wear:'FN', float:'0.02', price:'1 800 000', category:'pistol', sold:true, seller:'DeagleKing', time:'12 soat oldin', emoji:'🔫' },
-];
-
-const wearClass = { 'FN':'wear-fn','MW':'wear-mw','FT':'wear-ft','WW':'wear-ww','BS':'wear-bs' };
-const wearFull = { 'FN':'Factory New','MW':'Minimal Wear','FT':'Field-Tested','WW':'Well-Worn','BS':'Battle-Scarred' };
-
-function renderCard(s) {
-  return `<div class="card" data-cat="${s.category}">
-    <div class="card-img-wrap">
-      <div class="card-img-placeholder">${s.emoji}</div>
-      ${s.sold ? '<div class="sold-badge">SOTILDI</div>' : ''}
-    </div>
-    <div class="card-body">
-      <div class="card-weapon">${s.weapon}</div>
-      <div class="card-name">${s.name}</div>
-      <div class="card-meta">
-        <span class="tag ${wearClass[s.wear]}">${wearFull[s.wear]}</span>
-        <span class="tag">Float: ${s.float}</span>
-      </div>
-      <div class="card-footer">
-        <div class="price">${s.price} <span>UZS</span></div>
-        <button class="buy-btn" ${s.sold ? 'disabled' : ''} onclick="buyItem(${s.id})">${s.sold ? 'Sotildi' : 'Sotib olish'}</button>
-      </div>
-    </div>
-    <div class="seller-row">
-      <div class="seller-avatar">${s.seller[0]}</div>
-      <div class="seller-name">@${s.seller}</div>
-      <div class="seller-time">${s.time}</div>
-    </div>
-  </div>`;
-}
-
-function renderFeed(filter='all') {
-  const feed = document.getElementById('feed');
-  const filtered = filter === 'all' ? skins : skins.filter(s => s.category === filter);
-  feed.innerHTML = filtered.map(renderCard).join('');
-}
-
-function filterSkins(btn, cat) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderFeed(cat);
-}
-
-function showSection(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-}
-
-function buyItem(id) {
-  const skin = skins.find(s => s.id === id);
-  if (!skin) return;
-  if (tg) {
-    tg.showPopup({
-      title: skin.weapon + ' | ' + skin.name,
-      message: 'Narxi: ' + skin.price + ' UZS\n\nXarid qilishni tasdiqlaysizmi?',
-      buttons: [{ type:'ok', text:'Ha, sotib olaman' }, { type:'cancel' }]
-    });
-  } else {
-    alert('Sotib olish: ' + skin.weapon + ' | ' + skin.name + '\n' + skin.price + ' UZS');
-  }
-}
-
-// Initial render
-renderFeed();
-</script>
+<div class="header"><div><div class="header-title">&#128299; FB SKINS</div><div class="header-sub">Flashbang Marketplace</div></div></div>
+<div class="tab-page active" id="tab-market"><div class="feed">
+<div class="post"><div class="post-header"><div class="seller-avatar">&#128100;</div><div><div class="seller-name">@seller_uz</div></div><div class="post-time">2 soat oldin</div></div><div class="post-img-wrap"><div class="post-img-emoji">&#128299;</div></div><div class="post-body"><div class="skin-name">AK-47 | Redline</div><div class="skin-meta">Field-Tested - Float: 0.24</div><div class="skin-price">850,000 UZS</div></div><div class="post-footer"><button class="btn-buy" onclick="buyItem('AK-47 | Redline')">Sotib olish</button></div></div>
+<div class="post"><div class="post-header"><div class="seller-avatar">&#128100;</div><div><div class="seller-name">@cs2_trader</div></div><div class="post-time">5 soat oldin</div></div><div class="post-img-wrap"><div class="post-img-emoji">&#128303;</div><div class="sold-overlay"><div class="sold-badge">SOTILDI</div></div></div><div class="post-body"><div class="skin-name">Karambit | Doppler</div><div class="skin-meta">Factory New - Float: 0.01</div><div class="skin-price" style="color:#5a7a96">4,500,000 UZS</div></div><div class="post-footer"><div class="btn-sold-label">Sotildi</div></div></div>
+<div class="post"><div class="post-header"><div class="seller-avatar">&#128100;</div><div><div class="seller-name">@skins_bazar</div></div><div class="post-time">1 kun oldin</div></div><div class="post-img-wrap"><div class="post-img-emoji">&#128165;</div></div><div class="post-body"><div class="skin-name">AWP | Dragon Lore</div><div class="skin-meta">Minimal Wear - Float: 0.09</div><div class="skin-price">12,000,000 UZS</div></div><div class="post-footer"><button class="btn-buy" onclick="buyItem('AWP | Dragon Lore')">Sotib olish</button></div></div>
+</div></div>
+<div class="tab-page" id="tab-cart"><div class="empty">Savatcha bosh</div></div>
+<div class="tab-page" id="tab-profile"><div class="empty">Profilingiz</div></div>
+<div class="bottom-nav"><div class="nav-item active" id="nav-market" onclick="switchTab('market')"><div class="nav-icon">&#128299;</div><span class="nav-label">FB SKINS</span></div><div class="nav-item" id="nav-cart" onclick="switchTab('cart')"><div class="nav-icon">&#128722;</div><span class="nav-label">Savatcha</span></div><div class="nav-item" id="nav-profile" onclick="switchTab('profile')"><div class="nav-icon">&#128100;</div><span class="nav-label">Profil</span></div></div>
+<script>function switchTab(t){document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');document.getElementById('nav-'+t).classList.add('active');}function buyItem(n){if(window.Telegram&&window.Telegram.WebApp){window.Telegram.WebApp.showAlert('@kaccocii ga murojaat qiling');}else{alert('@kaccocii: '+n);}}if(window.Telegram&&window.Telegram.WebApp){window.Telegram.WebApp.ready();}</script>
 </body>
 </html>
