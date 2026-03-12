@@ -8,7 +8,7 @@
 @keyframes shimmer { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 @keyframes glow { 0%,100%{opacity:1} 50%{opacity:0.7} }
 * { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; } body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; min-height:100vh; overflow-x:hidden; }
+body { background:#0d0d0d; color:#fff; font-family:-apple-system,sans-serif; max-width:480px; margin:0 auto; }
 .header { background:linear-gradient(135deg,#1a1a1a,#252525); padding:10px 16px; position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:10px; border-bottom:2px solid transparent; border-image:linear-gradient(90deg,#FFD700,#FF8C00,#FF4500,#FF69B4,#9400D3,#0080FF,#00CED1,#FFD700) 1; box-shadow:0 4px 20px rgba(0,0,0,0.8); }
 .header-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#FFD700,#FFA500,#FF6347); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; box-shadow:0 0 15px #FFD700, 0 0 30px rgba(255,165,0,0.5); animation:glow 2s infinite; }
 .header-title { font-size:17px; font-weight:800; background:linear-gradient(90deg,#FFD700,#FFA500,#FF6347,#FF69B4,#DA70D6,#FFD700); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 4s linear infinite; }
@@ -34,3 +34,4 @@ html, body { height:100%; } body { background:#0d0d0d; color:#fff; font-family:-
 .post-price { font-size:17px; font-weight:900; background:linear-gradient(90deg,#00FF7F,#00CED1,#00BFFF,#00FF7F); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 3s linear infinite; }
 .post-price.sold-price { background:none !important; -webkit-text-fill-color:#555 !important; text-decoration:line-through; font-size:14px; animation:none; }
 .sold-text { font-size:12px; color:#00CC66; font-weight:700; }
+
