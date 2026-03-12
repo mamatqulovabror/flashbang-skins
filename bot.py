@@ -1,9 +1,12 @@
 import asyncio
+import os
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.filters import Command
-from config import BOT_TOKEN, WEBAPP_URL
 from database import create_db
+
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://telegram.org")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
