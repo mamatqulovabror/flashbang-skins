@@ -9,380 +9,141 @@
 
   :root {
     --gold: #f5c842;
-    --gold2: #e6a817;
     --bg: #0d0d0d;
     --card: #151515;
-    --border: #222;
     --text: #e8e8e8;
     --muted: #888;
     --green: #4ade80;
     --red: #f87171;
+    --blue: #38bdf8;
+    --panel-bg: #111827;
+    --input-bg: #1f2937;
+    --border: #374151;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-  }
+  /* HEADER */
+  .header { position:sticky; top:0; z-index:100; background:var(--bg); border-bottom:1px solid #1a1a1a; padding:10px 14px 8px; }
+  .header-top { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .header-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#f5c842,#e65c00); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .header-info { flex:1; }
+  .header-title { font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; background:linear-gradient(90deg,#f5c842,#ff8c00,#ff4e50); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:.5px; line-height:1; margin-bottom:2px; }
+  .header-stats { display:flex; gap:12px; font-size:11px; color:var(--muted); }
+  .stat-item { display:flex; align-items:center; gap:4px; }
+  .stat-dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 2s infinite; }
+  .stat-dot.total { background:var(--gold); box-shadow:0 0 6px var(--gold); animation:none; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .rainbow-line { height:2px; background:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa,#f472b6); background-size:200% 100%; animation:rainbowSlide 3s linear infinite; }
+  @keyframes rainbowSlide { 0%{background-position:0% 0} 100%{background-position:200% 0} }
 
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg);
-    border-bottom: 1px solid #1a1a1a;
-    padding: 10px 14px 8px;
-  }
+  /* FEED */
+  .feed { padding:8px 52px 80px 10px; display:flex; flex-direction:column-reverse; gap:10px; }
 
-  .header-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
+  /* POST */
+  .post { background:var(--card); border-radius:12px; border:1px solid #1e1e1e; overflow:hidden; position:relative; }
+  .post::before { content:''; position:absolute; inset:0; border-radius:12px; padding:1px; background:linear-gradient(135deg,#f5c842,#ff4e50,#a78bfa,#38bdf8); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:.5; pointer-events:none; }
+  .post-header { display:flex; align-items:center; gap:8px; padding:8px 10px 6px; }
+  .seller-avatar { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+  .seller-name { font-size:12px; font-weight:600; color:#38bdf8; flex:1; }
+  .post-time { font-size:10px; color:var(--muted); }
+  .post-images { display:grid; grid-template-columns:1fr 1fr; gap:2px; height:130px; position:relative; background:#0a0a0a; }
+  .post-img { background:#111; display:flex; align-items:center; justify-content:center; font-size:38px; position:relative; overflow:hidden; }
+  .post-img::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.5) 100%); }
+  .sold-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--red); color:#fff; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:16px; padding:4px 14px; border-radius:6px; z-index:5; letter-spacing:1px; }
+  .post-body { padding:8px 10px 6px; }
+  .skin-name { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#f5c842; margin-bottom:4px; }
+  .skin-name .star { color:#ff8c00; margin-right:3px; }
+  .price-row { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+  .price { font-size:14px; font-weight:700; color:#4ade80; }
+  .price.sold-price { text-decoration:line-through; color:var(--muted); font-size:12px; }
+  .sold-badge { background:var(--red); color:#fff; font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; }
+  .meta-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:5px; }
+  .meta-tag { font-size:10px; color:var(--muted); background:#1e1e1e; padding:2px 6px; border-radius:4px; }
+  .contact-row { font-size:11px; color:#a78bfa; margin-bottom:4px; }
+  .hashtags { font-size:10px; color:#38bdf8; opacity:.7; }
+  .post-footer { display:flex; gap:6px; padding:6px 10px 8px; border-top:1px solid #1a1a1a; }
+  .btn { flex:1; padding:6px 0; border-radius:7px; border:none; font-size:11px; font-weight:600; cursor:pointer; transition:opacity .2s; font-family:'Inter',sans-serif; }
+  .btn:active { opacity:.7; }
+  .btn-buy { background:linear-gradient(90deg,#f5c842,#ff8c00); color:#000; }
+  .btn-cart { background:transparent; color:var(--text); border:1px solid #333; }
+  .btn-sold-only { background:#1e1e1e; color:var(--muted); cursor:default; opacity:.6; }
 
-  .header-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #f5c842, #e65c00);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+  /* FILTER PANEL - csgoskins.gg style */
+  .filter-panel { display:none; padding:12px 12px 80px; flex-direction:column; gap:0; }
+  .filter-panel.active { display:flex; }
 
-  .header-info { flex: 1; }
+  .filter-search-wrap { position:relative; margin-bottom:10px; }
+  .filter-search-wrap .search-icon { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:14px; }
+  .filter-search { width:100%; padding:10px 12px 10px 36px; background:var(--input-bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:13px; font-family:'Inter',sans-serif; outline:none; }
+  .filter-search::placeholder { color:var(--muted); }
+  .filter-search:focus { border-color:#4b5563; }
 
-  .header-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    background: linear-gradient(90deg, #f5c842, #ff8c00, #ff4e50);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.5px;
-    line-height: 1;
-    margin-bottom: 2px;
-  }
+  .filter-section { background:var(--panel-bg); border-radius:10px; margin-bottom:8px; overflow:hidden; }
 
-  .header-stats {
-    display: flex;
-    gap: 12px;
-    font-size: 11px;
-    color: var(--muted);
-  }
+  .filter-section-header { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; cursor:pointer; }
+  .filter-section-label { font-size:13px; font-weight:600; color:var(--text); }
+  .filter-section-value { font-size:12px; color:var(--blue); font-weight:500; }
+  .filter-arrow { font-size:10px; color:var(--muted); transition:transform .2s; }
+  .filter-arrow.open { transform:rotate(180deg); }
 
-  .stat-item { display: flex; align-items: center; gap: 4px; }
+  .filter-section-body { padding:0 14px 12px; display:none; }
+  .filter-section-body.open { display:block; }
 
-  .stat-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 6px var(--green);
-    animation: pulse 2s infinite;
-  }
+  /* Price inputs */
+  .price-inputs { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .price-input-wrap { position:relative; }
+  .price-input-wrap .currency { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:11px; color:var(--muted); font-weight:600; }
+  .price-input { width:100%; padding:9px 36px 9px 12px; background:var(--input-bg); border:1px solid var(--border); border-radius:7px; color:var(--text); font-size:13px; font-family:'Inter',sans-serif; outline:none; }
+  .price-input::placeholder { color:#4b5563; }
+  .price-input:focus { border-color:#4b5563; }
+  .price-label { font-size:11px; color:var(--muted); margin-bottom:5px; font-weight:500; }
 
-  .stat-dot.total {
-    background: var(--gold);
-    box-shadow: 0 0 6px var(--gold);
-    animation: none;
-  }
+  /* Select dropdown */
+  .filter-select { width:100%; padding:9px 12px; background:var(--input-bg); border:1px solid var(--border); border-radius:7px; color:var(--text); font-size:13px; font-family:'Inter',sans-serif; outline:none; appearance:none; cursor:pointer; }
+  .filter-select:focus { border-color:#4b5563; }
+  .select-wrap { position:relative; }
+  .select-arrow { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:10px; pointer-events:none; }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  /* Wear checkboxes */
+  .wear-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+  .wear-item { display:flex; align-items:center; gap:6px; padding:7px 8px; background:var(--input-bg); border:1px solid var(--border); border-radius:7px; cursor:pointer; transition:all .15s; }
+  .wear-item.selected { border-color:var(--blue); background:rgba(56,189,248,.1); }
+  .wear-item input { display:none; }
+  .wear-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .wear-name { font-size:11px; font-weight:600; color:var(--muted); }
+  .wear-item.selected .wear-name { color:var(--blue); }
 
-  .rainbow-line {
-    height: 2px;
-    background: linear-gradient(90deg, #ff4e50, #f9d423, #4ade80, #38bdf8, #a78bfa, #f472b6);
-    background-size: 200% 100%;
-    animation: rainbowSlide 3s linear infinite;
-  }
+  /* Rarity items */
+  .rarity-list { display:flex; flex-direction:column; gap:5px; }
+  .rarity-item { display:flex; align-items:center; gap:10px; padding:8px 10px; background:var(--input-bg); border:1px solid var(--border); border-radius:7px; cursor:pointer; transition:all .15s; }
+  .rarity-item.selected { border-color:rgba(255,255,255,.2); }
+  .rarity-bar { height:4px; width:28px; border-radius:2px; flex-shrink:0; }
+  .rarity-name { font-size:12px; font-weight:500; flex:1; }
+  .rarity-check { width:16px; height:16px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:9px; flex-shrink:0; }
+  .rarity-item.selected .rarity-check { background:var(--blue); border-color:var(--blue); color:#000; }
 
-  @keyframes rainbowSlide {
-    0% { background-position: 0% 0; }
-    100% { background-position: 200% 0; }
-  }
+  /* StatTrak toggle */
+  .toggle-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
+  .toggle-label { font-size:13px; color:var(--text); }
+  .toggle { width:40px; height:22px; background:var(--border); border-radius:11px; position:relative; cursor:pointer; transition:background .2s; }
+  .toggle.on { background:var(--blue); }
+  .toggle-knob { width:18px; height:18px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition:left .2s; }
+  .toggle.on .toggle-knob { left:20px; }
 
-  .feed {
-    padding: 8px 52px 80px 10px;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 10px;
-  }
+  /* Buttons */
+  .filter-btns { display:grid; grid-template-columns:1fr 2fr; gap:8px; margin-top:4px; }
+  .btn-reset { padding:11px; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
+  .btn-search { padding:11px; background:#2563eb; border:none; border-radius:8px; color:#fff; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; gap:6px; }
+  .btn-search:active { opacity:.85; }
 
-  /* FILTER PANEL */
-  .filter-panel {
-    display: none;
-    padding: 14px 12px 80px;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .filter-panel.active { display: flex; }
-
-  .filter-section-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .filter-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .chip {
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #2a2a2a;
-    background: #1a1a1a;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .chip.active, .chip:active {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(245,200,66,0.1);
-  }
-
-  .filter-range-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .filter-range {
-    width: 100%;
-    accent-color: var(--gold);
-  }
-
-  .filter-apply {
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(90deg, #f5c842, #ff8c00);
-    border: none;
-    border-radius: 10px;
-    color: #000;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    margin-top: 4px;
-  }
-
-  .filter-reset {
-    width: 100%;
-    padding: 8px;
-    background: transparent;
-    border: 1px solid #2a2a2a;
-    border-radius: 10px;
-    color: var(--muted);
-    font-size: 12px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .post {
-    background: var(--card);
-    border-radius: 12px;
-    border: 1px solid #1e1e1e;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .post::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    padding: 1px;
-    background: linear-gradient(135deg, #f5c842, #ff4e50, #a78bfa, #38bdf8);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  .post-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 10px 6px;
-  }
-
-  .seller-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    flex-shrink: 0;
-  }
-
-  .seller-name { font-size: 12px; font-weight: 600; color: #38bdf8; flex: 1; }
-  .post-time { font-size: 10px; color: var(--muted); }
-
-  .post-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    height: 130px;
-    position: relative;
-    background: #0a0a0a;
-  }
-
-  .post-img {
-    background: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 38px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .post-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.5) 100%);
-  }
-
-  .sold-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--red);
-    color: #fff;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 4px 14px;
-    border-radius: 6px;
-    z-index: 5;
-    letter-spacing: 1px;
-  }
-
-  .post-body { padding: 8px 10px 6px; }
-
-  .skin-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: #f5c842;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
-  }
-
-  .skin-name .star { color: #ff8c00; margin-right: 3px; }
-
-  .price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-  .price { font-size: 14px; font-weight: 700; color: #4ade80; }
-  .price.sold-price { text-decoration: line-through; color: var(--muted); font-size: 12px; }
-
-  .sold-badge {
-    background: var(--red);
-    color: #fff;
-    font-size: 9px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-  }
-
-  .meta-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
-
-  .meta-tag {
-    font-size: 10px;
-    color: var(--muted);
-    background: #1e1e1e;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-
-  .contact-row { font-size: 11px; color: #a78bfa; margin-bottom: 4px; }
-  .hashtags { font-size: 10px; color: #38bdf8; opacity: 0.7; }
-
-  .post-footer {
-    display: flex;
-    gap: 6px;
-    padding: 6px 10px 8px;
-    border-top: 1px solid #1a1a1a;
-  }
-
-  .btn {
-    flex: 1;
-    padding: 6px 0;
-    border-radius: 7px;
-    border: none;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .btn:active { opacity: 0.7; }
-  .btn-buy { background: linear-gradient(90deg, #f5c842, #ff8c00); color: #000; }
-  .btn-cart { background: transparent; color: var(--text); border: 1px solid #333; }
-  .btn-sold-only { background: #1e1e1e; color: var(--muted); cursor: default; opacity: 0.6; }
-
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 480px;
-    margin: 0 auto;
-    background: rgba(13,13,13,0.97);
-    border-top: 1px solid transparent;
-    border-image: linear-gradient(90deg, #ff4e50, #f9d423, #4ade80, #38bdf8, #a78bfa) 1;
-    display: flex;
-    z-index: 200;
-    backdrop-filter: blur(10px);
-  }
-
-  .nav-tab {
-    flex: 1;
-    padding: 8px 0 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    font-size: 9px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .nav-tab .nav-icon { font-size: 18px; display: block; margin-bottom: 2px; }
-  .nav-tab.active { color: var(--gold); }
-  .nav-tab:active { opacity: 0.6; }
+  /* BOTTOM NAV */
+  .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto; background:rgba(13,13,13,.97); border-top:1px solid transparent; border-image:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa) 1; display:flex; z-index:200; backdrop-filter:blur(10px); }
+  .nav-tab { flex:1; padding:8px 0 10px; text-align:center; cursor:pointer; transition:opacity .2s; border:none; background:transparent; color:var(--muted); font-size:9px; font-family:'Inter',sans-serif; }
+  .nav-tab .nav-icon { font-size:18px; display:block; margin-bottom:2px; }
+  .nav-tab.active { color:var(--gold); }
+  .nav-tab:active { opacity:.6; }
 </style>
 </head>
 <body>
@@ -407,8 +168,8 @@
   <div class="rainbow-line"></div>
 </div>
 
+<!-- FEED -->
 <div class="feed" id="feed-panel">
-
   <div class="post">
     <div class="post-header">
       <div class="seller-avatar" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">🎮</div>
@@ -492,135 +253,284 @@
       <button class="btn btn-cart" onclick="addCart('AK-47 Redline')">+ Savatcha</button>
     </div>
   </div>
-
 </div>
 
-<!-- FILTER PANEL -->
+<!-- FILTER PANEL - csgoskins.gg uslubi -->
 <div class="filter-panel" id="filter-panel">
 
-  <div>
-    <div class="filter-section-title">Qurol turi</div>
-    <div class="filter-chips">
-      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
-      <div class="chip" onclick="toggleChip(this)">Rifle</div>
-      <div class="chip" onclick="toggleChip(this)">Sniper</div>
-      <div class="chip" onclick="toggleChip(this)">Knife</div>
-      <div class="chip" onclick="toggleChip(this)">Pistol</div>
-      <div class="chip" onclick="toggleChip(this)">Gloves</div>
+  <!-- Search -->
+  <div class="filter-search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish...">
+  </div>
+
+  <!-- Price -->
+  <div class="filter-section">
+    <div class="filter-section-header" onclick="toggleSection(this)">
+      <span class="filter-section-label">Narx (UZS)</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="filter-section-value" id="price-display">Istalgan</span>
+        <span class="filter-arrow">▼</span>
+      </div>
+    </div>
+    <div class="filter-section-body">
+      <div class="price-inputs">
+        <div>
+          <div class="price-label">Minimum</div>
+          <div class="price-input-wrap">
+            <input class="price-input" type="number" placeholder="0" id="price-min" oninput="updatePriceDisplay()">
+            <span class="currency">UZS</span>
+          </div>
+        </div>
+        <div>
+          <div class="price-label">Maximum</div>
+          <div class="price-input-wrap">
+            <input class="price-input" type="number" placeholder="∞" id="price-max" oninput="updatePriceDisplay()">
+            <span class="currency">UZS</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div>
-    <div class="filter-section-title">Holat (Wear)</div>
-    <div class="filter-chips">
-      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
-      <div class="chip" onclick="toggleChip(this)">FN</div>
-      <div class="chip" onclick="toggleChip(this)">MW</div>
-      <div class="chip" onclick="toggleChip(this)">FT</div>
-      <div class="chip" onclick="toggleChip(this)">WW</div>
-      <div class="chip" onclick="toggleChip(this)">BS</div>
+  <!-- Weapon type -->
+  <div class="filter-section">
+    <div class="filter-section-header" onclick="toggleSection(this)">
+      <span class="filter-section-label">Qurol turi</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="filter-section-value" id="weapon-display">Istalgan</span>
+        <span class="filter-arrow">▼</span>
+      </div>
+    </div>
+    <div class="filter-section-body">
+      <div class="select-wrap">
+        <select class="filter-select" id="weapon-select" onchange="document.getElementById('weapon-display').textContent=this.options[this.selectedIndex].text">
+          <option value="">Istalgan</option>
+          <option value="ak47">AK-47</option>
+          <option value="awp">AWP</option>
+          <option value="m4a4">M4A4</option>
+          <option value="m4a1s">M4A1-S</option>
+          <option value="knife">Knife</option>
+          <option value="gloves">Gloves</option>
+          <option value="pistol">Pistol</option>
+          <option value="rifle">Rifle</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
     </div>
   </div>
 
-  <div>
-    <div class="filter-section-title">Narx (UZS)</div>
-    <div class="filter-range-label">
-      <span>0</span>
-      <span id="range-val">20,000,000</span>
+  <!-- Exterior / Wear -->
+  <div class="filter-section">
+    <div class="filter-section-header" onclick="toggleSection(this)">
+      <span class="filter-section-label">Exterior</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="filter-section-value" id="wear-display">Istalgan</span>
+        <span class="filter-arrow">▼</span>
+      </div>
     </div>
-    <input class="filter-range" type="range" min="0" max="20000000" step="100000" value="20000000"
-      oninput="document.getElementById('range-val').textContent = Number(this.value).toLocaleString()">
+    <div class="filter-section-body">
+      <div class="wear-grid">
+        <div class="wear-item" onclick="toggleWear(this,'FN')">
+          <div class="wear-dot" style="background:#4ade80"></div>
+          <span class="wear-name">FN</span>
+        </div>
+        <div class="wear-item" onclick="toggleWear(this,'MW')">
+          <div class="wear-dot" style="background:#38bdf8"></div>
+          <span class="wear-name">MW</span>
+        </div>
+        <div class="wear-item" onclick="toggleWear(this,'FT')">
+          <div class="wear-dot" style="background:#f5c842"></div>
+          <span class="wear-name">FT</span>
+        </div>
+        <div class="wear-item" onclick="toggleWear(this,'WW')">
+          <div class="wear-dot" style="background:#fb923c"></div>
+          <span class="wear-name">WW</span>
+        </div>
+        <div class="wear-item" onclick="toggleWear(this,'BS')">
+          <div class="wear-dot" style="background:#f87171"></div>
+          <span class="wear-name">BS</span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <div class="filter-section-title">Holati</div>
-    <div class="filter-chips">
-      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
-      <div class="chip" onclick="toggleChip(this)">Sotuvda</div>
-      <div class="chip" onclick="toggleChip(this)">Sotilgan</div>
+  <!-- Rarity -->
+  <div class="filter-section">
+    <div class="filter-section-header" onclick="toggleSection(this)">
+      <span class="filter-section-label">Rarity</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="filter-section-value" id="rarity-display">Istalgan</span>
+        <span class="filter-arrow">▼</span>
+      </div>
+    </div>
+    <div class="filter-section-body">
+      <div class="rarity-list">
+        <div class="rarity-item" onclick="toggleRarity(this,'Consumer')">
+          <div class="rarity-bar" style="background:#b0b0b0"></div>
+          <span class="rarity-name" style="color:#b0b0b0">Consumer Grade</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Industrial')">
+          <div class="rarity-bar" style="background:#5e98d9"></div>
+          <span class="rarity-name" style="color:#5e98d9">Industrial Grade</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Mil-Spec')">
+          <div class="rarity-bar" style="background:#4b69ff"></div>
+          <span class="rarity-name" style="color:#4b69ff">Mil-Spec</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Restricted')">
+          <div class="rarity-bar" style="background:#8847ff"></div>
+          <span class="rarity-name" style="color:#8847ff">Restricted</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Classified')">
+          <div class="rarity-bar" style="background:#d32ce6"></div>
+          <span class="rarity-name" style="color:#d32ce6">Classified</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Covert')">
+          <div class="rarity-bar" style="background:#eb4b4b"></div>
+          <span class="rarity-name" style="color:#eb4b4b">Covert</span>
+          <div class="rarity-check"></div>
+        </div>
+        <div class="rarity-item" onclick="toggleRarity(this,'Contraband')">
+          <div class="rarity-bar" style="background:#e4ae39"></div>
+          <span class="rarity-name" style="color:#e4ae39">★ Contraband</span>
+          <div class="rarity-check"></div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <button class="filter-apply" onclick="applyFilter()">✓ Filterni qo'llash</button>
-  <button class="filter-reset" onclick="resetFilter()">✕ Tozalash</button>
+  <!-- StatTrak -->
+  <div class="filter-section">
+    <div style="padding:4px 14px 4px">
+      <div class="toggle-row">
+        <span class="toggle-label">StatTrak™</span>
+        <div class="toggle" id="stattrak-toggle" onclick="this.classList.toggle('on')">
+          <div class="toggle-knob"></div>
+        </div>
+      </div>
+      <div class="toggle-row" style="border-top:1px solid #1f2937;padding-top:10px;margin-top:0">
+        <span class="toggle-label">Souvenir</span>
+        <div class="toggle" id="souvenir-toggle" onclick="this.classList.toggle('on')">
+          <div class="toggle-knob"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="filter-btns">
+    <button class="btn-reset" onclick="resetFilter()">Tozalash</button>
+    <button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button>
+  </div>
 
 </div>
 
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <button class="nav-tab active" onclick="switchTab('feed', this)">
+  <button class="nav-tab active" onclick="switchTab('feed',this)">
     <span class="nav-icon">🔫</span>FB SKINS
   </button>
-  <button class="nav-tab" onclick="switchTab('filter', this)">
+  <button class="nav-tab" onclick="switchTab('filter',this)">
     <span class="nav-icon">🔍</span>Filter
   </button>
-  <button class="nav-tab" onclick="switchTab('cart', this)">
+  <button class="nav-tab" onclick="switchTab('cart',this)">
     <span class="nav-icon">🧺</span>Savatcha
   </button>
-  <button class="nav-tab" onclick="switchTab('profile', this)">
+  <button class="nav-tab" onclick="switchTab('profile',this)">
     <span class="nav-icon">👤</span>Profil
   </button>
 </div>
 
 <script>
-  if(window.Telegram && window.Telegram.WebApp){
-    Telegram.WebApp.ready();
-    Telegram.WebApp.expand();
-  }
-  window.scrollTo(0, document.body.scrollHeight);
+  if(window.Telegram&&window.Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}
+  window.scrollTo(0,document.body.scrollHeight);
 
-  function switchTab(tab, el){
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  function switchTab(tab,el){
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('feed-panel').style.display = tab === 'feed' ? 'flex' : 'none';
-    document.getElementById('filter-panel').classList.toggle('active', tab === 'filter');
+    document.getElementById('feed-panel').style.display = tab==='feed'?'flex':'none';
+    document.getElementById('filter-panel').classList.toggle('active', tab==='filter');
   }
 
-  function toggleChip(el){
-    el.classList.toggle('active');
+  function toggleSection(header){
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.filter-arrow');
+    body.classList.toggle('open');
+    arrow.classList.toggle('open');
+  }
+
+  const selectedWears = new Set();
+  function toggleWear(el, wear){
+    el.classList.toggle('selected');
+    selectedWears.has(wear) ? selectedWears.delete(wear) : selectedWears.add(wear);
+    document.getElementById('wear-display').textContent = selectedWears.size ? [...selectedWears].join(', ') : 'Istalgan';
+  }
+
+  const selectedRarities = new Set();
+  function toggleRarity(el, rarity){
+    el.classList.toggle('selected');
+    const check = el.querySelector('.rarity-check');
+    selectedRarities.has(rarity) ? selectedRarities.delete(rarity) : selectedRarities.add(rarity);
+    check.textContent = el.classList.contains('selected') ? '✓' : '';
+    document.getElementById('rarity-display').textContent = selectedRarities.size ? selectedRarities.size+' tanlandi' : 'Istalgan';
+  }
+
+  function updatePriceDisplay(){
+    const min = document.getElementById('price-min').value;
+    const max = document.getElementById('price-max').value;
+    if(min||max) document.getElementById('price-display').textContent = (min||'0')+' - '+(max||'∞');
+    else document.getElementById('price-display').textContent = 'Istalgan';
   }
 
   function applyFilter(){
-    if(window.Telegram && window.Telegram.WebApp){
-      Telegram.WebApp.showAlert("Filter qo'llandi!");
-    }
+    if(window.Telegram&&window.Telegram.WebApp) Telegram.WebApp.showAlert("Filter qo'llandi!");
   }
 
   function resetFilter(){
-    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.chip:first-child').forEach(c => c.classList.add('active'));
+    document.querySelectorAll('.wear-item').forEach(el=>el.classList.remove('selected'));
+    document.querySelectorAll('.rarity-item').forEach(el=>{el.classList.remove('selected');el.querySelector('.rarity-check').textContent='';});
+    document.querySelectorAll('.toggle').forEach(el=>el.classList.remove('on'));
+    document.getElementById('price-min').value='';
+    document.getElementById('price-max').value='';
+    document.getElementById('weapon-select').value='';
+    document.querySelector('.filter-search').value='';
+    selectedWears.clear(); selectedRarities.clear();
+    document.getElementById('price-display').textContent='Istalgan';
+    document.getElementById('weapon-display').textContent='Istalgan';
+    document.getElementById('wear-display').textContent='Istalgan';
+    document.getElementById('rarity-display').textContent='Istalgan';
   }
 
   function buyItem(name){
-    if(window.Telegram && window.Telegram.WebApp){
-      Telegram.WebApp.showAlert('Sotib olish: ' + name + '\n@kaccocii ga murojaat qiling');
-    } else { alert('Sotib olish: ' + name); }
+    if(window.Telegram&&window.Telegram.WebApp) Telegram.WebApp.showAlert('Sotib olish: '+name+'\n@kaccocii ga murojaat qiling');
+    else alert('Sotib olish: '+name);
   }
 
   function addCart(name){
-    if(window.Telegram && window.Telegram.WebApp){
-      Telegram.WebApp.showAlert(name + " savatchaga qo'shildi!");
-    } else { alert(name + " savatchaga qo'shildi!"); }
+    if(window.Telegram&&window.Telegram.WebApp) Telegram.WebApp.showAlert(name+" savatchaga qo'shildi!");
+    else alert(name+" savatchaga qo'shildi!");
   }
 
-  fetch('/api/stats')
-    .then(r => r.json())
-    .then(d => {
-      document.getElementById('stat-total').textContent = d.total.toLocaleString();
-      document.getElementById('stat-online').textContent = d.online.toLocaleString();
-    })
-    .catch(() => {
-      document.getElementById('stat-total').textContent = '0';
-      document.getElementById('stat-online').textContent = '0';
-    });
+  fetch('/api/stats').then(r=>r.json()).then(d=>{
+    document.getElementById('stat-total').textContent=d.total.toLocaleString();
+    document.getElementById('stat-online').textContent=d.online.toLocaleString();
+  }).catch(()=>{
+    document.getElementById('stat-total').textContent='0';
+    document.getElementById('stat-online').textContent='0';
+  });
 
-  setInterval(() => {
-    fetch('/api/stats')
-      .then(r => r.json())
-      .then(d => {
-        document.getElementById('stat-total').textContent = d.total.toLocaleString();
-        document.getElementById('stat-online').textContent = d.online.toLocaleString();
-      });
-  }, 30000);
+  setInterval(()=>{
+    fetch('/api/stats').then(r=>r.json()).then(d=>{
+      document.getElementById('stat-total').textContent=d.total.toLocaleString();
+      document.getElementById('stat-online').textContent=d.online.toLocaleString();
+    });
+  },30000);
 </script>
 </body>
 </html>
