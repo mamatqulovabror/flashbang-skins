@@ -4,44 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Flashbang Skins</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap');
-
-  :root {
-    --gold: #f5c842;
-    --bg: #0d0d0d;
-    --card: #151515;
-    --text: #e8e8e8;
-    --muted: #888;
-    --green: #4ade80;
-    --red: #f87171;
-    --blue: #38bdf8;
-    --panel-bg: #111827;
-    --input-bg: #1f2937;
-    --border: #374151;
-    --tg-height: 100vh;
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-
-  html {
-    height: -webkit-fill-available;
-    height: 100%;
-  }
-
-  body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    min-height: env(safe-area-inset-bottom, 100vh);
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  /* HEADER */
-  .header { position:sticky; top:0; z-index:100; background:var(--bg); border-bottom:1px solid #1a1a1a; padding:10px 14px 8px; padding-top: max(10px, env(safe-area-inset-top)); }
+  :root { --gold:#f5c842; --bg:#0d0d0d; --card:#151515; --text:#e8e8e8; --muted:#888; --green:#4ade80; --red:#f87171; --blue:#38bdf8; --panel-bg:#111827; --input-bg:#1f2937; --border:#374151; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { height:-webkit-fill-available; height:100%; }
+  body { min-height:100vh; min-height:-webkit-fill-available; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; padding-bottom:env(safe-area-inset-bottom); }
+  .header { position:sticky; top:0; z-index:100; background:var(--bg); border-bottom:1px solid #1a1a1a; padding:10px 14px 8px; padding-top:max(10px,env(safe-area-inset-top)); }
   .header-top { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
   .header-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#f5c842,#e65c00); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
   .header-info { flex:1; }
@@ -53,11 +23,7 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   .rainbow-line { height:2px; background:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa,#f472b6); background-size:200% 100%; animation:rainbowSlide 3s linear infinite; }
   @keyframes rainbowSlide { 0%{background-position:0% 0} 100%{background-position:200% 0} }
-
-  /* FEED */
   .feed { padding:8px 52px 90px 10px; display:flex; flex-direction:column-reverse; gap:10px; }
-
-  /* POST */
   .post { background:var(--card); border-radius:12px; border:1px solid #1e1e1e; overflow:hidden; position:relative; }
   .post::before { content:''; position:absolute; inset:0; border-radius:12px; padding:1px; background:linear-gradient(135deg,#f5c842,#ff4e50,#a78bfa,#38bdf8); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:.5; pointer-events:none; }
   .post-header { display:flex; align-items:center; gap:8px; padding:8px 10px 6px; }
@@ -85,8 +51,6 @@
   .btn-buy { background:linear-gradient(90deg,#f5c842,#ff8c00); color:#000; }
   .btn-cart { background:transparent; color:var(--text); border:1px solid #333; }
   .btn-sold-only { background:#1e1e1e; color:var(--muted); cursor:default; opacity:.6; }
-
-  /* FILTER PANEL */
   .filter-panel { display:none; padding:12px 12px 90px; flex-direction:column; gap:0; }
   .filter-panel.active { display:flex; }
   .filter-search-wrap { position:relative; margin-bottom:10px; }
@@ -131,18 +95,7 @@
   .filter-btns { display:grid; grid-template-columns:1fr 2fr; gap:8px; margin-top:4px; }
   .btn-reset { padding:11px; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
   .btn-search { padding:11px; background:#2563eb; border:none; border-radius:8px; color:#fff; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; gap:6px; }
-
-  /* BOTTOM NAV - iOS safe area */
-  .bottom-nav {
-    position:fixed; bottom:0; left:0; right:0;
-    max-width:480px; margin:0 auto;
-    background:rgba(13,13,13,.97);
-    border-top:1px solid transparent;
-    border-image:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa) 1;
-    display:flex; z-index:200;
-    backdrop-filter:blur(10px);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+  .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto; background:rgba(13,13,13,.97); border-top:1px solid transparent; border-image:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa) 1; display:flex; z-index:200; backdrop-filter:blur(10px); padding-bottom:env(safe-area-inset-bottom); }
   .nav-tab { flex:1; padding:8px 0 10px; text-align:center; cursor:pointer; transition:opacity .2s; border:none; background:transparent; color:var(--muted); font-size:9px; font-family:'Inter',sans-serif; }
   .nav-tab .nav-icon { font-size:18px; display:block; margin-bottom:2px; }
   .nav-tab.active { color:var(--gold); }
@@ -150,7 +103,6 @@
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-top">
     <div class="header-avatar">🔫</div>
@@ -167,10 +119,7 @@
 
 <div class="feed" id="feed-panel">
   <div class="post">
-    <div class="post-header">
-      <div class="seller-avatar" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">🎮</div>
-      <span class="seller-name">@seller_uz</span><span class="post-time">1 kun oldin</span>
-    </div>
+    <div class="post-header"><div class="seller-avatar" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">🎮</div><span class="seller-name">@seller_uz</span><span class="post-time">1 kun oldin</span></div>
     <div class="post-images"><div class="post-img">🐉</div><div class="post-img">✨</div></div>
     <div class="post-body">
       <div class="skin-name"><span class="star">★</span>AWP | Dragon Lore</div>
@@ -184,12 +133,8 @@
       <button class="btn btn-cart" onclick="addCart('AWP Dragon Lore')">+ Savatcha</button>
     </div>
   </div>
-
   <div class="post">
-    <div class="post-header">
-      <div class="seller-avatar" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">🎯</div>
-      <span class="seller-name">@cs2_trader</span><span class="post-time">5 soat oldin</span>
-    </div>
+    <div class="post-header"><div class="seller-avatar" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">🎯</div><span class="seller-name">@cs2_trader</span><span class="post-time">5 soat oldin</span></div>
     <div class="post-images"><div class="post-img">🔪</div><div class="post-img">💎</div><div class="sold-overlay">SOTILDI</div></div>
     <div class="post-body">
       <div class="skin-name"><span class="star">★</span>Karambit | Doppler</div>
@@ -200,12 +145,8 @@
     </div>
     <div class="post-footer"><button class="btn btn-sold-only" disabled>✕ Sotildi</button></div>
   </div>
-
   <div class="post">
-    <div class="post-header">
-      <div class="seller-avatar" style="background:linear-gradient(135deg,#4ade80,#38bdf8)">🏪</div>
-      <span class="seller-name">@skins_bazar</span><span class="post-time">2 soat oldin</span>
-    </div>
+    <div class="post-header"><div class="seller-avatar" style="background:linear-gradient(135deg,#4ade80,#38bdf8)">🏪</div><span class="seller-name">@skins_bazar</span><span class="post-time">2 soat oldin</span></div>
     <div class="post-images"><div class="post-img">🔴</div><div class="post-img">⚡</div></div>
     <div class="post-body">
       <div class="skin-name"><span class="star">★</span>AK-47 | Redline</div>
@@ -222,80 +163,25 @@
 </div>
 
 <div class="filter-panel" id="filter-panel">
-  <div class="filter-search-wrap">
-    <span class="search-icon">🔍</span>
-    <input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish...">
+  <div class="filter-search-wrap"><span class="search-icon">🔍</span><input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish..."></div>
+  <div class="filter-section">
+    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Narx (UZS)</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="price-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
+    <div class="filter-section-body"><div class="price-inputs"><div><div class="price-label">Minimum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="0" id="price-min" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div><div><div class="price-label">Maximum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="∞" id="price-max" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div></div></div>
   </div>
   <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)">
-      <span class="filter-section-label">Narx (UZS)</span>
-      <div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="price-display">Istalgan</span><span class="filter-arrow">▼</span></div>
-    </div>
-    <div class="filter-section-body">
-      <div class="price-inputs">
-        <div><div class="price-label">Minimum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="0" id="price-min" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div>
-        <div><div class="price-label">Maximum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="∞" id="price-max" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div>
-      </div>
-    </div>
+    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Qurol turi</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="weapon-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
+    <div class="filter-section-body"><div class="select-wrap"><select class="filter-select" id="weapon-select" onchange="document.getElementById('weapon-display').textContent=this.options[this.selectedIndex].text"><option value="">Istalgan</option><option value="ak47">AK-47</option><option value="awp">AWP</option><option value="m4a4">M4A4</option><option value="m4a1s">M4A1-S</option><option value="knife">Knife</option><option value="gloves">Gloves</option><option value="pistol">Pistol</option><option value="rifle">Rifle</option></select><span class="select-arrow">▼</span></div></div>
   </div>
   <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)">
-      <span class="filter-section-label">Qurol turi</span>
-      <div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="weapon-display">Istalgan</span><span class="filter-arrow">▼</span></div>
-    </div>
-    <div class="filter-section-body">
-      <div class="select-wrap">
-        <select class="filter-select" id="weapon-select" onchange="document.getElementById('weapon-display').textContent=this.options[this.selectedIndex].text">
-          <option value="">Istalgan</option><option value="ak47">AK-47</option><option value="awp">AWP</option>
-          <option value="m4a4">M4A4</option><option value="m4a1s">M4A1-S</option><option value="knife">Knife</option>
-          <option value="gloves">Gloves</option><option value="pistol">Pistol</option><option value="rifle">Rifle</option>
-        </select>
-        <span class="select-arrow">▼</span>
-      </div>
-    </div>
+    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Exterior</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="wear-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
+    <div class="filter-section-body"><div class="wear-grid"><div class="wear-item" onclick="toggleWear(this,'FN')"><div class="wear-dot" style="background:#4ade80"></div><span class="wear-name">FN</span></div><div class="wear-item" onclick="toggleWear(this,'MW')"><div class="wear-dot" style="background:#38bdf8"></div><span class="wear-name">MW</span></div><div class="wear-item" onclick="toggleWear(this,'FT')"><div class="wear-dot" style="background:#f5c842"></div><span class="wear-name">FT</span></div><div class="wear-item" onclick="toggleWear(this,'WW')"><div class="wear-dot" style="background:#fb923c"></div><span class="wear-name">WW</span></div><div class="wear-item" onclick="toggleWear(this,'BS')"><div class="wear-dot" style="background:#f87171"></div><span class="wear-name">BS</span></div></div></div>
   </div>
   <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)">
-      <span class="filter-section-label">Exterior</span>
-      <div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="wear-display">Istalgan</span><span class="filter-arrow">▼</span></div>
-    </div>
-    <div class="filter-section-body">
-      <div class="wear-grid">
-        <div class="wear-item" onclick="toggleWear(this,'FN')"><div class="wear-dot" style="background:#4ade80"></div><span class="wear-name">FN</span></div>
-        <div class="wear-item" onclick="toggleWear(this,'MW')"><div class="wear-dot" style="background:#38bdf8"></div><span class="wear-name">MW</span></div>
-        <div class="wear-item" onclick="toggleWear(this,'FT')"><div class="wear-dot" style="background:#f5c842"></div><span class="wear-name">FT</span></div>
-        <div class="wear-item" onclick="toggleWear(this,'WW')"><div class="wear-dot" style="background:#fb923c"></div><span class="wear-name">WW</span></div>
-        <div class="wear-item" onclick="toggleWear(this,'BS')"><div class="wear-dot" style="background:#f87171"></div><span class="wear-name">BS</span></div>
-      </div>
-    </div>
+    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Rarity</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="rarity-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
+    <div class="filter-section-body"><div class="rarity-list"><div class="rarity-item" onclick="toggleRarity(this,'Consumer')"><div class="rarity-bar" style="background:#b0b0b0"></div><span class="rarity-name" style="color:#b0b0b0">Consumer Grade</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Industrial')"><div class="rarity-bar" style="background:#5e98d9"></div><span class="rarity-name" style="color:#5e98d9">Industrial Grade</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Mil-Spec')"><div class="rarity-bar" style="background:#4b69ff"></div><span class="rarity-name" style="color:#4b69ff">Mil-Spec</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Restricted')"><div class="rarity-bar" style="background:#8847ff"></div><span class="rarity-name" style="color:#8847ff">Restricted</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Classified')"><div class="rarity-bar" style="background:#d32ce6"></div><span class="rarity-name" style="color:#d32ce6">Classified</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Covert')"><div class="rarity-bar" style="background:#eb4b4b"></div><span class="rarity-name" style="color:#eb4b4b">Covert</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Contraband')"><div class="rarity-bar" style="background:#e4ae39"></div><span class="rarity-name" style="color:#e4ae39">★ Contraband</span><div class="rarity-check"></div></div></div></div>
   </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)">
-      <span class="filter-section-label">Rarity</span>
-      <div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="rarity-display">Istalgan</span><span class="filter-arrow">▼</span></div>
-    </div>
-    <div class="filter-section-body">
-      <div class="rarity-list">
-        <div class="rarity-item" onclick="toggleRarity(this,'Consumer')"><div class="rarity-bar" style="background:#b0b0b0"></div><span class="rarity-name" style="color:#b0b0b0">Consumer Grade</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Industrial')"><div class="rarity-bar" style="background:#5e98d9"></div><span class="rarity-name" style="color:#5e98d9">Industrial Grade</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Mil-Spec')"><div class="rarity-bar" style="background:#4b69ff"></div><span class="rarity-name" style="color:#4b69ff">Mil-Spec</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Restricted')"><div class="rarity-bar" style="background:#8847ff"></div><span class="rarity-name" style="color:#8847ff">Restricted</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Classified')"><div class="rarity-bar" style="background:#d32ce6"></div><span class="rarity-name" style="color:#d32ce6">Classified</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Covert')"><div class="rarity-bar" style="background:#eb4b4b"></div><span class="rarity-name" style="color:#eb4b4b">Covert</span><div class="rarity-check"></div></div>
-        <div class="rarity-item" onclick="toggleRarity(this,'Contraband')"><div class="rarity-bar" style="background:#e4ae39"></div><span class="rarity-name" style="color:#e4ae39">★ Contraband</span><div class="rarity-check"></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="filter-section">
-    <div style="padding:4px 14px">
-      <div class="toggle-row"><span class="toggle-label">StatTrak™</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div>
-      <div class="toggle-row" style="border-top:1px solid #1f2937"><span class="toggle-label">Souvenir</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div>
-    </div>
-  </div>
-  <div class="filter-btns">
-    <button class="btn-reset" onclick="resetFilter()">Tozalash</button>
-    <button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button>
-  </div>
+  <div class="filter-section"><div style="padding:4px 14px"><div class="toggle-row"><span class="toggle-label">StatTrak™</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div><div class="toggle-row" style="border-top:1px solid #1f2937"><span class="toggle-label">Souvenir</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div></div></div>
+  <div class="filter-btns"><button class="btn-reset" onclick="resetFilter()">Tozalash</button><button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button></div>
 </div>
 
 <div class="bottom-nav">
@@ -306,80 +192,31 @@
 </div>
 
 <script>
-  // iOS to'liq ekran fix
-  function setFullHeight() {
-    const tg = window.Telegram?.WebApp;
-    if (tg) {
-      tg.ready();
-      tg.expand();
-      document.documentElement.style.setProperty('--tg-height', tg.viewportHeight + 'px');
-      tg.onEvent('viewportChanged', function() {
-        document.documentElement.style.setProperty('--tg-height', tg.viewportHeight + 'px');
-      });
-    }
-  }
-  setFullHeight();
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+  if (tg.requestFullscreen) tg.requestFullscreen();
+  tg.onEvent('viewportChanged', function() {
+    if (!tg.isExpanded) tg.expand();
+    if (tg.requestFullscreen) tg.requestFullscreen();
+  });
+
   window.scrollTo(0, document.body.scrollHeight);
 
-  function switchTab(tab,el){
-    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('feed-panel').style.display = tab==='feed'?'flex':'none';
-    document.getElementById('filter-panel').classList.toggle('active', tab==='filter');
-  }
-  function toggleSection(header){
-    const body=header.nextElementSibling;
-    const arrow=header.querySelector('.filter-arrow');
-    body.classList.toggle('open');
-    arrow.classList.toggle('open');
-  }
+  function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); }
+  function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
   const selectedWears=new Set();
-  function toggleWear(el,wear){
-    el.classList.toggle('selected');
-    selectedWears.has(wear)?selectedWears.delete(wear):selectedWears.add(wear);
-    document.getElementById('wear-display').textContent=selectedWears.size?[...selectedWears].join(', '):'Istalgan';
-  }
+  function toggleWear(el,wear){ el.classList.toggle('selected'); selectedWears.has(wear)?selectedWears.delete(wear):selectedWears.add(wear); document.getElementById('wear-display').textContent=selectedWears.size?[...selectedWears].join(', '):'Istalgan'; }
   const selectedRarities=new Set();
-  function toggleRarity(el,rarity){
-    el.classList.toggle('selected');
-    const check=el.querySelector('.rarity-check');
-    selectedRarities.has(rarity)?selectedRarities.delete(rarity):selectedRarities.add(rarity);
-    check.textContent=el.classList.contains('selected')?'✓':'';
-    document.getElementById('rarity-display').textContent=selectedRarities.size?selectedRarities.size+' tanlandi':'Istalgan';
-  }
-  function updatePriceDisplay(){
-    const min=document.getElementById('price-min').value;
-    const max=document.getElementById('price-max').value;
-    document.getElementById('price-display').textContent=(min||max)?(min||'0')+' - '+(max||'∞'):'Istalgan';
-  }
-  function applyFilter(){
-    if(window.Telegram?.WebApp) Telegram.WebApp.showAlert("Filter qo'llandi!");
-  }
-  function resetFilter(){
-    document.querySelectorAll('.wear-item,.rarity-item').forEach(el=>el.classList.remove('selected'));
-    document.querySelectorAll('.rarity-check').forEach(el=>el.textContent='');
-    document.querySelectorAll('.toggle').forEach(el=>el.classList.remove('on'));
-    document.getElementById('price-min').value='';
-    document.getElementById('price-max').value='';
-    document.getElementById('weapon-select').value='';
-    document.querySelector('.filter-search').value='';
-    selectedWears.clear(); selectedRarities.clear();
-    ['price-display','weapon-display','wear-display','rarity-display'].forEach(id=>document.getElementById(id).textContent='Istalgan');
-  }
+  function toggleRarity(el,rarity){ el.classList.toggle('selected'); const check=el.querySelector('.rarity-check'); selectedRarities.has(rarity)?selectedRarities.delete(rarity):selectedRarities.add(rarity); check.textContent=el.classList.contains('selected')?'✓':''; document.getElementById('rarity-display').textContent=selectedRarities.size?selectedRarities.size+' tanlandi':'Istalgan'; }
+  function updatePriceDisplay(){ const min=document.getElementById('price-min').value; const max=document.getElementById('price-max').value; document.getElementById('price-display').textContent=(min||max)?(min||'0')+' - '+(max||'∞'):'Istalgan'; }
+  function applyFilter(){ if(window.Telegram?.WebApp) Telegram.WebApp.showAlert("Filter qo'llandi!"); }
+  function resetFilter(){ document.querySelectorAll('.wear-item,.rarity-item').forEach(el=>el.classList.remove('selected')); document.querySelectorAll('.rarity-check').forEach(el=>el.textContent=''); document.querySelectorAll('.toggle').forEach(el=>el.classList.remove('on')); document.getElementById('price-min').value=''; document.getElementById('price-max').value=''; document.getElementById('weapon-select').value=''; document.querySelector('.filter-search').value=''; selectedWears.clear(); selectedRarities.clear(); ['price-display','weapon-display','wear-display','rarity-display'].forEach(id=>document.getElementById(id).textContent='Istalgan'); }
   function buyItem(name){ if(window.Telegram?.WebApp) Telegram.WebApp.showAlert('Sotib olish: '+name+'\n@kaccocii ga murojaat qiling'); else alert('Sotib olish: '+name); }
   function addCart(name){ if(window.Telegram?.WebApp) Telegram.WebApp.showAlert(name+" savatchaga qo'shildi!"); else alert(name+" savatchaga qo'shildi!"); }
 
-  fetch('/api/stats').then(r=>r.json()).then(d=>{
-    document.getElementById('stat-total').textContent=d.total.toLocaleString();
-    document.getElementById('stat-online').textContent=d.online.toLocaleString();
-  }).catch(()=>{ document.getElementById('stat-total').textContent='0'; document.getElementById('stat-online').textContent='0'; });
-
-  setInterval(()=>{
-    fetch('/api/stats').then(r=>r.json()).then(d=>{
-      document.getElementById('stat-total').textContent=d.total.toLocaleString();
-      document.getElementById('stat-online').textContent=d.online.toLocaleString();
-    });
-  },30000);
+  fetch('/api/stats').then(r=>r.json()).then(d=>{ document.getElementById('stat-total').textContent=d.total.toLocaleString(); document.getElementById('stat-online').textContent=d.online.toLocaleString(); }).catch(()=>{ document.getElementById('stat-total').textContent='0'; document.getElementById('stat-online').textContent='0'; });
+  setInterval(()=>{ fetch('/api/stats').then(r=>r.json()).then(d=>{ document.getElementById('stat-total').textContent=d.total.toLocaleString(); document.getElementById('stat-online').textContent=d.online.toLocaleString(); }); },30000);
 </script>
 </body>
 </html>
