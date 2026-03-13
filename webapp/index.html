@@ -29,7 +29,6 @@
     overflow-x: hidden;
   }
 
-  /* HEADER */
   .header {
     position: sticky;
     top: 0;
@@ -58,9 +57,7 @@
     flex-shrink: 0;
   }
 
-  .header-info {
-    flex: 1;
-  }
+  .header-info { flex: 1; }
 
   .header-title {
     font-family: 'Rajdhani', sans-serif;
@@ -107,7 +104,6 @@
     50% { opacity: 0.4; }
   }
 
-  /* RAINBOW LINE */
   .rainbow-line {
     height: 2px;
     background: linear-gradient(90deg, #ff4e50, #f9d423, #4ade80, #38bdf8, #a78bfa, #f472b6);
@@ -120,7 +116,6 @@
     100% { background-position: 200% 0; }
   }
 
-  /* FEED */
   .feed {
     padding: 8px 52px 80px 10px;
     display: flex;
@@ -128,7 +123,6 @@
     gap: 10px;
   }
 
-  /* POST CARD */
   .post {
     background: var(--card);
     border-radius: 12px;
@@ -151,7 +145,6 @@
     pointer-events: none;
   }
 
-  /* POST HEADER */
   .post-header {
     display: flex;
     align-items: center;
@@ -170,19 +163,9 @@
     flex-shrink: 0;
   }
 
-  .seller-name {
-    font-size: 12px;
-    font-weight: 600;
-    color: #38bdf8;
-    flex: 1;
-  }
+  .seller-name { font-size: 12px; font-weight: 600; color: #38bdf8; flex: 1; }
+  .post-time { font-size: 10px; color: var(--muted); }
 
-  .post-time {
-    font-size: 10px;
-    color: var(--muted);
-  }
-
-  /* IMAGES */
   .post-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -225,10 +208,7 @@
     letter-spacing: 1px;
   }
 
-  /* POST BODY */
-  .post-body {
-    padding: 8px 10px 6px;
-  }
+  .post-body { padding: 8px 10px 6px; }
 
   .skin-name {
     font-family: 'Rajdhani', sans-serif;
@@ -241,18 +221,9 @@
 
   .skin-name .star { color: #ff8c00; margin-right: 3px; }
 
-  .price-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 5px;
-  }
+  .price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
 
-  .price {
-    font-size: 14px;
-    font-weight: 700;
-    color: #4ade80;
-  }
+  .price { font-size: 14px; font-weight: 700; color: #4ade80; }
 
   .price.sold-price {
     text-decoration: line-through;
@@ -270,12 +241,7 @@
     letter-spacing: 0.5px;
   }
 
-  .meta-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 5px;
-  }
+  .meta-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
 
   .meta-tag {
     font-size: 10px;
@@ -285,19 +251,9 @@
     border-radius: 4px;
   }
 
-  .contact-row {
-    font-size: 11px;
-    color: #a78bfa;
-    margin-bottom: 4px;
-  }
+  .contact-row { font-size: 11px; color: #a78bfa; margin-bottom: 4px; }
+  .hashtags { font-size: 10px; color: #38bdf8; opacity: 0.7; }
 
-  .hashtags {
-    font-size: 10px;
-    color: #38bdf8;
-    opacity: 0.7;
-  }
-
-  /* FOOTER */
   .post-footer {
     display: flex;
     gap: 6px;
@@ -318,26 +274,10 @@
   }
 
   .btn:active { opacity: 0.7; }
+  .btn-buy { background: linear-gradient(90deg, #f5c842, #ff8c00); color: #000; }
+  .btn-cart { background: transparent; color: var(--text); border: 1px solid #333; }
+  .btn-sold-only { background: #1e1e1e; color: var(--muted); cursor: default; opacity: 0.6; }
 
-  .btn-buy {
-    background: linear-gradient(90deg, #f5c842, #ff8c00);
-    color: #000;
-  }
-
-  .btn-cart {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid #333;
-  }
-
-  .btn-sold-only {
-    background: #1e1e1e;
-    color: var(--muted);
-    cursor: default;
-    opacity: 0.6;
-  }
-
-  /* BOTTOM NAV */
   .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -381,11 +321,11 @@
       <div class="header-stats">
         <div class="stat-item">
           <div class="stat-dot total"></div>
-          <span>156,400 foydalanuvchi</span>
+          <span><span id="stat-total">...</span> foydalanuvchi</span>
         </div>
         <div class="stat-item">
           <div class="stat-dot"></div>
-          <span>2,348 online</span>
+          <span><span id="stat-online">...</span> online</span>
         </div>
       </div>
     </div>
@@ -395,7 +335,6 @@
 
 <div class="feed">
 
-  <!-- POST 1 -->
   <div class="post">
     <div class="post-header">
       <div class="seller-avatar" style="background:linear-gradient(135deg,#f5c842,#ff8c00)">🎮</div>
@@ -408,9 +347,7 @@
     </div>
     <div class="post-body">
       <div class="skin-name"><span class="star">★</span>AWP | Dragon Lore</div>
-      <div class="price-row">
-        <span class="price">12,000,000 UZS</span>
-      </div>
+      <div class="price-row"><span class="price">12,000,000 UZS</span></div>
       <div class="meta-row">
         <span class="meta-tag">Float: 0.008</span>
         <span class="meta-tag">Pattern: 661</span>
@@ -425,7 +362,6 @@
     </div>
   </div>
 
-  <!-- POST 2 — SOTILDI -->
   <div class="post">
     <div class="post-header">
       <div class="seller-avatar" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">🎯</div>
@@ -456,7 +392,6 @@
     </div>
   </div>
 
-  <!-- POST 3 -->
   <div class="post">
     <div class="post-header">
       <div class="seller-avatar" style="background:linear-gradient(135deg,#4ade80,#38bdf8)">🏪</div>
@@ -469,9 +404,7 @@
     </div>
     <div class="post-body">
       <div class="skin-name"><span class="star">★</span>AK-47 | Redline</div>
-      <div class="price-row">
-        <span class="price">850,000 UZS</span>
-      </div>
+      <div class="price-row"><span class="price">850,000 UZS</span></div>
       <div class="meta-row">
         <span class="meta-tag">Float: 0.15</span>
         <span class="meta-tag">FT</span>
@@ -520,9 +453,31 @@
 
   function addCart(name){
     if(window.Telegram && window.Telegram.WebApp){
-      Telegram.WebApp.showAlert(name + ' savatchaga qo\'shildi!');
-    } else { alert(name + ' savatchaga qo\'shildi!'); }
+      Telegram.WebApp.showAlert(name + " savatchaga qo'shildi!");
+    } else { alert(name + " savatchaga qo'shildi!"); }
   }
+
+  // Real stats API dan olish
+  fetch('/api/stats')
+    .then(r => r.json())
+    .then(d => {
+      document.getElementById('stat-total').textContent = d.total.toLocaleString();
+      document.getElementById('stat-online').textContent = d.online.toLocaleString();
+    })
+    .catch(() => {
+      document.getElementById('stat-total').textContent = '0';
+      document.getElementById('stat-online').textContent = '0';
+    });
+
+  // Har 30 soniyada yangilab turadi
+  setInterval(() => {
+    fetch('/api/stats')
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('stat-total').textContent = d.total.toLocaleString();
+        document.getElementById('stat-online').textContent = d.online.toLocaleString();
+      });
+  }, 30000);
 </script>
 </body>
 </html>
