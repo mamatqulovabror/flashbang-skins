@@ -16,7 +16,12 @@ async def start(message: Message):
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[
         InlineKeyboardButton(text="🛒 Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL))
     ]])
-    await message.answer("🔫 FB SKINS | Flashbang", reply_markup=keyboard)
+    await message.answer(
+        "🔫 FB SKINS | Flashbang\n\n"
+        "👇 To'liq ekranda ochish:\n"
+        "t.me/fbskinsbot/fbskins",
+        reply_markup=keyboard
+    )
 
 async def handle_index(request):
     import pathlib
