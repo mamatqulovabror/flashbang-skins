@@ -1,8 +1,9 @@
-import asyncio, os
+import asyncio, os, json
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.filters import Command
+from database import create_db, save_user, get_stats
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://flashbang-skins-production.up.railway.app")
@@ -11,6 +12,7 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def start(message: Message):
+    save_user(message.from_user.id, message.from_user.username or "")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[
         InlineKeyboardButton(text="🛒 Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL))
     ]])
@@ -21,10 +23,20 @@ async def handle_index(request):
     index_path = pathlib.Path(__file__).parent / "webapp" / "index.html"
     return web.FileResponse(index_path)
 
+async def handle_stats(request):
+    total, online = get_stats()
+    return web.Response(
+        text=json.dumps({"total": total, "online": online}),
+        content_type="application/json",
+        headers={"Access-Control-Allow-Origin": "*"}
+    )
+
 async def main():
+    create_db()
     app = web.Application()
     app.router.add_get("/", handle_index)
     app.router.add_get("/index.html", handle_index)
+    app.router.add_get("/api/stats", handle_stats)
     port = int(os.environ.get("PORT", 8080))
     runner = web.AppRunner(app)
     await runner.setup()
