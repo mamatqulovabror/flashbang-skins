@@ -78,11 +78,7 @@
     color: var(--muted);
   }
 
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .stat-item { display: flex; align-items: center; gap: 4px; }
 
   .stat-dot {
     width: 6px;
@@ -121,6 +117,90 @@
     display: flex;
     flex-direction: column-reverse;
     gap: 10px;
+  }
+
+  /* FILTER PANEL */
+  .filter-panel {
+    display: none;
+    padding: 14px 12px 80px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filter-panel.active { display: flex; }
+
+  .filter-section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #2a2a2a;
+    background: #1a1a1a;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .chip.active, .chip:active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(245,200,66,0.1);
+  }
+
+  .filter-range-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .filter-range {
+    width: 100%;
+    accent-color: var(--gold);
+  }
+
+  .filter-apply {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(90deg, #f5c842, #ff8c00);
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    margin-top: 4px;
+  }
+
+  .filter-reset {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
   }
 
   .post {
@@ -222,14 +302,8 @@
   .skin-name .star { color: #ff8c00; margin-right: 3px; }
 
   .price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-
   .price { font-size: 14px; font-weight: 700; color: #4ade80; }
-
-  .price.sold-price {
-    text-decoration: line-through;
-    color: var(--muted);
-    font-size: 12px;
-  }
+  .price.sold-price { text-decoration: line-through; color: var(--muted); font-size: 12px; }
 
   .sold-badge {
     background: var(--red);
@@ -333,7 +407,7 @@
   <div class="rainbow-line"></div>
 </div>
 
-<div class="feed">
+<div class="feed" id="feed-panel">
 
   <div class="post">
     <div class="post-header">
@@ -421,14 +495,68 @@
 
 </div>
 
+<!-- FILTER PANEL -->
+<div class="filter-panel" id="filter-panel">
+
+  <div>
+    <div class="filter-section-title">Qurol turi</div>
+    <div class="filter-chips">
+      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
+      <div class="chip" onclick="toggleChip(this)">Rifle</div>
+      <div class="chip" onclick="toggleChip(this)">Sniper</div>
+      <div class="chip" onclick="toggleChip(this)">Knife</div>
+      <div class="chip" onclick="toggleChip(this)">Pistol</div>
+      <div class="chip" onclick="toggleChip(this)">Gloves</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="filter-section-title">Holat (Wear)</div>
+    <div class="filter-chips">
+      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
+      <div class="chip" onclick="toggleChip(this)">FN</div>
+      <div class="chip" onclick="toggleChip(this)">MW</div>
+      <div class="chip" onclick="toggleChip(this)">FT</div>
+      <div class="chip" onclick="toggleChip(this)">WW</div>
+      <div class="chip" onclick="toggleChip(this)">BS</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="filter-section-title">Narx (UZS)</div>
+    <div class="filter-range-label">
+      <span>0</span>
+      <span id="range-val">20,000,000</span>
+    </div>
+    <input class="filter-range" type="range" min="0" max="20000000" step="100000" value="20000000"
+      oninput="document.getElementById('range-val').textContent = Number(this.value).toLocaleString()">
+  </div>
+
+  <div>
+    <div class="filter-section-title">Holati</div>
+    <div class="filter-chips">
+      <div class="chip active" onclick="toggleChip(this)">Barchasi</div>
+      <div class="chip" onclick="toggleChip(this)">Sotuvda</div>
+      <div class="chip" onclick="toggleChip(this)">Sotilgan</div>
+    </div>
+  </div>
+
+  <button class="filter-apply" onclick="applyFilter()">✓ Filterni qo'llash</button>
+  <button class="filter-reset" onclick="resetFilter()">✕ Tozalash</button>
+
+</div>
+
 <div class="bottom-nav">
-  <button class="nav-tab active" onclick="switchTab(0, this)">
+  <button class="nav-tab active" onclick="switchTab('feed', this)">
     <span class="nav-icon">🔫</span>FB SKINS
   </button>
-  <button class="nav-tab" onclick="switchTab(1, this)">
+  <button class="nav-tab" onclick="switchTab('filter', this)">
+    <span class="nav-icon">🔍</span>Filter
+  </button>
+  <button class="nav-tab" onclick="switchTab('cart', this)">
     <span class="nav-icon">🧺</span>Savatcha
   </button>
-  <button class="nav-tab" onclick="switchTab(2, this)">
+  <button class="nav-tab" onclick="switchTab('profile', this)">
     <span class="nav-icon">👤</span>Profil
   </button>
 </div>
@@ -440,9 +568,26 @@
   }
   window.scrollTo(0, document.body.scrollHeight);
 
-  function switchTab(idx, el){
+  function switchTab(tab, el){
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
+    document.getElementById('feed-panel').style.display = tab === 'feed' ? 'flex' : 'none';
+    document.getElementById('filter-panel').classList.toggle('active', tab === 'filter');
+  }
+
+  function toggleChip(el){
+    el.classList.toggle('active');
+  }
+
+  function applyFilter(){
+    if(window.Telegram && window.Telegram.WebApp){
+      Telegram.WebApp.showAlert("Filter qo'llandi!");
+    }
+  }
+
+  function resetFilter(){
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.chip:first-child').forEach(c => c.classList.add('active'));
   }
 
   function buyItem(name){
@@ -457,7 +602,6 @@
     } else { alert(name + " savatchaga qo'shildi!"); }
   }
 
-  // Real stats API dan olish
   fetch('/api/stats')
     .then(r => r.json())
     .then(d => {
@@ -469,7 +613,6 @@
       document.getElementById('stat-online').textContent = '0';
     });
 
-  // Har 30 soniyada yangilab turadi
   setInterval(() => {
     fetch('/api/stats')
       .then(r => r.json())
