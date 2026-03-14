@@ -154,7 +154,8 @@
     <div class="header-info">
       <div class="header-title">Flashbang Skins</div>
       <div class="header-stats">
-        <div class="stat-item"><div class="stat-dot total"></div><span><span id="stat-total">...</span> start bosgan</span></div>
+        <div class="stat-item"><div class="stat-dot total"></div><span><span id="stat-total">...</span> foydalanuvchi</span></div>
+        <div class="stat-item"><div class="stat-dot"></div><span><span id="stat-online">...</span> online</span></div>
       </div>
     </div>
   </div>
@@ -616,6 +617,8 @@
   function buyItem(name){ if(window.Telegram?.WebApp) Telegram.WebApp.showAlert('Sotib olish: '+name+'\n@kaccocii ga murojaat qiling'); else alert('Sotib olish: '+name); }
   function addCart(name){ if(window.Telegram?.WebApp) Telegram.WebApp.showAlert(name+" savatchaga qo'shildi!"); else alert(name+" savatchaga qo'shildi!"); }
 
+  fetch('/api/stats').then(r=>r.json()).then(d=>{ document.getElementById('stat-total').textContent=d.total.toLocaleString(); document.getElementById('stat-online').textContent=d.online.toLocaleString(); }).catch(()=>{ document.getElementById('stat-total').textContent='0'; document.getElementById('stat-online').textContent='0'; });
+  setInterval(()=>{ fetch('/api/stats').then(r=>r.json()).then(d=>{ document.getElementById('stat-total').textContent=d.total.toLocaleString(); document.getElementById('stat-online').textContent=d.online.toLocaleString(); }); },30000);
 </script>
 </body>
 </html>
