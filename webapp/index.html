@@ -213,20 +213,51 @@
 <div class="profile-panel" id="profile-panel">
 
   <!-- Login bo'lmagan holat -->
-  <div id="profile-logged-out">
-    <div style="text-align:center;padding:30px 0 20px">
-      <div style="font-size:48px;margin-bottom:12px">👤</div>
-      <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#e8e8e8;margin-bottom:6px">Profilingiz</div>
-      <div style="font-size:12px;color:#888;margin-bottom:20px">Steam akkauntingiz bilan kiring</div>
-      <button class="steam-login-btn" onclick="steamLogin()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
-        Steam orqali kirish
-      </button>
+  <div   <div id="profile-logged-out">
+
+    <!-- Telegram profil -->
+    <div class="profile-card" style="margin-bottom:10px">
+      <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#f5c842,#ff8c00);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👤</div>
+      <div>
+        <div class="profile-name" id="tg-username">Telegram User</div>
+        <div class="profile-id">Telegram orqali ulangan</div>
+      </div>
+    </div>
+
+    <!-- 3 ta bo'lim -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+
+      <div onclick="showSection('settings')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
+        <span style="font-size:22px">⚙️</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Sozlamalar</div>
+          <div style="font-size:11px;color:#888">Trade link va bildirishnomalar</div>
+        </div>
+        <span style="font-size:20px;color:#555">&#x203A;</span>
+      </div>
+
+      <div onclick="steamLogin()" style="display:flex;align-items:center;gap:12px;padding:14px;background:#1b2838;border-radius:10px;cursor:pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" style="width:24px;height:24px;flex-shrink:0" alt="Steam">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Steam akkaunt</div>
+          <div style="font-size:11px;color:#888">Skin sotish uchun Steam bilan kiring</div>
+        </div>
+        <span style="font-size:20px;color:#555">&#x203A;</span>
+      </div>
+
+      <div onclick="showSection('cards')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
+        <span style="font-size:22px">&#x1F4B3;</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Kartalar</div>
+          <div style="font-size:11px;color:#888">To'lov kartalarini boshqarish</div>
+        </div>
+        <span style="font-size:20px;color:#555">&#x203A;</span>
+      </div>
+
     </div>
   </div>
 
-  <!-- Login bo'lgan holat -->
-  <div id="profile-logged-in" style="display:none">
+  id="profile-logged-in" style="display:none">
 
     <!-- Profil karta -->
     <div class="profile-card" style="margin-bottom:10px">
