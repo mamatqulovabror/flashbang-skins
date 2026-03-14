@@ -259,6 +259,11 @@
     }
   }
   checkSteamLogin();
+  // Steam login bo'lsa profil tabga o't
+  if(new URLSearchParams(window.location.search).get('steam_id')) {
+    const profileTab = [...document.querySelectorAll('.nav-tab')].find(t=>t.textContent.includes('Profil'));
+    if(profileTab) switchTab('profile', profileTab);
+  }
   function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
   function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
