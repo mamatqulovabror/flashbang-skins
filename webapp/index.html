@@ -202,28 +202,70 @@
 
 <!-- PROFILE PANEL -->
 <div class="profile-panel" id="profile-panel">
+
+  <!-- Login bo'lmagan holat -->
   <div id="profile-logged-out">
-    <p style="color:#888;font-size:13px;text-align:center;margin-bottom:12px">Steam akkauntingiz bilan kiring</p>
-    <button class="steam-login-btn" onclick="steamLogin()">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
-      Steam orqali kirish
-    </button>
+    <div style="text-align:center;padding:30px 0 20px">
+      <div style="font-size:48px;margin-bottom:12px">👤</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#e8e8e8;margin-bottom:6px">Profilingiz</div>
+      <div style="font-size:12px;color:#888;margin-bottom:20px">Steam akkauntingiz bilan kiring</div>
+      <button class="steam-login-btn" onclick="steamLogin()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+        Steam orqali kirish
+      </button>
+    </div>
   </div>
+
+  <!-- Login bo'lgan holat -->
   <div id="profile-logged-in" style="display:none">
-    <div class="profile-card">
+
+    <!-- Profil karta -->
+    <div class="profile-card" style="margin-bottom:10px">
       <img class="profile-avatar" id="profile-avatar-img" src="" alt="avatar">
-      <div>
+      <div style="flex:1">
         <div class="profile-name" id="profile-username"></div>
         <div class="profile-id" id="profile-steam-id"></div>
+        <div style="margin-top:4px">
+          <span style="background:#1a3a1a;color:#4ade80;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600">✓ Steam ulangan</span>
+        </div>
       </div>
     </div>
-    <div class="sell-section">
-      <div class="sell-title">🔫 Skin sotish</div>
-      <p style="color:#888;font-size:12px;margin-bottom:10px">Inventaringizdan skin tanlang va sotuvga qo'ying</p>
-      <button class="sell-btn" onclick="openInventory()">📦 Inventarni ko'rish</button>
+
+    <!-- Statistika -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
+      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#f5c842" id="stat-sold">0</div>
+        <div style="font-size:10px;color:#888">Sotilgan</div>
+      </div>
+      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#4ade80" id="stat-active">0</div>
+        <div style="font-size:10px;color:#888">Aktiv</div>
+      </div>
+      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#38bdf8" id="stat-income">0</div>
+        <div style="font-size:10px;color:#888">Daromad</div>
+      </div>
     </div>
-    <button class="profile-logout" onclick="steamLogout()">Chiqish</button>
+
+    <!-- Skin sotish -->
+    <div class="sell-section" style="margin-bottom:10px">
+      <div class="sell-title">🔫 Skin sotish</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">Inventaringizdan skin tanlang va narx qo'ying</div>
+      <button class="sell-btn" onclick="loadInventory()">📦 Inventarni ko'rish va sotish</button>
+    </div>
+
+    <!-- Mening e'lonlarim -->
+    <div style="background:#111827;border-radius:10px;padding:14px;margin-bottom:10px">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#e8e8e8;margin-bottom:10px">📋 Mening e'lonlarim</div>
+      <div id="my-listings" style="font-size:12px;color:#888;text-align:center;padding:10px 0">
+        Hozircha e'lon yo'q
+      </div>
+    </div>
+
+    <!-- Chiqish -->
+    <button class="profile-logout" onclick="steamLogout()">↩ Chiqish</button>
   </div>
+
 </div>
 
 <div class="bottom-nav">
@@ -259,11 +301,6 @@
     }
   }
   checkSteamLogin();
-  // Steam login bo'lsa profil tabga o't
-  if(new URLSearchParams(window.location.search).get('steam_id')) {
-    const profileTab = [...document.querySelectorAll('.nav-tab')].find(t=>t.textContent.includes('Profil'));
-    if(profileTab) switchTab('profile', profileTab);
-  }
   function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
   function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
