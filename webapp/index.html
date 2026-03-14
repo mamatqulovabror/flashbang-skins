@@ -257,21 +257,37 @@
     </div>
 
     <!-- Skin sotish -->
-    <div class="sell-section" style="margin-bottom:10px">
-      <div class="sell-title">🔫 Skin sotish</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">Inventaringizdan skin tanlang va narx qo'ying</div>
-      <button class="sell-btn" onclick="loadInventory()">📦 Inventarni ko'rish va sotish</button>
-    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
 
-    <!-- Mening e'lonlarim -->
-    <div style="background:#111827;border-radius:10px;padding:14px;margin-bottom:10px">
-      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#e8e8e8;margin-bottom:10px">📋 Mening e'lonlarim</div>
-      <div id="my-listings" style="font-size:12px;color:#888;text-align:center;padding:10px 0">
-        Hozircha e'lon yo'q
+      <div onclick="showSection('sell')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent">
+        <span style="font-size:22px">🔫</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Skinlarni sotish</div>
+          <div style="font-size:11px;color:#888">Inventardan skin tanlang va sotuvga qo'ying</div>
+        </div>
+        <span style="font-size:20px;color:#555">›</span>
       </div>
+
+      <div onclick="showSection('history')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent">
+        <span style="font-size:22px">📋</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Skinlar tarixi</div>
+          <div style="font-size:11px;color:#888">Sotilgan va aktiv e'lonlaringiz</div>
+        </div>
+        <span style="font-size:20px;color:#555">›</span>
+      </div>
+
+      <div onclick="showSection('settings')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent">
+        <span style="font-size:22px">⚙️</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Sozlamalar</div>
+          <div style="font-size:11px;color:#888">Trade link va bildirishnomalar</div>
+        </div>
+        <span style="font-size:20px;color:#555">›</span>
+      </div>
+
     </div>
 
-    <!-- Chiqish -->
     <button class="profile-logout" onclick="steamLogout()">↩ Chiqish</button>
   </div>
 
@@ -310,6 +326,16 @@
       if(window.Telegram && window.Telegram.WebApp) {
         Telegram.WebApp.showAlert('Sozlamalar\n\nTez kunda: trade link va bildirishnomalarni sozlash');
       } else { alert('Sozlamalar - tez kunda'); }
+    }
+  }
+  function showSection(s){
+    const tg = window.Telegram && window.Telegram.WebApp;
+    if(s==='sell'){
+      if(tg) Telegram.WebApp.showAlert('🔫 Skinlarni sotish\n\nTez kunda: inventaringizdan skin tanlang, narx qo\'ying va sotuvga qo\'ying!');
+    } else if(s==='history'){
+      if(tg) Telegram.WebApp.showAlert('📋 Skinlar tarixi\n\nHozircha sotilgan yoki aktiv e\'lonlaringiz yo\'q.');
+    } else if(s==='settings'){
+      if(tg) Telegram.WebApp.showAlert('⚙️ Sozlamalar\n\nTez kunda: trade link qo\'shish va bildirishnomalarni boshqarish!');
     }
   }
   function steamLogin() { window.location.href = 'https://flashbang-skins-production.up.railway.app/steam/login'; }
