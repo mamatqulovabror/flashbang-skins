@@ -109,6 +109,15 @@
   .profile-logout { margin-top:4px; padding:10px; background:transparent; border:1px solid #374151; border-radius:8px; color:#888; font-size:12px; cursor:pointer; font-family:'Inter',sans-serif; width:100%; }
   .sell-section { background:#111827; border-radius:10px; padding:14px; }
   .sell-title { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#f5c842; margin-bottom:10px; }
+
+  .profile-menu { display:flex; flex-direction:column; gap:8px; margin:10px 0; }
+  .profile-menu-item { display:flex; align-items:center; gap:12px; padding:14px; background:#111827; border-radius:10px; cursor:pointer; }
+  .profile-menu-item:active { opacity:.7; }
+  .profile-menu-icon { font-size:22px; flex-shrink:0; }
+  .profile-menu-text { flex:1; }
+  .profile-menu-title { font-size:13px; font-weight:600; color:#e8e8e8; margin-bottom:2px; }
+  .profile-menu-sub { font-size:11px; color:#888; }
+  .profile-menu-arrow { font-size:20px; color:#555; }
   .sell-btn { width:100%; padding:12px; background:linear-gradient(90deg,#f5c842,#ff8c00); border:none; border-radius:8px; color:#000; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; }
   .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto; background:rgba(13,13,13,.97); border-top:1px solid transparent; border-image:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa) 1; display:flex; z-index:200; backdrop-filter:blur(10px); padding-bottom:env(safe-area-inset-bottom); }
   .nav-tab { flex:1; padding:8px 0 10px; text-align:center; cursor:pointer; transition:opacity .2s; border:none; background:transparent; color:var(--muted); font-size:9px; font-family:'Inter',sans-serif; }
@@ -287,6 +296,22 @@
 
   window.scrollTo(0, document.body.scrollHeight);
 
+
+  function showProfileSection(section) {
+    if(section === 'sell') {
+      if(window.Telegram && window.Telegram.WebApp) {
+        Telegram.WebApp.showAlert('Skinlarni sotish\n\nTez kunda: inventaringizdan skin tanlang va narx belgilang');
+      } else { alert('Skinlarni sotish - tez kunda'); }
+    } else if(section === 'history') {
+      if(window.Telegram && window.Telegram.WebApp) {
+        Telegram.WebApp.showAlert('Skinlar tarixi\n\nHozircha sotilgan yoki aktiv e\'lonlaringiz yo\'q');
+      } else { alert('Skinlar tarixi - bo\'sh'); }
+    } else if(section === 'settings') {
+      if(window.Telegram && window.Telegram.WebApp) {
+        Telegram.WebApp.showAlert('Sozlamalar\n\nTez kunda: trade link va bildirishnomalarni sozlash');
+      } else { alert('Sozlamalar - tez kunda'); }
+    }
+  }
   function steamLogin() { window.location.href = 'https://flashbang-skins-production.up.railway.app/steam/login'; }
   function steamLogout() { document.getElementById('profile-logged-out').style.display='block'; document.getElementById('profile-logged-in').style.display='none'; }
   function checkSteamLogin() {
