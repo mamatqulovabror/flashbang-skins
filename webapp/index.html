@@ -245,6 +245,20 @@
 
   window.scrollTo(0, document.body.scrollHeight);
 
+  function steamLogin() { window.location.href = 'https://flashbang-skins-production.up.railway.app/steam/login'; }
+  function steamLogout() { document.getElementById('profile-logged-out').style.display='block'; document.getElementById('profile-logged-in').style.display='none'; }
+  function checkSteamLogin() {
+    const p = new URLSearchParams(window.location.search);
+    const sid = p.get('steam_id'), uname = p.get('username'), av = p.get('avatar');
+    if(sid) {
+      document.getElementById('profile-logged-out').style.display='none';
+      document.getElementById('profile-logged-in').style.display='block';
+      document.getElementById('profile-username').textContent = uname||'Steam User';
+      document.getElementById('profile-steam-id').textContent = 'ID: '+sid;
+      if(av) document.getElementById('profile-avatar-img').src = decodeURIComponent(av);
+    }
+  }
+  checkSteamLogin();
   function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
   function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
