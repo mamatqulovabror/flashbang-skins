@@ -25,16 +25,30 @@ def create_db():
             last_seen INTEGER
         )
     ''')
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS listings (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            steam_id TEXT,
+            username TEXT,
+            trade_url TEXT,
+            asset_id TEXT,
+            market_name TEXT,
+            price REAL,
+            image_url TEXT,
+            float_val TEXT,
+            wear TEXT,
+            status TEXT DEFAULT 'active',
+            created_at INTEGER
+        )
+    ''')
     conn.commit()
     conn.close()
 
 def add_skin(seller_id, weapon, name, wear, float_val, price, photo):
     conn = sqlite3.connect("skins.db")
     c = conn.cursor()
-    c.execute('''
-            INSERT INTO skins (seller_id, weapon, name, wear, float, price, photo)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (seller_id, weapon, name, wear, float_val, price, photo))
+    c.execute('''INSERT INTO skins (seller_id, weapon, name, wear, float, price, photo)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)''', (seller_id, weapon, name, wear, float_val, price, photo))
     conn.commit()
     conn.close()
 
@@ -75,3 +89,28 @@ def get_stats():
     online = c.fetchone()[0]
     conn.close()
     return total, online
+
+def add_listing(steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear):
+    conn = sqlite3.connect("skins.db")
+    c = conn.cursor()
+    now = int(time.time())
+    c.execute('''INSERT INTO listings (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, status, created_at)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?)''',
+              (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, now))
+    conn.commit()
+    conn.close()
+
+def get_listings():
+    conn = sqlite3.connect("skins.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM listings WHERE status = 'active' ORDER BY created_at DESC")
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
+def mark_listing_sold(listing_id):
+    conn = sqlite3.connect("skins.db")
+    c = conn.cursor()
+    c.execute("UPDATE listings SET status = 'sold' WHERE id = ?", (listing_id,))
+    conn.commit()
+    conn.close()
