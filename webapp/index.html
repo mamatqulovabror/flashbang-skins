@@ -95,6 +95,21 @@
   .filter-btns { display:grid; grid-template-columns:1fr 2fr; gap:8px; margin-top:4px; }
   .btn-reset { padding:11px; background:transparent; border:1px solid var(--border); border-radius:8px; color:var(--muted); font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; }
   .btn-search { padding:11px; background:#2563eb; border:none; border-radius:8px; color:#fff; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; display:flex; align-items:center; justify-content:center; gap:6px; }
+
+  /* PROFILE PANEL */
+  .profile-panel { display:none; padding:20px 14px 90px; flex-direction:column; gap:12px; }
+  .profile-panel.active { display:flex; }
+  .steam-login-btn { display:flex; align-items:center; justify-content:center; gap:10px; padding:14px; background:#1b2838; border:none; border-radius:10px; color:#fff; font-size:14px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; width:100%; }
+  .steam-login-btn img { width:24px; height:24px; }
+  .steam-login-btn:active { opacity:.8; }
+  .profile-card { background:#111827; border-radius:10px; padding:16px; display:flex; align-items:center; gap:12px; }
+  .profile-avatar { width:52px; height:52px; border-radius:50%; object-fit:cover; }
+  .profile-name { font-size:15px; font-weight:600; color:#e8e8e8; }
+  .profile-id { font-size:11px; color:#888; margin-top:2px; }
+  .profile-logout { margin-top:4px; padding:10px; background:transparent; border:1px solid #374151; border-radius:8px; color:#888; font-size:12px; cursor:pointer; font-family:'Inter',sans-serif; width:100%; }
+  .sell-section { background:#111827; border-radius:10px; padding:14px; }
+  .sell-title { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#f5c842; margin-bottom:10px; }
+  .sell-btn { width:100%; padding:12px; background:linear-gradient(90deg,#f5c842,#ff8c00); border:none; border-radius:8px; color:#000; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; }
   .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto; background:rgba(13,13,13,.97); border-top:1px solid transparent; border-image:linear-gradient(90deg,#ff4e50,#f9d423,#4ade80,#38bdf8,#a78bfa) 1; display:flex; z-index:200; backdrop-filter:blur(10px); padding-bottom:env(safe-area-inset-bottom); }
   .nav-tab { flex:1; padding:8px 0 10px; text-align:center; cursor:pointer; transition:opacity .2s; border:none; background:transparent; color:var(--muted); font-size:9px; font-family:'Inter',sans-serif; }
   .nav-tab .nav-icon { font-size:18px; display:block; margin-bottom:2px; }
@@ -184,6 +199,33 @@
   <div class="filter-btns"><button class="btn-reset" onclick="resetFilter()">Tozalash</button><button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button></div>
 </div>
 
+
+<!-- PROFILE PANEL -->
+<div class="profile-panel" id="profile-panel">
+  <div id="profile-logged-out">
+    <p style="color:#888;font-size:13px;text-align:center;margin-bottom:12px">Steam akkauntingiz bilan kiring</p>
+    <button class="steam-login-btn" onclick="steamLogin()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+      Steam orqali kirish
+    </button>
+  </div>
+  <div id="profile-logged-in" style="display:none">
+    <div class="profile-card">
+      <img class="profile-avatar" id="profile-avatar-img" src="" alt="avatar">
+      <div>
+        <div class="profile-name" id="profile-username"></div>
+        <div class="profile-id" id="profile-steam-id"></div>
+      </div>
+    </div>
+    <div class="sell-section">
+      <div class="sell-title">🔫 Skin sotish</div>
+      <p style="color:#888;font-size:12px;margin-bottom:10px">Inventaringizdan skin tanlang va sotuvga qo'ying</p>
+      <button class="sell-btn" onclick="openInventory()">📦 Inventarni ko'rish</button>
+    </div>
+    <button class="profile-logout" onclick="steamLogout()">Chiqish</button>
+  </div>
+</div>
+
 <div class="bottom-nav">
   <button class="nav-tab active" onclick="switchTab('feed',this)"><span class="nav-icon">🔫</span>FB SKINS</button>
   <button class="nav-tab" onclick="switchTab('filter',this)"><span class="nav-icon">🔍</span>Filter</button>
@@ -203,7 +245,8 @@
 
   window.scrollTo(0, document.body.scrollHeight);
 
-  function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); }
+  function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
+  function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
   const selectedWears=new Set();
   function toggleWear(el,wear){ el.classList.toggle('selected'); selectedWears.has(wear)?selectedWears.delete(wear):selectedWears.add(wear); document.getElementById('wear-display').textContent=selectedWears.size?[...selectedWears].join(', '):'Istalgan'; }
