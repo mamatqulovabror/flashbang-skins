@@ -582,8 +582,13 @@
   function steamLogout() { document.getElementById('profile-logged-out').style.display='block'; document.getElementById('profile-logged-in').style.display='none'; }
   function checkSteamLogin() {
     const p = new URLSearchParams(window.location.search);
-    const sid = p.get('steam_id'), uname = p.get('username'), av = p.get('avatar');
+    const sid = p.get('steam_id') || sessionStorage.getItem('steam_id');
+    const uname = p.get('username') || sessionStorage.getItem('steam_username');
+    const av = p.get('avatar') || sessionStorage.getItem('steam_avatar');
     if(sid) {
+      sessionStorage.setItem('steam_id', sid);
+      sessionStorage.setItem('steam_username', uname||'');
+      sessionStorage.setItem('steam_avatar', av||'');
       window._steamData = {steam_id: sid, username: uname, avatar: av};
       document.getElementById('profile-logged-out').style.display='none';
       document.getElementById('profile-logged-in').style.display='block';
