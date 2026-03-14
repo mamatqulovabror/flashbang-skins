@@ -352,6 +352,12 @@
     }
   }
   checkSteamLogin();
+  function showSection(s){
+    const tg = window.Telegram && window.Telegram.WebApp;
+    if(s==='sell'){ if(tg) Telegram.WebApp.showAlert('🔫 Skinlarni sotish\n\nTez kunda: inventaringizdan skin tanlang, narx qo\'ying va sotuvga qo\'ying!'); }
+    else if(s==='history'){ if(tg) Telegram.WebApp.showAlert('📋 Skinlar tarixi\n\nHozircha sotilgan yoki aktiv e\'lonlaringiz yo\'q.'); }
+    else if(s==='settings'){ if(tg) Telegram.WebApp.showAlert('⚙️ Sozlamalar\n\nTez kunda: trade link qo\'shish va bildirishnomalarni boshqarish!'); }
+  }
   function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
   function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
