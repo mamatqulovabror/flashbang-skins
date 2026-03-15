@@ -140,6 +140,17 @@
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   .submit-btn { width:100%; padding:13px; background:linear-gradient(90deg,#f5c842,#ff8c00); border:none; border-radius:10px; color:#000; font-size:14px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; margin-top:6px; }
   .modal-close { position:absolute; top:16px; right:16px; background:transparent; border:none; color:#888; font-size:20px; cursor:pointer; }
+
+  /* FILTER CATEGORIES */
+  .filter-cat-list { display:flex; flex-direction:column; gap:8px; padding:12px 12px 90px; }
+  .filter-cat-item { display:flex; align-items:center; gap:14px; padding:14px 16px; background:rgba(13,17,23,0.95); border-radius:12px; border:1px solid rgba(0,212,255,0.1); cursor:pointer; position:relative; overflow:hidden; }
+  .filter-cat-item::before { content:''; position:absolute; inset:0; border-radius:12px; padding:1px; background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(168,85,247,0.2)); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
+  .filter-cat-item:active { opacity:.7; }
+  .filter-cat-icon { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .filter-cat-text { flex:1; }
+  .filter-cat-title { font-size:14px; font-weight:600; color:#e2e8f0; margin-bottom:2px; }
+  .filter-cat-sub { font-size:11px; color:#64748b; }
+  .filter-cat-arrow { font-size:16px; color:rgba(0,212,255,0.5); }
   .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto; background:rgba(7,11,20,0.92); border-top:1px solid rgba(0,212,255,0.15); display:flex; z-index:200; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding-bottom:env(safe-area-inset-bottom); box-shadow:0 -4px 30px rgba(0,0,0,0.4); }
   .nav-tab { flex:1; padding:8px 0 10px; text-align:center; cursor:pointer; transition:opacity .2s; border:none; background:transparent; color:var(--muted); font-size:9px; font-family:'Inter',sans-serif; }
   .nav-tab .nav-icon { font-size:18px; display:block; margin-bottom:2px; }
@@ -206,115 +217,124 @@
       <div class="contact-row">📩 @kaccocii</div>
       <div class="hashtags">#Karambit #Doppler #CS2 #fbskins</div>
     </div>
-    <div class="post-footer"><button class="btn btn-sold-only" disabled>✕ Sotildi</button></div>
-  </div>
-  <div class="post">
-    <div class="post-header"><div class="seller-avatar" style="background:linear-gradient(135deg,#4ade80,#38bdf8)">🏪</div><span class="seller-name">@skins_bazar</span><span class="post-time">2 soat oldin</span></div>
-    <div class="post-images"><div class="post-img">🔴</div><div class="post-img">⚡</div></div>
-    <div class="post-body">
-      <div class="skin-name"><span class="star">★</span>AK-47 | Redline</div>
-      <div class="price-row"><span class="price">850,000 UZS</span></div>
-      <div class="meta-row"><span class="meta-tag">Float: 0.15</span><span class="meta-tag">FT</span><span class="meta-tag">4x Sticker</span></div>
-      <div class="contact-row">📩 @kaccocii</div>
-      <div class="hashtags">#AK47 #Redline #CS2 #fbskins</div>
-    </div>
-    <div class="post-footer">
-      <button class="btn btn-buy" onclick="buyItem('AK-47 Redline')">🛒 Sotib olish</button>
-      <button class="btn btn-cart" onclick="addCart('AK-47 Redline')">+ Savatcha</button>
-    </div>
-  </div>
-</div>
-
-<div class="filter-panel" id="filter-panel">
-
-  <!-- Kategoriya bo'limlari -->
-  <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:20px">
+    <div cla<div class="filter-panel" id="filter-panel">
+  <div class="filter-cat-list">
 
     <div class="filter-cat-item" onclick="filterByCategory('knives')">
-      <div class="filter-cat-icon">🔪</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(168,85,247,0.15))">🔪</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Knives</div>
-        <div class="filter-cat-sub">Karambit, Butterfly, Bayonet...</div>
+        <div class="filter-cat-sub">Barcha pichoqlar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('gloves')">
-      <div class="filter-cat-icon">🥊</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(255,140,0,0.15))">🧤</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Gloves</div>
-        <div class="filter-cat-sub">Sport, Driver, Hand Wraps...</div>
+        <div class="filter-cat-sub">Barcha qo'lqoplar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('rifles')">
-      <div class="filter-cat-icon">🎯</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(0,212,255,0.15))">🔫</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Rifles</div>
-        <div class="filter-cat-sub">AK-47, M4A4, AWP, M4A1-S...</div>
+        <div class="filter-cat-sub">AK-47, M4A4, AWP va boshqalar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('midtier')">
-      <div class="filter-cat-icon">⚡</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(0,212,255,0.15))">🎯</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Mid-Tier</div>
-        <div class="filter-cat-sub">MP9, PP-Bizon, MAC-10...</div>
+        <div class="filter-cat-sub">MP5, UMP, MAC-10 va boshqalar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('pistols')">
-      <div class="filter-cat-icon">🔫</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(255,68,102,0.15),rgba(245,200,66,0.15))">🔧</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Pistols</div>
-        <div class="filter-cat-sub">Glock, USP-S, Desert Eagle...</div>
+        <div class="filter-cat-sub">Glock, Desert Eagle va boshqalar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('agents')">
-      <div class="filter-cat-icon">🕵️</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,255,136,0.15))">🕵️</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Agents</div>
-        <div class="filter-cat-sub">Special agents, Characters...</div>
+        <div class="filter-cat-sub">Barcha agentlar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('stickers')">
-      <div class="filter-cat-icon">🏷️</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(168,85,247,0.15))">🏷️</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Stickers</div>
-        <div class="filter-cat-sub">Katowice, Holo, Foil...</div>
+        <div class="filter-cat-sub">Barcha stikerlar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('cases')">
-      <div class="filter-cat-icon">📦</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(168,85,247,0.15))">📦</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Cases</div>
-        <div class="filter-cat-sub">Recoil, Kilowatt, Revolution...</div>
+        <div class="filter-cat-sub">Barcha keyslar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
     <div class="filter-cat-item" onclick="filterByCategory('others')">
-      <div class="filter-cat-icon">✨</div>
+      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(100,116,139,0.2),rgba(0,212,255,0.1))">⭐</div>
       <div class="filter-cat-text">
         <div class="filter-cat-title">Others</div>
-        <div class="filter-cat-sub">Graffiti, Music Kit, Pins...</div>
+        <div class="filter-cat-sub">Boshqa narsalar</div>
       </div>
       <span class="filter-cat-arrow">›</span>
     </div>
 
   </div>
+</div>       <option>Field-Tested</option>
+          <option>Well-Worn</option>
+          <option>Battle-Scarred</option>
+        </select>
+      </div>
+    </div>
 
-</div>
+    <!-- Float va Narx -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Float</label>
+        <input class="form-input" id="p-float" type="text" placeholder="0.0123">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Narx (UZS) *</label>
+        <input class="form-input" id="p-price" type="number" placeholder="1000000">
+      </div>
+    </div>
 
+    <!-- Sticker -->
+    <div class="form-group">
+      <label class="form-label">Stikerlar</label>
+      <input class="form-input" id="p-sticker" type="text" placeholder="Katowice 2014, Crown Foil...">
+    </div>
+
+    <!-- Qo'shimcha ma'lumot -->
+    <div class="form-group">
+      <label class="form-label">Qo'shimcha ma'lumot</label>
+      <input class="form-input" id="p-desc" type="text" placeholder="StatTrak, Pattern: 661...">
+    </div>
+
+    <button class="submit-btn" onclick="submitPost()">📤 E'lon qilish</button>
+  </div>
 </div>
 
 <div class="bottom-nav">
@@ -440,21 +460,11 @@
     const btn = document.getElementById('add-post-btn');
     if(btn) btn.style.display='flex';
   });
-
-  function filterByCategory(cat) {
-    const names = {
-      knives:'Knives', gloves:'Gloves', rifles:'Rifles',
-      midtier:'Mid-Tier', pistols:'Pistols', agents:'Agents',
-      stickers:'Stickers', cases:'Cases', others:'Others'
-    };
-    // Feed panelga o'tib filter natijasini ko'rsatamiz
-    const feedTab = [...document.querySelectorAll('.nav-tab')].find(t=>t.textContent.includes('FB'));
-    if(feedTab) switchTab('feed', feedTab);
-    if(window.Telegram && window.Telegram.WebApp) {
-      Telegram.WebApp.showAlert(names[cat] + ' kategoriyasi tanlandi!\nTez kunda: faqat shu kategoriya postlari ko\'rsatiladi.');
-    }
+  function filterByCategory(cat){
+    const names = {knives:'Knives',gloves:'Gloves',rifles:'Rifles',midtier:'Mid-Tier',pistols:'Pistols',agents:'Agents',stickers:'Stickers',cases:'Cases',others:'Others'};
+    if(window.Telegram && window.Telegram.WebApp) Telegram.WebApp.showAlert(names[cat] + ' kategoriyasi\n\nTez kunda: bu kategoriya bo\'yicha skinlar ko\'rsatiladi!');
   }
-  function showSection(s){
+    function showSection(s){
     const tg = window.Telegram && window.Telegram.WebApp;
     if(s==='sell'){
       if(tg) Telegram.WebApp.showAlert('🔫 Skinlarni sotish\n\nTez kunda: inventaringizdan skin tanlang, narx qo\'ying va sotuvga qo\'ying!');
