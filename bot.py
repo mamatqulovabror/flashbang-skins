@@ -73,7 +73,6 @@ def get_steam_inventory(steam_id):
             icon = desc.get("icon_url", "")
             image_url = f"https://steamcommunity-a.akamaihd.net/economy/image/{icon}/256fx256f" if icon else ""
             
-            # float va wear olish
             tags = desc.get("tags", [])
             wear = ""
             for tag in tags:
@@ -96,7 +95,6 @@ def get_steam_inventory(steam_id):
 def get_trade_url(steam_id):
     try:
         url = f"https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1/?key={STEAM_API_KEY}&time_last_visit=0"
-        # Trade URL ni bevosita ololmaymiz, foydalanuvchi o'zi berishi kerak
         return None
     except:
         return None
@@ -148,7 +146,6 @@ async def handle_steam_callback(request):
     username = profile.get("personaname", "Unknown")
     avatar = profile.get("avatarmedium", "")
     
-    # Cookie yoki redirect bilan steam_id ni frontendga yuborish
     redirect_url = f"{WEBAPP_URL}?steam_id={steam_id}&username={username}&avatar={avatar}"
     raise web.HTTPFound(redirect_url)
 
