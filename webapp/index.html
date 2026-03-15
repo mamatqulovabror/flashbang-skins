@@ -226,241 +226,95 @@
 </div>
 
 <div class="filter-panel" id="filter-panel">
-  <div class="filter-search-wrap"><span class="search-icon">🔍</span><input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish..."></div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Narx (UZS)</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="price-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="price-inputs"><div><div class="price-label">Minimum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="0" id="price-min" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div><div><div class="price-label">Maximum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="∞" id="price-max" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div></div></div>
-  </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Qurol turi</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="weapon-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="select-wrap"><select class="filter-select" id="weapon-select" onchange="document.getElementById('weapon-display').textContent=this.options[this.selectedIndex].text"><option value="">Istalgan</option><option value="ak47">AK-47</option><option value="awp">AWP</option><option value="m4a4">M4A4</option><option value="m4a1s">M4A1-S</option><option value="knife">Knife</option><option value="gloves">Gloves</option><option value="pistol">Pistol</option><option value="rifle">Rifle</option></select><span class="select-arrow">▼</span></div></div>
-  </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Exterior</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="wear-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="wear-grid"><div class="wear-item" onclick="toggleWear(this,'FN')"><div class="wear-dot" style="background:#4ade80"></div><span class="wear-name">FN</span></div><div class="wear-item" onclick="toggleWear(this,'MW')"><div class="wear-dot" style="background:#38bdf8"></div><span class="wear-name">MW</span></div><div class="wear-item" onclick="toggleWear(this,'FT')"><div class="wear-dot" style="background:#f5c842"></div><span class="wear-name">FT</span></div><div class="wear-item" onclick="toggleWear(this,'WW')"><div class="wear-dot" style="background:#fb923c"></div><span class="wear-name">WW</span></div><div class="wear-item" onclick="toggleWear(this,'BS')"><div class="wear-dot" style="background:#f87171"></div><span class="wear-name">BS</span></div></div></div>
-  </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Rarity</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="rarity-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="rarity-list"><div class="rarity-item" onclick="toggleRarity(this,'Consumer')"><div class="rarity-bar" style="background:#b0b0b0"></div><span class="rarity-name" style="color:#b0b0b0">Consumer Grade</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Industrial')"><div class="rarity-bar" style="background:#5e98d9"></div><span class="rarity-name" style="color:#5e98d9">Industrial Grade</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Mil-Spec')"><div class="rarity-bar" style="background:#4b69ff"></div><span class="rarity-name" style="color:#4b69ff">Mil-Spec</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Restricted')"><div class="rarity-bar" style="background:#8847ff"></div><span class="rarity-name" style="color:#8847ff">Restricted</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Classified')"><div class="rarity-bar" style="background:#d32ce6"></div><span class="rarity-name" style="color:#d32ce6">Classified</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Covert')"><div class="rarity-bar" style="background:#eb4b4b"></div><span class="rarity-name" style="color:#eb4b4b">Covert</span><div class="rarity-check"></div></div><div class="rarity-item" onclick="toggleRarity(this,'Contraband')"><div class="rarity-bar" style="background:#e4ae39"></div><span class="rarity-name" style="color:#e4ae39">★ Contraband</span><div class="rarity-check"></div></div></div></div>
-  </div>
-  <div class="filter-section"><div style="padding:4px 14px"><div class="toggle-row"><span class="toggle-label">StatTrak™</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div><div class="toggle-row" style="border-top:1px solid #1f2937"><span class="toggle-label">Souvenir</span><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div></div></div></div>
-  <div class="filter-btns"><button class="btn-reset" onclick="resetFilter()">Tozalash</button><button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button></div>
-</div>
 
+  <!-- Kategoriya bo'limlari -->
+  <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:20px">
 
-<!-- PROFILE PANEL -->
-<div class="profile-panel" id="profile-panel">
-
-  <!-- KIRMASDAN OLDIN -->
-  <div id="profile-logged-out">
-
-    <!-- Telegram profil -->
-    <div class="profile-card" style="margin-bottom:10px">
-      <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#f5c842,#ff8c00);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👤</div>
-      <div>
-        <div class="profile-name">Telegram User</div>
-        <div class="profile-id">Telegram orqali ulangan</div>
+    <div class="filter-cat-item" onclick="filterByCategory('knives')">
+      <div class="filter-cat-icon">🔪</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Knives</div>
+        <div class="filter-cat-sub">Karambit, Butterfly, Bayonet...</div>
       </div>
+      <span class="filter-cat-arrow">›</span>
     </div>
 
-    <!-- 3 ta bo'lim -->
-    <div style="display:flex;flex-direction:column;gap:8px">
-
-      <div onclick="showSection('settings')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
-        <span style="font-size:22px">⚙️</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Sozlamalar</div>
-          <div style="font-size:11px;color:#888">Trade link va bildirishnomalar</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
+    <div class="filter-cat-item" onclick="filterByCategory('gloves')">
+      <div class="filter-cat-icon">🥊</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Gloves</div>
+        <div class="filter-cat-sub">Sport, Driver, Hand Wraps...</div>
       </div>
-
-      <div onclick="steamLogin()" style="display:flex;align-items:center;gap:12px;padding:14px;background:#1b2838;border-radius:10px;cursor:pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" style="width:24px;height:24px;flex-shrink:0" alt="Steam">
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Steam akkaunt</div>
-          <div style="font-size:11px;color:#888">Skin sotish uchun Steam bilan kiring</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
-      </div>
-
-      <div onclick="showSection('cards')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
-        <span style="font-size:22px">💳</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Kartalar</div>
-          <div style="font-size:11px;color:#888">To'lov kartalarini boshqarish</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- KIRGANIDAN KEYIN -->
-  <div id="profile-logged-in" style="display:none">
-
-    <!-- Profil karta -->
-    <div class="profile-card" style="margin-bottom:10px">
-      <img class="profile-avatar" id="profile-avatar-img" src="" alt="avatar">
-      <div>
-        <div class="profile-name" id="profile-username"></div>
-        <div class="profile-id" id="profile-steam-id"></div>
-        <div style="margin-top:4px"><span style="background:#1a3a1a;color:#4ade80;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600">✓ Steam ulangan</span></div>
-      </div>
+      <span class="filter-cat-arrow">›</span>
     </div>
 
-    <!-- Stat -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
-      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
-        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#f5c842">0</div>
-        <div style="font-size:10px;color:#888">Sotilgan</div>
+    <div class="filter-cat-item" onclick="filterByCategory('rifles')">
+      <div class="filter-cat-icon">🎯</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Rifles</div>
+        <div class="filter-cat-sub">AK-47, M4A4, AWP, M4A1-S...</div>
       </div>
-      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
-        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#4ade80">0</div>
-        <div style="font-size:10px;color:#888">Aktiv</div>
-      </div>
-      <div style="background:#111827;border-radius:10px;padding:10px;text-align:center">
-        <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#38bdf8">0</div>
-        <div style="font-size:10px;color:#888">Daromad</div>
-      </div>
+      <span class="filter-cat-arrow">›</span>
     </div>
 
-    <!-- 3 ta bo'lim -->
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
-
-      <div onclick="showSection('sell')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
-        <span style="font-size:22px">🔫</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Skinlarni sotish</div>
-          <div style="font-size:11px;color:#888">Inventardan skin tanlang va sotuvga qo'ying</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
+    <div class="filter-cat-item" onclick="filterByCategory('midtier')">
+      <div class="filter-cat-icon">⚡</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Mid-Tier</div>
+        <div class="filter-cat-sub">MP9, PP-Bizon, MAC-10...</div>
       </div>
-
-      <div onclick="showSection('history')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
-        <span style="font-size:22px">📋</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Skinlar tarixi</div>
-          <div style="font-size:11px;color:#888">Sotilgan va aktiv e'lonlaringiz</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
-      </div>
-
-      <div onclick="showSection('settings')" style="display:flex;align-items:center;gap:12px;padding:14px;background:#111827;border-radius:10px;cursor:pointer">
-        <span style="font-size:22px">⚙️</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:#e8e8e8;margin-bottom:2px">Sozlamalar</div>
-          <div style="font-size:11px;color:#888">Trade link va bildirishnomalar</div>
-        </div>
-        <span style="font-size:20px;color:#555">›</span>
-      </div>
-
+      <span class="filter-cat-arrow">›</span>
     </div>
 
-    <button class="profile-logout" onclick="steamLogout()">↩ Chiqish</button>
+    <div class="filter-cat-item" onclick="filterByCategory('pistols')">
+      <div class="filter-cat-icon">🔫</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Pistols</div>
+        <div class="filter-cat-sub">Glock, USP-S, Desert Eagle...</div>
+      </div>
+      <span class="filter-cat-arrow">›</span>
+    </div>
+
+    <div class="filter-cat-item" onclick="filterByCategory('agents')">
+      <div class="filter-cat-icon">🕵️</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Agents</div>
+        <div class="filter-cat-sub">Special agents, Characters...</div>
+      </div>
+      <span class="filter-cat-arrow">›</span>
+    </div>
+
+    <div class="filter-cat-item" onclick="filterByCategory('stickers')">
+      <div class="filter-cat-icon">🏷️</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Stickers</div>
+        <div class="filter-cat-sub">Katowice, Holo, Foil...</div>
+      </div>
+      <span class="filter-cat-arrow">›</span>
+    </div>
+
+    <div class="filter-cat-item" onclick="filterByCategory('cases')">
+      <div class="filter-cat-icon">📦</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Cases</div>
+        <div class="filter-cat-sub">Recoil, Kilowatt, Revolution...</div>
+      </div>
+      <span class="filter-cat-arrow">›</span>
+    </div>
+
+    <div class="filter-cat-item" onclick="filterByCategory('others')">
+      <div class="filter-cat-icon">✨</div>
+      <div class="filter-cat-text">
+        <div class="filter-cat-title">Others</div>
+        <div class="filter-cat-sub">Graffiti, Music Kit, Pins...</div>
+      </div>
+      <span class="filter-cat-arrow">›</span>
+    </div>
+
   </div>
 
 </div>
 
-</div>
-
-
-<!-- POST UPLOAD BUTTON -->
-<button class="add-post-btn" onclick="openPostModal()" id="add-post-btn" style="display:none">+</button>
-
-<!-- POST UPLOAD MODAL -->
-<div class="modal-overlay" id="post-modal" onclick="closePostModal(event)">
-  <div class="modal-sheet" onclick="event.stopPropagation()">
-    <div class="modal-handle"></div>
-    <button class="modal-close" onclick="closePostModal()">✕</button>
-    <div class="modal-title">🔫 Skin e'lon qilish</div>
-
-    <!-- Inventardan tanlash (Steam kirgan bo'lsa) -->
-    <div id="inv-section" style="display:none;margin-bottom:12px">
-      <div style="font-size:11px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Inventaringizdan tanlang</div>
-      <div id="inv-loading" style="text-align:center;padding:20px;color:#888;font-size:12px">Yuklanmoqda...</div>
-      <div id="inv-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:200px;overflow-y:auto;display:none"></div>
-    </div>
-
-    <!-- 2 ta rasm -->
-    <div class="upload-grid">
-      <div class="upload-box" onclick="document.getElementById('img1').click()">
-        <span class="upload-icon">📷</span>
-        <span>1-rasm</span>
-        <input type="file" id="img1" accept="image/*" style="display:none" onchange="previewImg(this,'prev1')">
-        <img id="prev1" src="" style="display:none">
-      </div>
-      <div class="upload-box" onclick="document.getElementById('img2').click()">
-        <span class="upload-icon">📷</span>
-        <span>2-rasm (ixtiyoriy)</span>
-        <input type="file" id="img2" accept="image/*" style="display:none" onchange="previewImg(this,'prev2')">
-        <img id="prev2" src="" style="display:none">
-      </div>
-    </div>
-
-    <!-- Skin nomi -->
-    <div class="form-group">
-      <label class="form-label">Skin nomi *</label>
-      <input class="form-input" id="p-name" type="text" placeholder="AK-47 | Redline">
-    </div>
-
-    <!-- Qurol turi va Wear -->
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Qurol turi *</label>
-        <select class="form-select" id="p-weapon">
-          <option value="">Tanlang</option>
-          <option>AK-47</option>
-          <option>AWP</option>
-          <option>M4A4</option>
-          <option>M4A1-S</option>
-          <option>Karambit</option>
-          <option>Butterfly Knife</option>
-          <option>Gloves</option>
-          <option>Pistol</option>
-          <option>Rifle</option>
-          <option>Boshqa</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Exterior *</label>
-        <select class="form-select" id="p-wear">
-          <option value="">Tanlang</option>
-          <option>Factory New</option>
-          <option>Minimal Wear</option>
-          <option>Field-Tested</option>
-          <option>Well-Worn</option>
-          <option>Battle-Scarred</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Float va Narx -->
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Float</label>
-        <input class="form-input" id="p-float" type="text" placeholder="0.0123">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Narx (UZS) *</label>
-        <input class="form-input" id="p-price" type="number" placeholder="1000000">
-      </div>
-    </div>
-
-    <!-- Sticker -->
-    <div class="form-group">
-      <label class="form-label">Stikerlar</label>
-      <input class="form-input" id="p-sticker" type="text" placeholder="Katowice 2014, Crown Foil...">
-    </div>
-
-    <!-- Qo'shimcha ma'lumot -->
-    <div class="form-group">
-      <label class="form-label">Qo'shimcha ma'lumot</label>
-      <input class="form-input" id="p-desc" type="text" placeholder="StatTrak, Pattern: 661...">
-    </div>
-
-    <button class="submit-btn" onclick="submitPost()">📤 E'lon qilish</button>
-  </div>
 </div>
 
 <div class="bottom-nav">
@@ -586,6 +440,20 @@
     const btn = document.getElementById('add-post-btn');
     if(btn) btn.style.display='flex';
   });
+
+  function filterByCategory(cat) {
+    const names = {
+      knives:'Knives', gloves:'Gloves', rifles:'Rifles',
+      midtier:'Mid-Tier', pistols:'Pistols', agents:'Agents',
+      stickers:'Stickers', cases:'Cases', others:'Others'
+    };
+    // Feed panelga o'tib filter natijasini ko'rsatamiz
+    const feedTab = [...document.querySelectorAll('.nav-tab')].find(t=>t.textContent.includes('FB'));
+    if(feedTab) switchTab('feed', feedTab);
+    if(window.Telegram && window.Telegram.WebApp) {
+      Telegram.WebApp.showAlert(names[cat] + ' kategoriyasi tanlandi!\nTez kunda: faqat shu kategoriya postlari ko\'rsatiladi.');
+    }
+  }
   function showSection(s){
     const tg = window.Telegram && window.Telegram.WebApp;
     if(s==='sell'){
