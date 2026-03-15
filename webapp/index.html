@@ -218,122 +218,62 @@
       <div class="hashtags">#Karambit #Doppler #CS2 #fbskins</div>
     </div>
     <div cla<div class="filter-panel" id="filter-panel">
-  <div class="filter-cat-list">
+  <div style="display:flex;flex-direction:column;gap:8px;padding:12px 12px 90px">
 
-    <div class="filter-cat-item" onclick="filterByCategory('knives')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(168,85,247,0.15))">🔪</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Knives</div>
-        <div class="filter-cat-sub">Barcha pichoqlar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('knives')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(0,212,255,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(168,85,247,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔪</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Knives</div><div style="font-size:11px;color:#64748b">Barcha pichoqlar</div></div>
+      <span style="font-size:18px;color:rgba(0,212,255,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('gloves')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(255,140,0,0.15))">🧤</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Gloves</div>
-        <div class="filter-cat-sub">Barcha qo'lqoplar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('gloves')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(245,200,66,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(255,140,0,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🧤</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Gloves</div><div style="font-size:11px;color:#64748b">Barcha qo'lqoplar</div></div>
+      <span style="font-size:18px;color:rgba(245,200,66,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('rifles')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(0,212,255,0.15))">🔫</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Rifles</div>
-        <div class="filter-cat-sub">AK-47, M4A4, AWP va boshqalar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('rifles')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(0,255,136,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(0,212,255,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔫</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Rifles</div><div style="font-size:11px;color:#64748b">AK-47, M4A4, AWP va boshqalar</div></div>
+      <span style="font-size:18px;color:rgba(0,255,136,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('midtier')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(0,212,255,0.15))">🎯</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Mid-Tier</div>
-        <div class="filter-cat-sub">MP5, UMP, MAC-10 va boshqalar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('midtier')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(168,85,247,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(0,212,255,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🎯</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Mid-Tier</div><div style="font-size:11px;color:#64748b">MP5, UMP, MAC-10 va boshqalar</div></div>
+      <span style="font-size:18px;color:rgba(168,85,247,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('pistols')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(255,68,102,0.15),rgba(245,200,66,0.15))">🔧</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Pistols</div>
-        <div class="filter-cat-sub">Glock, Desert Eagle va boshqalar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('pistols')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(255,68,102,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(255,68,102,0.15),rgba(245,200,66,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔧</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Pistols</div><div style="font-size:11px;color:#64748b">Glock, Desert Eagle va boshqalar</div></div>
+      <span style="font-size:18px;color:rgba(255,68,102,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('agents')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,255,136,0.15))">🕵️</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Agents</div>
-        <div class="filter-cat-sub">Barcha agentlar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('agents')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(0,212,255,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,255,136,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🕵️</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Agents</div><div style="font-size:11px;color:#64748b">Barcha agentlar</div></div>
+      <span style="font-size:18px;color:rgba(0,212,255,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('stickers')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(168,85,247,0.15))">🏷️</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Stickers</div>
-        <div class="filter-cat-sub">Barcha stikerlar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('stickers')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(245,200,66,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(168,85,247,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏷️</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Stickers</div><div style="font-size:11px;color:#64748b">Barcha stikerlar</div></div>
+      <span style="font-size:18px;color:rgba(245,200,66,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('cases')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(168,85,247,0.15))">📦</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Cases</div>
-        <div class="filter-cat-sub">Barcha keyslar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('cases')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(0,255,136,0.12);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(168,85,247,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📦</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Cases</div><div style="font-size:11px;color:#64748b">Barcha keyslar</div></div>
+      <span style="font-size:18px;color:rgba(0,255,136,0.5)">›</span>
     </div>
 
-    <div class="filter-cat-item" onclick="filterByCategory('others')">
-      <div class="filter-cat-icon" style="background:linear-gradient(135deg,rgba(100,116,139,0.2),rgba(0,212,255,0.1))">⭐</div>
-      <div class="filter-cat-text">
-        <div class="filter-cat-title">Others</div>
-        <div class="filter-cat-sub">Boshqa narsalar</div>
-      </div>
-      <span class="filter-cat-arrow">›</span>
+    <div onclick="filterByCategory('others')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(13,17,23,0.95);border-radius:12px;border:1px solid rgba(100,116,139,0.2);cursor:pointer">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(100,116,139,0.2),rgba(0,212,255,0.1));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">⭐</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:2px">Others</div><div style="font-size:11px;color:#64748b">Boshqa narsalar</div></div>
+      <span style="font-size:18px;color:rgba(100,116,139,0.5)">›</span>
     </div>
 
-  </div>
-</div>       <option>Field-Tested</option>
-          <option>Well-Worn</option>
-          <option>Battle-Scarred</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Float va Narx -->
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Float</label>
-        <input class="form-input" id="p-float" type="text" placeholder="0.0123">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Narx (UZS) *</label>
-        <input class="form-input" id="p-price" type="number" placeholder="1000000">
-      </div>
-    </div>
-
-    <!-- Sticker -->
-    <div class="form-group">
-      <label class="form-label">Stikerlar</label>
-      <input class="form-input" id="p-sticker" type="text" placeholder="Katowice 2014, Crown Foil...">
-    </div>
-
-    <!-- Qo'shimcha ma'lumot -->
-    <div class="form-group">
-      <label class="form-label">Qo'shimcha ma'lumot</label>
-      <input class="form-input" id="p-desc" type="text" placeholder="StatTrak, Pattern: 661...">
-    </div>
-
-    <button class="submit-btn" onclick="submitPost()">📤 E'lon qilish</button>
   </div>
 </div>
 
