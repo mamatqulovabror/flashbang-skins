@@ -444,13 +444,12 @@
   function switchTab(tab,el){
     document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('feed-panel').style.display = tab==='feed' ? 'flex' : 'none';
-    const fp = document.getElementById('filter-panel');
-    fp.style.display = tab==='filter' ? 'block' : 'none';
-    fp.classList.toggle('active', tab==='filter');
-    const pp = document.getElementById('profile-panel');
-    pp.style.display = tab==='profile' ? 'block' : 'none';
-    pp.classList.toggle('active', tab==='profile');
+    const feed = document.getElementById('feed-panel');
+    const filter = document.getElementById('filter-panel');
+    const profile = document.getElementById('profile-panel');
+    feed.style.display = tab==='feed' ? 'flex' : 'none';
+    filter.style.display = tab==='filter' ? 'block' : 'none';
+    profile.style.display = tab==='profile' ? 'block' : 'none';
     window.scrollTo(0,0);
   }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
