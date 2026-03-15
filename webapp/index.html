@@ -441,7 +441,7 @@
     else if(s==='settings'){ if(tg) Telegram.WebApp.showAlert('⚙️ Sozlamalar\n\nTez kunda: trade link qo\'shish va bildirishnomalarni boshqarish!'); }
   }
   function switchTabById(tab){ const tabs=document.querySelectorAll('.nav-tab'); switchTab(tab, tabs[tab==='filter'?1:tab==='cart'?2:tab==='profile'?3:0]); }
-  function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
+  function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); window.scrollTo(0,0); }
   function toggleSection(header){ const body=header.nextElementSibling; const arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
   const selectedWears=new Set();
   function toggleWear(el,wear){ el.classList.toggle('selected'); selectedWears.has(wear)?selectedWears.delete(wear):selectedWears.add(wear); document.getElementById('wear-display').textContent=selectedWears.size?[...selectedWears].join(', '):'Istalgan'; }
