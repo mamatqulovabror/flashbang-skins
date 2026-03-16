@@ -165,19 +165,6 @@
 
 <div class="filter-panel" id="filter-panel">
   <div class="filter-search-wrap"><span class="search-icon">🔍</span><input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish..."></div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Narx (UZS)</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="price-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="price-inputs"><div><div class="price-label">Minimum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="0" id="price-min" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div><div><div class="price-label">Maximum</div><div class="price-input-wrap"><input class="price-input" type="number" placeholder="∞" id="price-max" oninput="updatePriceDisplay()"><span class="currency">UZS</span></div></div></div></div>
-  </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Qurol turi</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="weapon-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="select-wrap"><select class="filter-select" id="weapon-select" onchange="document.getElementById('weapon-display').textContent=this.options[this.selectedIndex].text"><option value="">Istalgan</option><option value="ak47">AK-47</option><option value="awp">AWP</option><option value="m4a4">M4A4</option><option value="knife">Knife</option><option value="gloves">Gloves</option><option value="pistol">Pistol</option></select><span class="select-arrow">▼</span></div></div>
-  </div>
-  <div class="filter-section">
-    <div class="filter-section-header" onclick="toggleSection(this)"><span class="filter-section-label">Exterior</span><div style="display:flex;align-items:center;gap:8px"><span class="filter-section-value" id="wear-display">Istalgan</span><span class="filter-arrow">▼</span></div></div>
-    <div class="filter-section-body"><div class="wear-grid"><div class="wear-item" onclick="toggleWear(this,'FN')"><div class="wear-dot" style="background:#4ade80"></div><span class="wear-name">FN</span></div><div class="wear-item" onclick="toggleWear(this,'MW')"><div class="wear-dot" style="background:#38bdf8"></div><span class="wear-name">MW</span></div><div class="wear-item" onclick="toggleWear(this,'FT')"><div class="wear-dot" style="background:#f5c842"></div><span class="wear-name">FT</span></div><div class="wear-item" onclick="toggleWear(this,'WW')"><div class="wear-dot" style="background:#fb923c"></div><span class="wear-name">WW</span></div><div class="wear-item" onclick="toggleWear(this,'BS')"><div class="wear-dot" style="background:#f87171"></div><span class="wear-name">BS</span></div></div></div>
-  </div>
-  <div class="filter-btns"><button class="btn-reset" onclick="resetFilter()">Tozalash</button><button class="btn-search" onclick="applyFilter()">🔍 Qidirish</button></div>
 </div>
 
 <div class="profile-panel" id="profile-panel">
