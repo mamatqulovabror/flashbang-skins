@@ -104,7 +104,7 @@ def get_trade_url(steam_id):
 async def start(message: Message):
     save_user(message.from_user.id, message.from_user.username or "")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="🛒 Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL))
+        InlineKeyboardButton(text="🛒 Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL + "?v=2"))
     ]])
     await message.answer(
         "🔫 FB SKINS | Flashbang\n\n"
