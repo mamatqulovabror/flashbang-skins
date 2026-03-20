@@ -175,6 +175,16 @@
 
 <div class="filter-panel" id="filter-panel">
   <div class="filter-search-wrap"><span class="search-icon">🔍</span><input class="filter-search" type="text" placeholder="Skin nomi bo'yicha qidirish..."></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding:0 2px">
+  <button onclick="filterCategory(this,'Pistols')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">🔫 Pistols</button>
+  <button onclick="filterCategory(this,'Rifles')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">🎯 Rifles</button>
+  <button onclick="filterCategory(this,'Knives')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">🔪 Knives</button>
+  <button onclick="filterCategory(this,'Gloves')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">🧤 Gloves</button>
+  <button onclick="filterCategory(this,'Mid-tier')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">⭐ Mid-tier</button>
+  <button onclick="filterCategory(this,'Cases')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">📦 Cases</button>
+  <button onclick="filterCategory(this,'Stickers')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">🏷️ Stickers</button>
+  <button onclick="filterCategory(this,'Others')" style="padding:10px 0;background:#111827;border:1px solid #374151;border-radius:8px;color:#e8e8e8;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s">📁 Others</button>
+</div>
 </div>
 
 <div class="profile-panel" id="profile-panel">
@@ -328,6 +338,8 @@
 
   function filterCategory(el,cat){ document.querySelectorAll('.filter-panel button').forEach(b=>{b.style.background='#111827';b.style.borderColor='#374151';b.style.color='#e8e8e8';}); el.style.background='rgba(0,212,255,0.1)'; el.style.borderColor='#00d4ff'; el.style.color='#00d4ff'; }
   function filterCat(el,cat){ document.querySelectorAll('.filter-panel button').forEach(b=>{ b.style.background='#111827'; b.style.borderColor='#374151'; b.style.color='#e8e8e8'; }); el.style.background='rgba(0,212,255,0.1)'; el.style.borderColor='#00d4ff'; el.style.color='#00d4ff'; }
+
+  function filterCategory(el,cat){document.querySelectorAll('#filter-panel button').forEach(b=>{b.style.background='#111827';b.style.borderColor='#374151';b.style.color='#e8e8e8';});el.style.background='rgba(0,212,255,0.1)';el.style.borderColor='#00d4ff';el.style.color='#00d4ff';}
   checkSteamLogin();
   function switchTab(tab,el){ document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); document.getElementById('feed-panel').style.display=tab==='feed'?'flex':'none'; document.getElementById('filter-panel').classList.toggle('active',tab==='filter'); document.getElementById('profile-panel').classList.toggle('active',tab==='profile'); }
   function toggleSection(header){ const body=header.nextElementSibling,arrow=header.querySelector('.filter-arrow'); body.classList.toggle('open'); arrow.classList.toggle('open'); }
