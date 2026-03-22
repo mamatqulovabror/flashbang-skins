@@ -1,8 +1,16 @@
-import sqlite3
-import time
+import sqlite3, time, os
+
+DB_PATH = os.environ.get("DB_PATH", "/data/skins.db")
+
+def get_conn():
+    import pathlib
+    pathlib.Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
+    return sqlite3.connect(DB_PATH)
+
+
 
 def create_db():
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS skins (
@@ -45,7 +53,7 @@ def create_db():
     conn.close()
 
 def add_skin(seller_id, weapon, name, wear, float_val, price, photo):
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('''INSERT INTO skins (seller_id, weapon, name, wear, float, price, photo)
                  VALUES (?, ?, ?, ?, ?, ?, ?)''', (seller_id, weapon, name, wear, float_val, price, photo))
@@ -53,7 +61,7 @@ def add_skin(seller_id, weapon, name, wear, float_val, price, photo):
     conn.close()
 
 def get_all_skins():
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('SELECT * FROM skins WHERE sold = 0')
     rows = c.fetchall()
@@ -61,14 +69,14 @@ def get_all_skins():
     return rows
 
 def mark_sold(skin_id):
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('UPDATE skins SET sold = 1 WHERE id = ?', (skin_id,))
     conn.commit()
     conn.close()
 
 def save_user(user_id, username):
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     now = int(time.time())
     c.execute('''
@@ -80,7 +88,7 @@ def save_user(user_id, username):
     conn.close()
 
 def get_stats():
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('SELECT COUNT(*) FROM users')
     total = c.fetchone()[0]
@@ -91,7 +99,7 @@ def get_stats():
     return total, online
 
 def add_listing(steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear):
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     now = int(time.time())
     c.execute('''INSERT INTO listings (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, status, created_at)
@@ -101,7 +109,7 @@ def add_listing(steam_id, username, trade_url, asset_id, market_name, price, ima
     conn.close()
 
 def get_listings():
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute("SELECT * FROM listings WHERE status = 'active' ORDER BY created_at DESC")
     rows = c.fetchall()
@@ -109,7 +117,7 @@ def get_listings():
     return rows
 
 def mark_listing_sold(listing_id):
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute("UPDATE listings SET status = 'sold' WHERE id = ?", (listing_id,))
     conn.commit()
@@ -117,7 +125,7 @@ def mark_listing_sold(listing_id):
 
 
 def get_all_users():
-    conn = sqlite3.connect("skins.db")
+    conn = get_conn()
     c = conn.cursor()
     c.execute('SELECT user_id, username, first_seen, last_seen FROM users ORDER BY last_seen DESC')
     rows = c.fetchall()
