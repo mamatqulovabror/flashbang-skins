@@ -4,11 +4,13 @@ from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.filters import Command
-from database import create_db, save_user, get_stats, add_listing, get_listings, mark_listing_sold
+from database import create_db, save_user, get_stats, add_listing, get_listings, mark_listing_sold, get_all_users
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://flashbang-skins-production.up.railway.app")
 STEAM_API_KEY = os.environ.get("STEAM_API_KEY", "457E07EF6DF40BDC7E08363AB347D9F5")
+
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -100,6 +102,32 @@ def get_trade_url(steam_id):
         return None
 
 # ---- TELEGRAM BOT ----
+
+@dp.message(Command("admin"))
+async def admin_panel(message: Message):
+    if message.from_user.id != ADMIN_ID:
+        await message.answer("❌ Ruxsat yo'q.")
+        return
+
+    total, online = get_stats()
+    users = get_all_users()
+
+    text = f"👑 *ADMIN PANEL*\n\n"
+    text += f"📊 Jami foydalanuvchilar: *{total}*\n"
+    text += f"🟢 Hozir online (5 daqiqa): *{online}*\n\n"
+    text += f"👥 *So'nggi 20 ta foydalanuvchi:*\n"
+
+    import datetime
+    for u in users[:20]:
+        uid, uname, first_seen, last_seen = u
+        uname_str = f"@{uname}" if uname else f"ID:{uid}"
+        last = datetime.datetime.fromtimestamp(last_seen).strftime("%d.%m %H:%M")
+        first = datetime.datetime.fromtimestamp(first_seen).strftime("%d.%m.%Y")
+        is_online = "🟢" if (int(__import__('time').time()) - last_seen) < 300 else "⚫"
+        text += f"{is_online} {uname_str} | kirdi: {last} | birinchi: {first}\n"
+
+    await message.answer(text, parse_mode="Markdown")
+
 @dp.message(Command("start"))
 async def start(message: Message):
     save_user(message.from_user.id, message.from_user.username or "")
