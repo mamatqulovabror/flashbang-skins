@@ -10,7 +10,7 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 WEBAPP_URL = os.environ.get("WEBAPP_URL", "https://flashbang-skins-production.up.railway.app")
 STEAM_API_KEY = os.environ.get("STEAM_API_KEY", "457E07EF6DF40BDC7E08363AB347D9F5")
 
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
+ADMIN_ID = 746409702
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
