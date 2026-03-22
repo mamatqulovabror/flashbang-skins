@@ -114,3 +114,12 @@ def mark_listing_sold(listing_id):
     c.execute("UPDATE listings SET status = 'sold' WHERE id = ?", (listing_id,))
     conn.commit()
     conn.close()
+
+
+def get_all_users():
+    conn = sqlite3.connect("skins.db")
+    c = conn.cursor()
+    c.execute('SELECT user_id, username, first_seen, last_seen FROM users ORDER BY last_seen DESC')
+    rows = c.fetchall()
+    conn.close()
+    return rows
