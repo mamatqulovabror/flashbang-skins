@@ -280,11 +280,17 @@ async def main():
     await runner.setup()
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
-    await start_polling_with_retry()
+    print(f"Web server started on port {port}")
+    # Polling ni background task sifatida ishlatish
+    asyncio.create_task(start_polling_with_retry())
+    # Web server ishlayversin
+    await asyncio.Event().wait()
 
 async def start_polling_with_retry():
+    await asyncio.sleep(3)  # Web server tayyor bo'lguncha kuting
     while True:
         try:
+            print("Starting bot polling...")
             await dp.start_polling(bot, allowed_updates=["message"])
         except Exception as e:
             print(f"Polling error: {e}, restarting in 5s...")
