@@ -280,7 +280,15 @@ async def main():
     await runner.setup()
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
-    await dp.start_polling(bot)
+    await start_polling_with_retry()
+
+async def start_polling_with_retry():
+    while True:
+        try:
+            await dp.start_polling(bot, allowed_updates=["message"])
+        except Exception as e:
+            print(f"Polling error: {e}, restarting in 5s...")
+            await asyncio.sleep(5)
 
 if __name__ == "__main__":
     asyncio.run(main())
