@@ -1,13 +1,13 @@
-import sqlite3, time, os
+import sqlite3
+import time
+import os
+import pathlib
 
-DB_PATH = os.environ.get("DB_PATH", "/data/skins.db")
+DB_PATH = os.environ.get("DB_PATH", "skins.db")
 
 def get_conn():
-    import pathlib
     pathlib.Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
     return sqlite3.connect(DB_PATH)
-
-
 
 def create_db():
     conn = get_conn()
@@ -15,63 +15,26 @@ def create_db():
     c.execute('''
         CREATE TABLE IF NOT EXISTS skins (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            seller_id INTEGER,
-            weapon TEXT,
-            name TEXT,
-            wear TEXT,
-            float TEXT,
-            price REAL,
-            photo TEXT,
+            seller_id INTEGER, weapon TEXT, name TEXT,
+            wear TEXT, float TEXT, price REAL, photo TEXT,
             sold INTEGER DEFAULT 0
         )
     ''')
     c.execute('''
         CREATE TABLE IF NOT EXISTS users (
             user_id INTEGER PRIMARY KEY,
-            username TEXT,
-            first_seen INTEGER,
-            last_seen INTEGER
+            username TEXT, first_seen INTEGER, last_seen INTEGER
         )
     ''')
     c.execute('''
         CREATE TABLE IF NOT EXISTS listings (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            steam_id TEXT,
-            username TEXT,
-            trade_url TEXT,
-            asset_id TEXT,
-            market_name TEXT,
-            price REAL,
-            image_url TEXT,
-            float_val TEXT,
-            wear TEXT,
-            status TEXT DEFAULT 'active',
-            created_at INTEGER
+            steam_id TEXT, username TEXT, trade_url TEXT,
+            asset_id TEXT, market_name TEXT, price REAL,
+            image_url TEXT, float_val TEXT, wear TEXT,
+            status TEXT DEFAULT 'active', created_at INTEGER
         )
     ''')
-    conn.commit()
-    conn.close()
-
-def add_skin(seller_id, weapon, name, wear, float_val, price, photo):
-    conn = get_conn()
-    c = conn.cursor()
-    c.execute('''INSERT INTO skins (seller_id, weapon, name, wear, float, price, photo)
-                 VALUES (?, ?, ?, ?, ?, ?, ?)''', (seller_id, weapon, name, wear, float_val, price, photo))
-    conn.commit()
-    conn.close()
-
-def get_all_skins():
-    conn = get_conn()
-    c = conn.cursor()
-    c.execute('SELECT * FROM skins WHERE sold = 0')
-    rows = c.fetchall()
-    conn.close()
-    return rows
-
-def mark_sold(skin_id):
-    conn = get_conn()
-    c = conn.cursor()
-    c.execute('UPDATE skins SET sold = 1 WHERE id = ?', (skin_id,))
     conn.commit()
     conn.close()
 
@@ -98,13 +61,22 @@ def get_stats():
     conn.close()
     return total, online
 
+def get_all_users():
+    conn = get_conn()
+    c = conn.cursor()
+    c.execute('SELECT user_id, username, first_seen, last_seen FROM users ORDER BY last_seen DESC')
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
 def add_listing(steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear):
     conn = get_conn()
     c = conn.cursor()
     now = int(time.time())
-    c.execute('''INSERT INTO listings (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, status, created_at)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?)''',
-              (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, now))
+    c.execute('''INSERT INTO listings
+        (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?)''',
+        (steam_id, username, trade_url, asset_id, market_name, price, image_url, float_val, wear, now))
     conn.commit()
     conn.close()
 
@@ -123,11 +95,25 @@ def mark_listing_sold(listing_id):
     conn.commit()
     conn.close()
 
-
-def get_all_users():
+def add_skin(seller_id, weapon, name, wear, float_val, price, photo):
     conn = get_conn()
     c = conn.cursor()
-    c.execute('SELECT user_id, username, first_seen, last_seen FROM users ORDER BY last_seen DESC')
+    c.execute('INSERT INTO skins (seller_id, weapon, name, wear, float, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (seller_id, weapon, name, wear, float_val, price, photo))
+    conn.commit()
+    conn.close()
+
+def get_all_skins():
+    conn = get_conn()
+    c = conn.cursor()
+    c.execute('SELECT * FROM skins WHERE sold = 0')
     rows = c.fetchall()
     conn.close()
     return rows
+
+def mark_sold(skin_id):
+    conn = get_conn()
+    c = conn.cursor()
+    c.execute('UPDATE skins SET sold = 1 WHERE id = ?', (skin_id,))
+    conn.commit()
+    conn.close()
