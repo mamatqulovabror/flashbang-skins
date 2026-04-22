@@ -1,495 +1,548 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>FB SKINS</title>
+<title>FB SKINS PRO</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#080b12; --bg2:#0d1220; --bg3:#111827; --card:#0f1623;
-  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
-  --text:#e8eaf0; --muted:#6b7280; --accent:#f5c842; --accent2:#ff6b35;
-  --blue:#3b9eff; --cyan:#00d4ff; --green:#00e676; --red:#ff4757; --purple:#a855f7;
-  --neon-gold:0 0 20px rgba(245,200,66,0.4);
-}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{height:-webkit-fill-available}
-body{min-height:100vh;min-height:-webkit-fill-available;background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;padding-bottom:calc(60px + env(safe-area-inset-bottom))}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-.header{position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 16px 8px;padding-top:calc(max(48px,env(safe-area-inset-top)) + var(--tg-content-safe-area-inset-top,0px))}
-.header-inner{display:flex;align-items:center;gap:10px}
-.logo-wrap{display:flex;align-items:center;gap:8px;flex:1}
-.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#0d1220,#1a2540);border:1.5px solid rgba(245,200,66,0.4);display:flex;align-items:center;justify-content:center;box-shadow:0 0 15px rgba(245,200,66,0.15)}
-.logo-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;background:linear-gradient(90deg,#f5c842,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;line-height:1}
-.logo-sub{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-.balance-chip{display:flex;align-items:center;gap:5px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:20px;padding:5px 10px;cursor:pointer}
-.balance-amount{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--accent)}
-.balance-label{font-size:9px;color:var(--muted);text-transform:uppercase}
-.header-line{height:1px;margin-top:8px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--accent),transparent);opacity:0.5;animation:lineShift 4s linear infinite;background-size:200%}
-@keyframes lineShift{0%{background-position:0%}100%{background-position:200%}}
-.panel{display:none;padding:12px 12px 0}.panel.active{display:block}
-.section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding:0 2px}
-.cases-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
-.cases-scroll::-webkit-scrollbar{display:none}
-.case-card{flex-shrink:0;width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .2s;position:relative}
-.case-card:active{transform:scale(0.96)}
-.case-card.featured{border-color:rgba(245,200,66,0.3)}
-.case-img-wrap{height:100px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
-.case-glow{position:absolute;width:60px;height:60px;border-radius:50%;filter:blur(20px);opacity:0.3}
-.case-info{padding:8px 10px 10px}
-.case-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px}
-.case-opens{font-size:10px;color:var(--muted);margin-bottom:6px}
-.case-price{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:3px}
-.case-price span{font-size:10px;color:var(--muted)}
-.daily-card{margin:12px 0;background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(255,107,53,0.06));border:1px solid rgba(245,200,66,0.2);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;position:relative;overflow:hidden}
-.daily-icon{font-size:32px;flex-shrink:0}
+:root{
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--card:#181818;
+  --border:rgba(255,255,255,0.08);--text:#ffffff;--muted:#888;
+  --accent:#7c3aed;--gold:#f59e0b;--green:#10b981;--red:#ef4444;--cyan:#06b6d4;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;display:flex;flex-direction:column}
+.screen{display:none;flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.screen.active{display:flex;flex-direction:column}
+
+/* SPLASH */
+#splash{background:linear-gradient(160deg,#1a0533 0%,#0d0d0d 50%,#0a1a0d 100%);align-items:center;justify-content:center;padding:40px 24px}
+.splash-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(124,58,237,0.3),transparent),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(16,185,129,0.15),transparent)}
+.splash-content{position:relative;text-align:center;z-index:1;width:100%}
+.splash-logo{width:80px;height:80px;margin:0 auto 20px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 0 40px rgba(124,58,237,0.5)}
+.splash-title{font-family:'Rajdhani',sans-serif;font-size:42px;font-weight:700;letter-spacing:2px;margin-bottom:8px;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.splash-sub{font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.6}
+.splash-carousel{width:100%;overflow-x:auto;display:flex;gap:12px;padding:0 0 16px;scrollbar-width:none;margin-bottom:24px}
+.splash-carousel::-webkit-scrollbar{display:none}
+.splash-case{flex-shrink:0;width:130px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .2s}
+.splash-case:active{transform:scale(0.96)}
+.splash-case img{width:100%;height:120px;object-fit:cover;display:block}
+.splash-case-info{padding:8px 10px 10px}
+.splash-case-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
+.splash-case-price{font-size:12px;color:var(--muted)}
+.splash-btn{width:100%;padding:16px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:14px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;cursor:pointer;box-shadow:0 8px 30px rgba(124,58,237,0.4)}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:100;background:rgba(13,13,13,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
+.header-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.header-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;flex:1}
+.header-bal{display:flex;align-items:center;gap:6px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.3);border-radius:20px;padding:5px 12px;cursor:pointer}
+.header-bal-amt{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#a78bfa}
+
+/* PANELS */
+.panel{display:none;flex:1;padding:12px 12px 0}
+.panel.active{display:block}
+
+/* DAILY */
+.daily{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(245,158,11,0.1));border:1px solid rgba(124,58,237,0.25);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer}
+.daily-icon{font-size:30px;flex-shrink:0}
 .daily-info{flex:1}
-.daily-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:2px}
-.daily-sub{font-size:12px;color:var(--muted)}
-.daily-btn{background:linear-gradient(90deg,#f5c842,#ff8c00);border:none;border-radius:8px;padding:8px 14px;color:#000;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
-.live-header{display:flex;align-items:center;gap:6px;margin-bottom:10px}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.5s infinite}
+.daily-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#a78bfa;margin-bottom:2px}
+.daily-sub{font-size:11px;color:var(--muted)}
+.daily-btn{background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:8px;padding:7px 14px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+
+/* SECTION */
+.sec{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding:0 2px}
+
+/* CASE SCROLL */
+.cases-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;margin-bottom:16px}
+.cases-scroll::-webkit-scrollbar{display:none}
+.case-card{flex-shrink:0;width:135px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .2s}
+.case-card:active{transform:scale(0.96)}
+.case-card-wrap{position:relative}
+.case-card img{width:100%;height:115px;object-fit:cover;display:block}
+.case-opens{position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.7);border-radius:6px;padding:2px 7px;font-size:10px;font-weight:600}
+.case-body{padding:8px 10px 10px}
+.case-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
+.case-price{font-size:12px;color:var(--muted)}
+
+/* LIVE */
+.live-hdr{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 8px #10b981;animation:blink 1.5s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.live-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.live-lbl{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
 .feed-item{display:flex;align-items:center;gap:10px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
-.feed-skin-img{width:44px;height:44px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.feed-item img{width:42px;height:42px;border-radius:8px;object-fit:cover;flex-shrink:0}
 .feed-info{flex:1;min-width:0}
-.feed-user{font-size:12px;font-weight:600;color:var(--cyan);margin-bottom:2px}
-.feed-skin{font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.feed-rarity{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap;flex-shrink:0}
-.rarity-gold{background:rgba(245,200,66,0.15);color:var(--accent)}
-.rarity-red{background:rgba(255,71,87,0.15);color:var(--red)}
-.rarity-purple{background:rgba(168,85,247,0.15);color:var(--purple)}
-.rarity-blue{background:rgba(59,158,255,0.15);color:var(--blue)}
+.feed-user{font-size:12px;font-weight:600;color:#a78bfa;margin-bottom:2px}
+.feed-skin{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.feed-r{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.r-gold{background:rgba(245,158,11,0.15);color:#f59e0b}
+.r-red{background:rgba(239,68,68,0.15);color:#ef4444}
+.r-purple{background:rgba(168,85,247,0.15);color:#a855f7}
+.r-blue{background:rgba(6,182,212,0.15);color:#06b6d4}
+/* CASES GRID */
 .cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:10px}
-.case-big{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .2s;position:relative}
+.case-big{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .2s;position:relative}
 .case-big:active{transform:scale(0.97)}
-.case-big.hot{border-color:rgba(245,200,66,0.35)}
-.case-big.hot::after{content:'HOT';position:absolute;top:8px;right:8px;background:var(--accent);color:#000;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:4px}
-.case-big-img{height:110px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative}
-.case-big-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,var(--glow-color,rgba(245,200,66,0.1)),transparent 70%)}
-.case-big-info{padding:10px 12px 12px}
-.case-big-name{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px}
-.case-big-opens{font-size:10px;color:var(--muted);margin-bottom:8px}
+.case-big img{width:100%;height:120px;object-fit:cover;display:block}
+.case-big-badge{position:absolute;top:8px;right:8px;background:#7c3aed;color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:5px}
+.case-big-body{padding:10px 12px 12px}
+.case-big-opens{font-size:10px;color:var(--muted);margin-bottom:4px}
+.case-big-name{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px}
 .case-big-footer{display:flex;align-items:center;justify-content:space-between}
-.case-big-price{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--accent)}
-.case-big-price small{font-size:10px;color:var(--muted)}
-.open-btn{background:linear-gradient(90deg,#f5c842,#ff8c00);border:none;border-radius:7px;padding:6px 12px;color:#000;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
-.market-tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none}
-.market-tabs::-webkit-scrollbar{display:none}
-.m-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;transition:all .15s;white-space:nowrap}
-.m-tab.active{background:rgba(245,200,66,0.1);border-color:rgba(245,200,66,0.3);color:var(--accent)}
-.market-search{position:relative;margin-bottom:12px}
-.market-search input{width:100%;padding:10px 14px 10px 36px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;font-family:'Barlow',sans-serif;outline:none}
-.market-search input::placeholder{color:var(--muted)}
-.market-search .s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
-.market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.market-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .15s}
-.market-item:active{transform:scale(0.97)}
-.market-img{height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;background:var(--bg3);position:relative}
-.wear-badge{position:absolute;bottom:6px;left:6px;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;letter-spacing:.5px}
-.market-info{padding:8px 10px 10px}
-.market-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:2px;line-height:1.3}
-.market-wear{font-size:10px;color:var(--muted);margin-bottom:6px}
-.market-footer{display:flex;align-items:center;justify-content:space-between}
-.market-price{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--green)}
-.buy-btn{background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.25);color:var(--green);border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;cursor:pointer}.ref-card{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
-.ref-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--cyan);margin-bottom:4px}
-.ref-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.case-big-price{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#a78bfa}
+.open-btn{background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:8px;padding:6px 12px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+
+/* MARKET */
+.m-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.m-tabs::-webkit-scrollbar{display:none}
+.m-tab{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.m-tab.active{background:rgba(124,58,237,0.15);border-color:rgba(124,58,237,0.4);color:#a78bfa}
+.m-search{position:relative;margin-bottom:12px}
+.m-search input{width:100%;padding:10px 14px 10px 36px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;outline:none}
+.m-search input::placeholder{color:var(--muted)}
+.m-search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.m-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer}
+.m-item:active{transform:scale(0.97)}
+.m-item-img{height:90px;display:flex;align-items:center;justify-content:center;background:var(--bg3);position:relative;overflow:hidden}
+.m-item-img img{width:80%;height:80%;object-fit:contain}
+.m-wear{position:absolute;bottom:5px;left:5px;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px}
+.w-fn{background:rgba(16,185,129,0.2);color:#10b981}
+.w-mw{background:rgba(6,182,212,0.2);color:#06b6d4}
+.w-ft{background:rgba(245,158,11,0.2);color:#f59e0b}
+.w-ww{background:rgba(239,68,68,0.2);color:#ef4444}
+.m-item-body{padding:8px 10px 10px}
+.m-item-name{font-size:11px;font-weight:600;margin-bottom:2px;line-height:1.3}
+.m-item-type{font-size:10px;margin-bottom:6px}
+.m-item-footer{display:flex;align-items:center;justify-content:space-between}
+.m-price{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:#10b981}
+.buy-btn{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#10b981;border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;cursor:pointer}
+
+/* FRIENDS */
+.ref-card{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.ref-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:#a78bfa;margin-bottom:4px}
+.ref-sub{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:14px}
 .ref-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
 .ref-stat{background:var(--bg);border-radius:10px;padding:10px;text-align:center}
-.ref-stat-num{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--accent)}
-.ref-stat-label{font-size:10px;color:var(--muted)}
-.ref-link-wrap{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ref-stat-n{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#a78bfa}
+.ref-stat-l{font-size:10px;color:var(--muted)}
+.ref-row{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .ref-link{font-size:11px;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.copy-btn{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--cyan);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
-.share-btn{width:100%;padding:12px;background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;border-radius:10px;color:#000;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
-.friend-item{display:flex;align-items:center;gap:10px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
-.profile-header{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
-.profile-av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#f5c842,#ff8c00);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 0 20px rgba(245,200,66,0.3)}
-.profile-name-big{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:2px}
-.profile-id-txt{font-size:11px;color:var(--muted)}
-.profile-badge{margin-top:4px;display:inline-flex;align-items:center;gap:4px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:2px 8px;font-size:10px;font-weight:600;color:var(--cyan)}
+.copy-btn{background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);color:#06b6d4;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.share-btn{width:100%;padding:12px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+
+/* PROFILE */
+.prof-hero{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(13,13,13,0));border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
+.prof-av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 0 20px rgba(124,58,237,0.4)}
+.prof-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:2px}
+.prof-id{font-size:11px;color:var(--muted)}
+.prof-badge{margin-top:4px;display:inline-flex;align-items:center;gap:4px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25);border-radius:10px;padding:2px 8px;font-size:10px;font-weight:600;color:#06b6d4}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
-.stat-box-num{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700}
-.stat-box-label{font-size:10px;color:var(--muted);margin-top:2px}
+.stat-n{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700}
+.stat-l{font-size:10px;color:var(--muted);margin-top:2px}
 .menu-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.menu-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:opacity .15s}
+.menu-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer}
 .menu-item:active{opacity:.7}
-.menu-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.menu-text{flex:1}.menu-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.menu-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.menu-txt{flex:1}
+.menu-ttl{font-size:13px;font-weight:600;margin-bottom:2px}
 .menu-sub{font-size:11px;color:var(--muted)}
-.menu-arrow{color:var(--muted);font-size:18px}
-.logout-btn{width:100%;padding:12px;background:transparent;border:1px solid rgba(255,71,87,0.25);border-radius:10px;color:var(--red);font-size:13px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif}
-.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.85);display:none;align-items:flex-end;backdrop-filter:blur(4px)}
-.modal-overlay.open{display:flex}
-.modal-sheet{width:100%;background:var(--bg2);border-radius:20px 20px 0 0;border:1px solid var(--border2);border-bottom:none;padding:16px 16px 30px;max-height:92vh;overflow-y:auto}
-.modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 16px}
-.modal-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);text-align:center;margin-bottom:4px}
-.modal-sub{font-size:12px;color:var(--muted);text-align:center;margin-bottom:16px}
-.spin-container{overflow:hidden;border-radius:12px;border:1px solid var(--border2);margin-bottom:16px;position:relative;height:100px;background:var(--bg)}
+.menu-arr{color:var(--muted);font-size:20px}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.85);display:none;align-items:flex-end;backdrop-filter:blur(6px)}
+.modal-ov.open{display:flex}
+.modal-sh{width:100%;background:#111;border-radius:20px 20px 0 0;border:1px solid rgba(255,255,255,0.08);border-bottom:none;padding:16px 16px 30px;max-height:90vh;overflow-y:auto}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px}
+.modal-img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:12px}
+.modal-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;text-align:center;margin-bottom:4px}
+.modal-info{font-size:12px;color:var(--muted);text-align:center;margin-bottom:16px}
+.spin-wrap{overflow:hidden;border-radius:12px;border:1px solid var(--border);height:100px;position:relative;background:var(--bg);margin-bottom:16px}
 .spin-strip{display:flex;gap:6px;position:absolute;top:0;left:0;height:100%;align-items:center;padding:0 6px}
-.spin-item{flex-shrink:0;width:88px;height:88px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:32px}
-.spin-item .spin-rarity{font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px}
-.spin-center-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--accent);transform:translateX(-50%);box-shadow:var(--neon-gold);z-index:2}
-.spin-center-line::before,.spin-center-line::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:0;height:0;border:6px solid transparent}
-.spin-center-line::before{top:-1px;border-bottom-color:var(--accent)}
-.spin-center-line::after{bottom:-1px;border-top-color:var(--accent)}
-.spin-result{display:none;text-align:center;padding:16px;background:var(--bg3);border-radius:12px;border:1px solid var(--border2);margin-bottom:16px}
+.spin-item{flex-shrink:0;width:88px;height:88px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.spin-item img{width:68px;height:68px;object-fit:contain}
+.spin-r{font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px}
+.spin-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:#7c3aed;transform:translateX(-50%);box-shadow:0 0 12px #7c3aed;z-index:2}
+.spin-line::before,.spin-line::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:0;height:0;border:6px solid transparent}
+.spin-line::before{top:-1px;border-bottom-color:#7c3aed}
+.spin-line::after{bottom:-1px;border-top-color:#7c3aed}
+.spin-result{display:none;text-align:center;padding:16px;background:var(--bg3);border-radius:12px;margin-bottom:16px;border:1px solid var(--border)}
 .spin-result.show{display:block}
-.spin-result-icon{font-size:52px;margin-bottom:8px}
-.spin-result-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px}
-.spin-result-wear{font-size:12px;color:var(--muted);margin-bottom:10px}
-.open-case-btn{width:100%;padding:14px;background:linear-gradient(90deg,#f5c842,#ff8c00);border:none;border-radius:12px;color:#000;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:8px}
-.open-again-btn{width:100%;padding:12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:12px;color:var(--accent);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:rgba(8,11,18,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;z-index:200;padding-bottom:env(safe-area-inset-bottom)}
-.nav-btn{flex:1;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;color:var(--muted);cursor:pointer;transition:color .2s;position:relative}
-.nav-btn.active{color:var(--accent)}
-.nav-btn .n-icon{font-size:20px;line-height:1}
-.nav-btn .n-label{font-size:9px;font-weight:600;letter-spacing:.5px}
-.nav-btn.active::after{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--accent);border-radius:0 0 2px 2px;box-shadow:var(--neon-gold)}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:var(--text);z-index:500;opacity:0;transition:opacity .3s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+.spin-result img{width:80px;height:80px;object-fit:contain;margin:0 auto 8px;display:block}
+.spin-res-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px}
+.spin-res-wear{font-size:12px;color:var(--muted)}
+.open-case-btn{width:100%;padding:14px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:12px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:8px}
+.open-again-btn{width:100%;padding:12px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);border-radius:12px;color:#a78bfa;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
+
+/* BOTTOM NAV */
+.bot-nav{flex-shrink:0;background:rgba(13,13,13,0.98);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;color:var(--muted);cursor:pointer;position:relative;transition:color .2s}
+.nav-btn.active{color:#a78bfa}
+.nav-btn .n-ico{font-size:20px;line-height:1}
+.nav-btn .n-lbl{font-size:9px;font-weight:600;letter-spacing:.5px}
+.nav-btn.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:#7c3aed;border-radius:0 0 2px 2px;box-shadow:0 0 8px #7c3aed}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;z-index:500;opacity:0;transition:opacity .3s;white-space:nowrap}
 .toast.show{opacity:1}
 </style>
 </head>
 <body>
-<div class="header">
-  <div class="header-inner">
-    <div class="logo-wrap">
-      <div class="logo-icon">
-        <svg viewBox="0 0 28 28" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#ff8c00"/></linearGradient></defs>
-          <circle cx="14" cy="14" r="13" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
-          <text x="14" y="19" font-family="Arial Black" font-size="11" font-weight="900" text-anchor="middle" fill="url(#lg1)">FB</text>
-        </svg>
+
+<!-- SPLASH -->
+<div class="screen active" id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-content">
+    <div class="splash-logo">🔫</div>
+    <div class="splash-title">FB SKINS PRO</div>
+    <div class="splash-sub">Get CS2 skins for free or buy them with money.<br>Join tournaments and become part of a new gaming community!</div>
+    <div class="splash-carousel" id="spl-cases"></div>
+    <button class="splash-btn" onclick="enterApp()">Get First Skin</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="screen" id="app">
+  <div class="header">
+    <div class="header-logo">🔫</div>
+    <div class="header-title">FB SKINS PRO</div>
+    <div class="header-bal" onclick="showPanel('profile')">
+      <span>💜</span>
+      <span class="header-bal-amt" id="bal">500</span>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="panel active" id="panel-home">
+    <div class="daily" onclick="claimDaily()">
+      <div class="daily-icon">🎁</div>
+      <div class="daily-info">
+        <div class="daily-title">Daily Bonus!</div>
+        <div class="daily-sub" id="dsub">Claim your 80 💜 crystals today</div>
       </div>
+      <button class="daily-btn" id="dbtn">Claim</button>
+    </div>
+    <div class="sec">🔥 Popular Cases</div>
+    <div class="cases-scroll" id="home-cases"></div>
+    <div class="live-hdr"><div class="live-dot"></div><div class="live-lbl">Live Drops</div></div>
+    <div id="live-feed"></div>
+  </div>
+
+  <!-- CASES -->
+  <div class="panel" id="panel-cases">
+    <div class="sec" style="margin-bottom:12px">📦 All Cases</div>
+    <div class="cases-grid" id="cases-grid"></div>
+  </div>
+
+  <!-- MARKET -->
+  <div class="panel" id="panel-market">
+    <div class="m-tabs">
+      <button class="m-tab active" onclick="setMTab(this)">All</button>
+      <button class="m-tab" onclick="setMTab(this)">Knives</button>
+      <button class="m-tab" onclick="setMTab(this)">Rifles</button>
+      <button class="m-tab" onclick="setMTab(this)">Pistols</button>
+      <button class="m-tab" onclick="setMTab(this)">Gloves</button>
+    </div>
+    <div class="m-search"><span class="m-search-ico">🔍</span><input type="text" placeholder="Search skins..."></div>
+    <div class="m-grid" id="m-grid"></div>
+  </div>
+
+  <!-- FRIENDS -->
+  <div class="panel" id="panel-friends">
+    <div class="ref-card">
+      <div class="ref-title">👥 Invite Friends</div>
+      <div class="ref-sub">Get <strong style="color:#a78bfa">50 💜 crystals</strong> for each friend. Your friend gets 25 💜 too!</div>
+      <div class="ref-stats">
+        <div class="ref-stat"><div class="ref-stat-n" id="ref-n">0</div><div class="ref-stat-l">Friends</div></div>
+        <div class="ref-stat"><div class="ref-stat-n" id="ref-e">0</div><div class="ref-stat-l">Earned</div></div>
+        <div class="ref-stat"><div class="ref-stat-n">50💜</div><div class="ref-stat-l">Per friend</div></div>
+      </div>
+      <div class="ref-row"><span class="ref-link" id="ref-link">t.me/fbskinsbot?start=ref_xxx</span><button class="copy-btn" onclick="copyRef()">Copy</button></div>
+      <button class="share-btn" onclick="shareRef()">📤 Share with friends</button>
+    </div>
+    <div class="sec">Friends list</div>
+    <div style="text-align:center;padding:30px;color:var(--muted);font-size:13px">No friends yet.<br>Invite your first friend!</div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="panel" id="panel-profile">
+    <div class="prof-hero">
+      <div class="prof-av">👤</div>
       <div>
-        <div class="logo-title">FLASHBANG</div>
-        <div class="logo-sub">Skins Market</div>
+        <div class="prof-name" id="pname">User</div>
+        <div class="prof-id" id="pid">ID: —</div>
+        <div class="prof-badge">✓ Telegram connected</div>
       </div>
     </div>
-    <div class="balance-chip" onclick="showPanel('profile')">
-      <span>💎</span>
-      <div>
-        <div class="balance-amount" id="bal-amount">500</div>
-        <div class="balance-label">Kristall</div>
-      </div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-n" style="color:#a78bfa" id="sbal">500</div><div class="stat-l">💜 Crystals</div></div>
+      <div class="stat-box"><div class="stat-n" style="color:#10b981" id="sc">0</div><div class="stat-l">📦 Cases</div></div>
+      <div class="stat-box"><div class="stat-n" style="color:#06b6d4" id="ss">0</div><div class="stat-l">🔫 Skins</div></div>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item" onclick="tgA('📦 Inventory
+
+Your skins will appear here')"><div class="menu-ico" style="background:rgba(124,58,237,0.1)">📦</div><div class="menu-txt"><div class="menu-ttl">Inventory</div><div class="menu-sub">Manage your skins</div></div><div class="menu-arr">›</div></div>
+      <div class="menu-item" onclick="tgA('📤 Withdraw
+
+Send skins to Steam')"><div class="menu-ico" style="background:rgba(16,185,129,0.1)">📤</div><div class="menu-txt"><div class="menu-ttl">Withdraw</div><div class="menu-sub">Send skins to Steam</div></div><div class="menu-arr">›</div></div>
+      <div class="menu-item" onclick="tgA('💳 Top Up
+
+UzCard, Humo, Click, Payme')"><div class="menu-ico" style="background:rgba(6,182,212,0.1)">💳</div><div class="menu-txt"><div class="menu-ttl">Top Up</div><div class="menu-sub">UzCard, Humo, Click, Payme</div></div><div class="menu-arr">›</div></div>
+      <div class="menu-item" onclick="tgA('🏆 Tournaments
+
+Coming soon!')"><div class="menu-ico" style="background:rgba(245,158,11,0.1)">🏆</div><div class="menu-txt"><div class="menu-ttl">Tournaments</div><div class="menu-sub">Coming soon...</div></div><div class="menu-arr">›</div></div>
+      <div class="menu-item" onclick="tgA('⚙️ Settings
+
+Language: English
+Currency: UZS')"><div class="menu-ico" style="background:rgba(107,114,128,0.1)">⚙️</div><div class="menu-txt"><div class="menu-ttl">Settings</div><div class="menu-sub">Language, currency, notifications</div></div><div class="menu-arr">›</div></div>
     </div>
   </div>
-  <div class="header-line"></div>
+
+  <div class="bot-nav">
+    <button class="nav-btn active" onclick="showPanel('home',this)"><span class="n-ico">🏠</span><span class="n-lbl">HOME</span></button>
+    <button class="nav-btn" onclick="showPanel('cases',this)"><span class="n-ico">📦</span><span class="n-lbl">CASES</span></button>
+    <button class="nav-btn" onclick="showPanel('market',this)"><span class="n-ico">🛒</span><span class="n-lbl">MARKET</span></button>
+    <button class="nav-btn" onclick="showPanel('friends',this)"><span class="n-ico">👥</span><span class="n-lbl">FRIENDS</span></button>
+    <button class="nav-btn" onclick="showPanel('profile',this)"><span class="n-ico">👤</span><span class="n-lbl">PROFILE</span></button>
+  </div>
 </div>
-<div class="panel active" id="panel-home">
-  <div class="section-label">🔥 Mashhur caslar</div>
-  <div class="cases-scroll" id="cases-carousel"></div>
-  <div class="daily-card" onclick="claimDaily()">
-    <div class="daily-icon">🎁</div>
-    <div class="daily-info">
-      <div class="daily-title">Kunlik bonus!</div>
-      <div class="daily-sub" id="daily-sub">Bugungi 80 💎 kristallingizni oling</div>
-    </div>
-    <button class="daily-btn" id="daily-btn">Olish</button>
-  </div>
-  <div class="live-header"><div class="live-dot"></div><div class="live-title">Jonli yutuqlar</div></div>
-  <div id="live-feed"></div>
-</div>
-<div class="panel" id="panel-cases">
-  <div class="section-label" style="margin-bottom:12px">📦 Barcha caslar</div>
-  <div class="cases-grid" id="cases-grid"></div>
-</div>
-<div class="panel" id="panel-market">
-  <div class="market-tabs">
-    <button class="m-tab active" onclick="setMTab(this)">Hammasi</button>
-    <button class="m-tab" onclick="setMTab(this)">Knife</button>
-    <button class="m-tab" onclick="setMTab(this)">Rifle</button>
-    <button class="m-tab" onclick="setMTab(this)">Pistol</button>
-    <button class="m-tab" onclick="setMTab(this)">Gloves</button>
-  </div>
-  <div class="market-search"><span class="s-icon">🔍</span><input type="text" placeholder="Skin qidirish..."></div>
-  <div class="market-grid" id="market-grid"></div>
-</div>
-<div class="panel" id="panel-friends">
-  <div class="ref-card">
-    <div class="ref-title">👥 Do'stlarni taklif qil</div>
-    <div class="ref-sub">Har bir do'stingiz uchun <strong style="color:var(--accent)">50 💎 kristall</strong> oling!</div>
-    <div class="ref-stats">
-      <div class="ref-stat"><div class="ref-stat-num" id="ref-count">0</div><div class="ref-stat-label">Do'stlar</div></div>
-      <div class="ref-stat"><div class="ref-stat-num" id="ref-earned">0</div><div class="ref-stat-label">Topilgan</div></div>
-      <div class="ref-stat"><div class="ref-stat-num">50💎</div><div class="ref-stat-label">Har biri</div></div>
-    </div>
-    <div class="ref-link-wrap">
-      <span class="ref-link" id="ref-link">t.me/fbskinsbot?start=ref_xxx</span>
-      <button class="copy-btn" onclick="copyRef()">Nusxa</button>
-    </div>
-    <button class="share-btn" onclick="shareRef()">📤 Do'stga yuborish</button>
-  </div>
-  <div class="section-label">Do'stlar ro'yxati</div>
-  <div style="text-align:center;padding:30px;color:var(--muted);font-size:13px">Hali do'stlar yo'q.<br>Birinchi do'stingizni taklif qiling!</div>
-</div><div class="panel" id="panel-profile">
-  <div class="profile-header">
-    <div class="profile-av" id="prof-av">👤</div>
-    <div>
-      <div class="profile-name-big" id="prof-name">Foydalanuvchi</div>
-      <div class="profile-id-txt" id="prof-id">ID: —</div>
-      <div class="profile-badge">✓ Telegram ulangan</div>
-    </div>
-  </div>
-  <div class="stats-row">
-    <div class="stat-box"><div class="stat-box-num" style="color:var(--accent)" id="stat-crystals">500</div><div class="stat-box-label">💎 Kristall</div></div>
-    <div class="stat-box"><div class="stat-box-num" style="color:var(--green)" id="stat-cases">0</div><div class="stat-box-label">📦 Case</div></div>
-    <div class="stat-box"><div class="stat-box-num" style="color:var(--cyan)" id="stat-skins">0</div><div class="stat-box-label">🔫 Skin</div></div>
-  </div>
-  <div class="menu-list">
-    <div class="menu-item" onclick="tgAlert('📦 Inventar
-
-Sotib olingan skinlaringiz bu yerda ko'rinadi')">
-      <div class="menu-icon" style="background:rgba(245,200,66,0.1)">📦</div>
-      <div class="menu-text"><div class="menu-title">Inventar</div><div class="menu-sub">Skinlaringizni boshqaring</div></div>
-      <div class="menu-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="tgAlert('📤 Chiqarish
-
-Skinlaringizni Steam ga chiqarish')">
-      <div class="menu-icon" style="background:rgba(0,230,118,0.1)">📤</div>
-      <div class="menu-text"><div class="menu-title">Chiqarish</div><div class="menu-sub">Skinni Steam ga olish</div></div>
-      <div class="menu-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="tgAlert('💳 Hisobni to'ldirish
-
-UzCard, Humo, Click, Payme qabul qilinadi')">
-      <div class="menu-icon" style="background:rgba(59,158,255,0.1)">💳</div>
-      <div class="menu-text"><div class="menu-title">To'ldirish</div><div class="menu-sub">UzCard, Humo, Click, Payme</div></div>
-      <div class="menu-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="tgAlert('🏆 Turnirlar
-
-Tez kunda: haftalik skin turnirlarida qatnashing!')">
-      <div class="menu-icon" style="background:rgba(168,85,247,0.1)">🏆</div>
-      <div class="menu-text"><div class="menu-title">Turnirlar</div><div class="menu-sub">Tez kunda...</div></div>
-      <div class="menu-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="tgAlert('⚙️ Sozlamalar
-
-Til: O'zbek
-Valyuta: UZS')">
-      <div class="menu-icon" style="background:rgba(107,114,128,0.15)">⚙️</div>
-      <div class="menu-text"><div class="menu-title">Sozlamalar</div><div class="menu-sub">Til, valyuta, bildirishnomalar</div></div>
-      <div class="menu-arrow">›</div>
-    </div>
-  </div>
-  <button class="logout-btn" onclick="tgAlert('Chiqish
-
-Siz FB Skins dan chiqmoqchimisiz?')">↩ Chiqish</button>
-</div>
-<div class="modal-overlay" id="case-modal" onclick="closeCaseModal(event)">
-  <div class="modal-sheet" onclick="event.stopPropagation()">
+<!-- MODAL -->
+<div class="modal-ov" id="modal" onclick="closeModal(event)">
+  <div class="modal-sh" onclick="event.stopPropagation()">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="modal-case-name">Rusty Case</div>
-    <div class="modal-sub" id="modal-case-price">Narx: 500 💎 Kristall</div>
-    <div class="spin-container" id="spin-container">
-      <div class="spin-strip" id="spin-strip"></div>
-      <div class="spin-center-line"></div>
-    </div>
+    <img class="modal-img" id="m-img" src="" alt="">
+    <div class="modal-title" id="m-title">Case</div>
+    <div class="modal-info" id="m-info">0 opens</div>
+    <div class="spin-wrap"><div class="spin-strip" id="spin-strip"></div><div class="spin-line"></div></div>
     <div class="spin-result" id="spin-result">
-      <div class="spin-result-icon" id="res-icon">🔫</div>
-      <div class="spin-result-name" id="res-name">AK-47 | Redline</div>
-      <div class="spin-result-wear" id="res-wear">Field-Tested</div>
+      <img id="res-img" src="" alt="" style="width:80px;height:80px;object-fit:contain;margin:0 auto 8px;display:block">
+      <div class="spin-res-name" id="res-name">Skin</div>
+      <div class="spin-res-wear" id="res-wear">FN</div>
     </div>
-    <button class="open-case-btn" id="open-btn" onclick="spinCase()">🎰 Case ochish — <span id="btn-price">500</span> 💎</button>
-    <button class="open-again-btn" id="again-btn" style="display:none" onclick="spinCase()">🔄 Yana ochish</button>
+    <button class="open-case-btn" id="open-btn" onclick="spinCase()">🎰 Open Case — <span id="btn-p">500</span> 💜</button>
+    <button class="open-again-btn" id="again-btn" style="display:none" onclick="spinCase()">🔄 Open Again</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
-<div class="bottom-nav">
-  <button class="nav-btn active" onclick="showPanel('home',this)"><span class="n-icon">🏠</span><span class="n-label">FB SKINS</span></button>
-  <button class="nav-btn" onclick="showPanel('cases',this)"><span class="n-icon">📦</span><span class="n-label">Cases</span></button>
-  <button class="nav-btn" onclick="showPanel('market',this)"><span class="n-icon">🛒</span><span class="n-label">Market</span></button>
-  <button class="nav-btn" onclick="showPanel('friends',this)"><span class="n-icon">👥</span><span class="n-label">Do'stlar</span></button>
-  <button class="nav-btn" onclick="showPanel('profile',this)"><span class="n-icon">👤</span><span class="n-label">Profil</span></button>
-</div>
+
 <script>
 const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();if(tg.requestFullscreen)tg.requestFullscreen();}
+
 const CASES=[
-  {name:'Rusty Case',emoji:'📦',color:'#f5c842',price:500,opens:'7.9M'},
-  {name:'Tactical Case',emoji:'🎯',color:'#3b9eff',price:3000,opens:'1.2M',hot:true},
-  {name:'Clutch Case',emoji:'⚡',color:'#a855f7',price:5000,opens:'227K'},
-  {name:'All In Case',emoji:'💎',color:'#00d4ff',price:10000,opens:'43.5K',hot:true},
-  {name:'Military Case',emoji:'🪖',color:'#4ade80',price:15000,opens:'104K'},
-  {name:'Carbon Case',emoji:'🔥',color:'#ff6b35',price:25000,opens:'80.4K'},
-  {name:'StatTrak Case',emoji:'📊',color:'#f5c842',price:50000,opens:'9.7K'},
-  {name:'USP Case',emoji:'🔫',color:'#94a3b8',price:60000,opens:'1.7K'},
-  {name:'Platinum Case',emoji:'✨',color:'#e2e8f0',price:125000,opens:'6K'},
+  {name:'Rusty Case',opens:'7.9M',price:500,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Frusty-case.webp&w=384&q=75'},
+  {name:'Tactical Case',opens:'1.2M',price:3000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Ftactical-case.webp&w=384&q=75',hot:1},
+  {name:'Clutch Case',opens:'227K',price:5000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fclutch-case.webp&w=384&q=75'},
+  {name:'All In Case',opens:'43.5K',price:10000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fall-in-case.webp&w=384&q=75',hot:1},
+  {name:'Military Case',opens:'104K',price:15000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fmilitary-case.webp&w=384&q=75'},
+  {name:'Carbon Fiber Case',opens:'80.4K',price:25000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fcarbon-fiber-case.webp&w=384&q=75'},
+  {name:'StatTrak Case',opens:'9.7K',price:50000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fstattrak-case.webp&w=384&q=75'},
+  {name:'USP Case',opens:'1.7K',price:60000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fusp-case.webp&w=384&q=75'},
+  {name:'Fever Case',opens:'3.1K',price:100000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Ffever-case.webp&w=384&q=75'},
+  {name:'Platinum Case',opens:'6K',price:125000,img:'https://rfl-webapp.vercel.app/_next/image?url=%2Fcs-assets%2Fcases%2Fplatinum-case.webp&w=384&q=75'},
 ];
 const SKINS=[
-  {name:'AK-47 | Redline',emoji:'🔴',price:850000,wear:'FT',rarity:'red'},
-  {name:'AWP | Dragon Lore',emoji:'🐉',price:12000000,wear:'FN',rarity:'gold'},
-  {name:'Karambit | Doppler',emoji:'🔪',price:4500000,wear:'FN',rarity:'gold'},
-  {name:'M4A4 | Howl',emoji:'🐺',price:8000000,wear:'MW',rarity:'red'},
-  {name:'Glock | Fade',emoji:'🌈',price:650000,wear:'FN',rarity:'purple'},
-  {name:'Desert Eagle | Blaze',emoji:'🦅',price:1200000,wear:'FN',rarity:'red'},
-  {name:'USP-S | Kill Confirmed',emoji:'💀',price:480000,wear:'FT',rarity:'purple'},
-  {name:'Sport Gloves | Vice',emoji:'🧤',price:5500000,wear:'FT',rarity:'gold'},
+  {name:'AK-47 | Redline',type:'Rifle',wear:'FT',price:850000,r:'red',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7boCQh0x_LIeC5K08m7xdKOxKatle2Ek2pTupJz27iS9t2hjVfh-UU-YWj7IoXEd1g5NAnRrFPgkr_ng5K-up3XnSJr7HM8pSGKgSXcZ9M/360fx360f'},
+  {name:'AWP | Dragon Lore',type:'Sniper',wear:'FN',price:12000000,r:'gold',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7boCQh0x_LIeC5K08m7xdKOxKatkL2Zl2Ymm8Ib7Or2MLqhlHj_UZkZ2j6cpXEd1gxNAnRrFPgkr_ng5K-up3XnSJr7HM8pSHRk0-s/360fx360f'},
+  {name:'Karambit | Doppler',type:'Knife',wear:'FN',price:4500000,r:'gold',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgYu_RlDdS5sB8j-vE9Y2i2FG3_RM9ZGjvc8FEe1lqYVuRrFLilKuon19/360fx360f'},
+  {name:'M4A4 | Howl',type:'Rifle',wear:'MW',price:8000000,r:'red',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgNrOCkDkC5cB5j-7E9Y2i2FG3_RM9ZGjvc8FEe1lqYVuRrFLilKuon19/360fx360f'},
+  {name:'Glock | Fade',type:'Pistol',wear:'FN',price:650000,r:'purple',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgZr2CkjgC5cB5j-7E9Y2i2FG3_RM9ZGjvc8FEe1lqYVuRrFLilKuon19/360fx360f'},
+  {name:'Desert Eagle | Blaze',type:'Pistol',wear:'FN',price:1200000,r:'red',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgNr-CxDpS68V9j-7E9Y2i2AC2_hI-MmisI8KPJlU5YR_S_g/360fx360f'},
+  {name:'USP-S | Kill Confirmed',type:'Pistol',wear:'FT',price:480000,r:'purple',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgZL-OhDkAu8RuiufqUtt6qBTh/360fx360f'},
+  {name:'Sport Gloves | Vice',type:'Gloves',wear:'FT',price:5500000,r:'gold',img:'https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I4D0xfgJmIVldiHGJiN7YOpGSGfzSHGBRXap1TuFnV_GAw8LoVVF1KAVYv7baCgR0x_LIfR0YupPkx9TbmqSgNrCCkjgG/360fx360f'},
 ];
 const SPIN=[
-  {emoji:'🔫',name:'AK-47 | Safari Mesh',wear:'FT',rarity:'blue'},
-  {emoji:'🔴',name:'AK-47 | Redline',wear:'FT',rarity:'red'},
-  {emoji:'💛',name:'Desert Eagle | Pilot',wear:'MW',rarity:'blue'},
-  {emoji:'🟢',name:'P250 | Asiimov',wear:'WW',rarity:'purple'},
-  {emoji:'⚡',name:'M4A1-S | Decimator',wear:'FN',rarity:'purple'},
-  {emoji:'🎯',name:'SSG 08 | Blood in Water',wear:'FN',rarity:'red'},
-  {emoji:'💎',name:'Karambit | Doppler',wear:'FN',rarity:'gold'},
-  {emoji:'🔵',name:'Glock | Water Elemental',wear:'FN',rarity:'blue'},
-  {emoji:'🔥',name:'AWP | Asiimov',wear:'FT',rarity:'red'},
-  {emoji:'⭐',name:'AWP | Dragon Lore',wear:'FN',rarity:'gold'},
+  {name:'AK-47 | Safari Mesh',wear:'FT',r:'blue',img:SKINS[0].img},
+  {name:'AK-47 | Redline',wear:'FT',r:'red',img:SKINS[0].img},
+  {name:'P250 | Asiimov',wear:'WW',r:'purple',img:SKINS[4].img},
+  {name:'M4A1-S | Decimator',wear:'FN',r:'purple',img:SKINS[6].img},
+  {name:'AWP | Asiimov',wear:'FT',r:'red',img:SKINS[0].img},
+  {name:'Karambit | Doppler',wear:'FN',r:'gold',img:SKINS[2].img},
+  {name:'Glock | Fade',wear:'FN',r:'purple',img:SKINS[4].img},
+  {name:'AWP | Dragon Lore',wear:'FN',r:'gold',img:SKINS[1].img},
 ];
-let balance=500,casesOpened=0,skinsOwned=0,currentCase=null,spinning=false,dailyClaimed=false;
-function fmt(n){if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(0)+'K';return n}
-function renderCarousel(){
-  document.getElementById('cases-carousel').innerHTML=CASES.map((c,i)=>`
-    <div class="case-card ${c.hot?'featured':''}" onclick="openCaseModal(${i})">
-      <div class="case-img-wrap"><div class="case-glow" style="background:${c.color}"></div><span>${c.emoji}</span></div>
-      <div class="case-info">
-        <div class="case-name">${c.name}</div>
-        <div class="case-opens">${c.opens} marta ochildi</div>
-        <div class="case-price">${fmt(c.price)} <span>💎</span></div>
-      </div>
-    </div>`).join('');
+const USERS=['@alien_uz','@cs2_master','@kaccocil','@skinpro_uz','@fbfan99'];
+let bal=500,co=0,sk=0,cur=null,spin=false,dc=false;
+const RC={gold:'rgba(245,158,11,.15)',red:'rgba(239,68,68,.15)',purple:'rgba(168,85,247,.15)',blue:'rgba(6,182,212,.15)'};
+const RC2={gold:'#f59e0b',red:'#ef4444',purple:'#a855f7',blue:'#06b6d4'};
+const WC={'FT':'w-ft','FN':'w-fn','MW':'w-mw','WW':'w-ww'};
+
+function fmt(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?Math.round(n/1000)+'K':n}
+
+function enterApp(){
+  document.getElementById('splash').classList.remove('active');
+  document.getElementById('app').classList.add('active');
 }
-function renderCasesGrid(){
-  document.getElementById('cases-grid').innerHTML=CASES.map((c,i)=>`
-    <div class="case-big ${c.hot?'hot':''}" onclick="openCaseModal(${i})">
-      <div class="case-big-img"><div class="case-big-glow" style="--glow-color:${c.color}33"></div><span style="font-size:52px">${c.emoji}</span></div>
-      <div class="case-big-info">
-        <div class="case-big-name">${c.name}</div>
-        <div class="case-big-opens">${c.opens} marta ochildi</div>
-        <div class="case-big-footer">
-          <div class="case-big-price">${fmt(c.price)}<small> 💎</small></div>
-          <button class="open-btn">Ochish</button>
-        </div>
-      </div>
-    </div>`).join('');
+
+function render(){
+  // Splash cases
+  document.getElementById('spl-cases').innerHTML=CASES.map((c,i)=>
+    '<div class="splash-case" onclick="enterApp();setTimeout(()=>openModal('+i+'),300)">'+
+    '<img src="'+c.img+'" alt="'+c.name+'" onerror="this.style.background='#222';this.style.height='120px'">'+
+    '<div class="splash-case-info"><div class="splash-case-name">'+c.name+'</div><div class="splash-case-price">♥ '+fmt(c.price)+'</div></div></div>'
+  ).join('');
+
+  // Home cases
+  document.getElementById('home-cases').innerHTML=CASES.map((c,i)=>
+    '<div class="case-card" onclick="openModal('+i+')">'+
+    '<div class="case-card-wrap"><img src="'+c.img+'" alt="'+c.name+'" onerror="this.style.background='#222'">'+
+    '<span class="case-opens">'+c.opens+' opens</span></div>'+
+    '<div class="case-body"><div class="case-name">'+c.name+'</div><div class="case-price">♥ '+fmt(c.price)+'</div></div></div>'
+  ).join('');
+
+  // Cases grid
+  document.getElementById('cases-grid').innerHTML=CASES.map((c,i)=>
+    '<div class="case-big" onclick="openModal('+i+')">'+
+    '<img src="'+c.img+'" alt="'+c.name+'" onerror="this.style.background='#222'">'+
+    (c.hot?'<span class="case-big-badge">HOT</span>':'')+
+    '<div class="case-big-body"><div class="case-big-opens">'+c.opens+' opens</div>'+
+    '<div class="case-big-name">'+c.name+'</div>'+
+    '<div class="case-big-footer"><div class="case-big-price">♥ '+fmt(c.price)+'</div>'+
+    '<button class="open-btn">Open</button></div></div></div>'
+  ).join('');
+
+  // Market
+  document.getElementById('m-grid').innerHTML=SKINS.map((s,i)=>
+    '<div class="m-item" onclick="buyItem('+i+')">'+
+    '<div class="m-item-img"><img src="'+s.img+'" alt="'+s.name+'">'+
+    '<span class="m-wear '+(WC[s.wear]||'')+'">'+s.wear+'</span></div>'+
+    '<div class="m-item-body"><div class="m-item-name">'+s.name+'</div>'+
+    '<div class="m-item-type" style="color:'+RC2[s.r]+'">'+s.r.toUpperCase()+'</div>'+
+    '<div class="m-item-footer"><div class="m-price">'+fmt(s.price)+' UZS</div>'+
+    '<button class="buy-btn">Buy</button></div></div></div>'
+  ).join('');
 }
-function renderMarket(){
-  const rC={gold:'#f5c842',red:'#ff4757',purple:'#a855f7',blue:'#3b9eff'};
-  const wB={FN:'rgba(0,230,118,0.2)',MW:'rgba(59,158,255,0.2)',FT:'rgba(245,200,66,0.2)',WW:'rgba(255,107,53,0.2)'};
-  const wC={FN:'#00e676',MW:'#3b9eff',FT:'#f5c842',WW:'#ff6b35'};
-  document.getElementById('market-grid').innerHTML=SKINS.map((s,i)=>`
-    <div class="market-item" onclick="buyItem(${i})">
-      <div class="market-img"><span>${s.emoji}</span><span class="wear-badge" style="background:${wB[s.wear]};color:${wC[s.wear]}">${s.wear}</span></div>
-      <div class="market-info">
-        <div class="market-name">${s.name}</div>
-        <div class="market-wear" style="color:${rC[s.rarity]}">${s.rarity.toUpperCase()}</div>
-        <div class="market-footer"><div class="market-price">${fmt(s.price)} so'm</div><button class="buy-btn">Sotib ol</button></div>
-      </div>
-    </div>`).join('');
-}
-function renderLiveFeed(){
-  const users=['@alien_uz','@cs2_pro','@kaccocii','@skinguru','@fbfan'];
-  const items=SPIN.filter(s=>s.rarity!=='blue');
-  const rC={gold:'rarity-gold',red:'rarity-red',purple:'rarity-purple',blue:'rarity-blue'};
-  document.getElementById('live-feed').innerHTML=[0,1,2,3,4].map(()=>{
-    const u=users[Math.floor(Math.random()*users.length)];
+
+function renderFeed(){
+  const items=SPIN.filter(s=>s.r!=='blue');
+  document.getElementById('live-feed').innerHTML=Array.from({length:5},()=>{
+    const u=USERS[Math.floor(Math.random()*USERS.length)];
     const s=items[Math.floor(Math.random()*items.length)];
-    return `<div class="feed-item"><div class="feed-skin-img">${s.emoji}</div><div class="feed-info"><div class="feed-user">${u}</div><div class="feed-skin">${s.name} · ${s.wear}</div></div><span class="feed-rarity ${rC[s.rarity]}">${s.rarity.toUpperCase()}</span></div>`;
+    return '<div class="feed-item"><img src="'+s.img+'" alt="" onerror="this.style.background='#222'">'+
+      '<div class="feed-info"><div class="feed-user">'+u+'</div><div class="feed-skin">'+s.name+' · '+s.wear+'</div></div>'+
+      '<span class="feed-r r-'+s.r+'">'+s.r.toUpperCase()+'</span></div>';
   }).join('');
 }
-function renderSpinStrip(){
+
+function buildStrip(){
   const strip=document.getElementById('spin-strip');
-  const items=[];
-  for(let i=0;i<40;i++)items.push(SPIN[Math.floor(Math.random()*SPIN.length)]);
-  const rB={gold:'rgba(245,200,66,0.15)',red:'rgba(255,71,87,0.15)',purple:'rgba(168,85,247,0.15)',blue:'rgba(59,158,255,0.15)'};
-  const rC={gold:'#f5c842',red:'#ff4757',purple:'#a855f7',blue:'#3b9eff'};
+  const items=Array.from({length:40},()=>SPIN[Math.floor(Math.random()*SPIN.length)]);
   strip.style.transition='none';strip.style.transform='translateX(0)';
-  strip.innerHTML=items.map(s=>`<div class="spin-item"><span>${s.emoji}</span><span class="spin-rarity" style="background:${rB[s.rarity]};color:${rC[s.rarity]}">${s.rarity.toUpperCase()}</span></div>`).join('');
-  return items;
+  strip.innerHTML=items.map(s=>'<div class="spin-item"><img src="'+s.img+'" alt="">'+
+    '<span class="spin-r" style="background:'+RC[s.r]+';color:'+RC2[s.r]+'">'+s.r.toUpperCase()+'</span></div>').join('');
+  window._si=items;
 }
-function showPanel(name,btn){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-'+name)?.classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  else document.querySelectorAll('.nav-btn')[{home:0,cases:1,market:2,friends:3,profile:4}[name]]?.classList.add('active');
-}
-function openCaseModal(i){
-  currentCase=CASES[i];
-  document.getElementById('modal-case-name').textContent=currentCase.name+' '+currentCase.emoji;
-  document.getElementById('modal-case-price').textContent='Narx: '+fmt(currentCase.price)+' 💎 Kristall';
-  document.getElementById('btn-price').textContent=fmt(currentCase.price);
+
+function openModal(i){
+  cur=CASES[i];
+  document.getElementById('m-img').src=cur.img;
+  document.getElementById('m-title').textContent=cur.name;
+  document.getElementById('m-info').textContent=cur.opens+' opens • '+fmt(cur.price)+' crystals';
+  document.getElementById('btn-p').textContent=fmt(cur.price);
   document.getElementById('spin-result').classList.remove('show');
   document.getElementById('open-btn').style.display='block';
   document.getElementById('again-btn').style.display='none';
-  renderSpinStrip();
-  document.getElementById('case-modal').classList.add('open');
+  buildStrip();
+  document.getElementById('modal').classList.add('open');
 }
-function closeCaseModal(e){if(!e||e.target===document.getElementById('case-modal'))document.getElementById('case-modal').classList.remove('open');}
+
+function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open');}
+
 function spinCase(){
-  if(spinning)return;
-  if(balance<currentCase.price){showToast('💎 Kristall yetarli emas!');return;}
-  spinning=true;balance-=currentCase.price;casesOpened++;updateBalance();
-  const items=renderSpinStrip();
+  if(spin)return;
+  if(bal<cur.price){showToast('Not enough crystals!');return;}
+  spin=true;bal-=cur.price;co++;updateUI();
   const strip=document.getElementById('spin-strip');
   document.getElementById('spin-result').classList.remove('show');
   document.getElementById('open-btn').style.display='none';
   document.getElementById('again-btn').style.display='none';
-  const winIdx=30+Math.floor(Math.random()*5);
-  const containerW=document.getElementById('spin-container').offsetWidth;
-  const offset=winIdx*94-containerW/2+47;
-  setTimeout(()=>{strip.style.transition='transform 4s cubic-bezier(.12,.96,.1,1)';strip.style.transform='translateX(-'+offset+'px)';},50);
+  buildStrip();
+  const wi=30+Math.floor(Math.random()*5);
+  const cw=document.querySelector('.spin-wrap').offsetWidth;
+  const off=wi*94-cw/2+47;
+  setTimeout(()=>{strip.style.transition='transform 4s cubic-bezier(.12,.96,.1,1)';strip.style.transform='translateX(-'+off+'px)';},50);
   setTimeout(()=>{
-    const w=items[winIdx];
-    document.getElementById('res-icon').textContent=w.emoji;
+    const w=window._si[wi];
+    document.getElementById('res-img').src=w.img;
     document.getElementById('res-name').textContent=w.name;
     document.getElementById('res-wear').textContent=w.wear;
     document.getElementById('spin-result').classList.add('show');
     document.getElementById('again-btn').style.display='block';
-    skinsOwned++;updateStats();spinning=false;
-    if(tg)tg.HapticFeedback?.impactOccurred('medium');
-    showToast('🎉 '+w.name+' yutdingiz!');
+    sk++;spin=false;updateUI();
+    tg?.HapticFeedback?.impactOccurred('medium');
+    showToast('🎉 '+w.name+'!');
   },4200);
 }
+
 function claimDaily(){
-  if(dailyClaimed){showToast('⏰ Ertaga qaytib keling!');return;}
-  balance+=80;dailyClaimed=true;updateBalance();
-  document.getElementById('daily-sub').textContent='Ertaga qaytib keling!';
-  document.getElementById('daily-btn').textContent='✓ Olindi';
-  document.getElementById('daily-btn').style.cssText='background:#374151;color:#9ca3af';
-  showToast('🎁 80 💎 kristall olindi!');
+  if(dc){showToast('Come back tomorrow!');return;}
+  bal+=80;dc=true;updateUI();
+  document.getElementById('dsub').textContent='Come back tomorrow!';
+  document.getElementById('dbtn').textContent='✓ Claimed';
+  document.getElementById('dbtn').style.cssText='background:#374151;color:#6b7280';
+  showToast('🎁 +80 crystals!');
 }
+
 function copyRef(){
-  const link='t.me/fbskinsbot?start=ref_'+(tg?.initDataUnsafe?.user?.id||'xxx');
-  navigator.clipboard?.writeText(link).then(()=>showToast('✅ Havola nusxalandi!'));
+  const l='t.me/fbskinsbot?start=ref_'+(tg?.initDataUnsafe?.user?.id||'xxx');
+  navigator.clipboard?.writeText(l).then(()=>showToast('✅ Link copied!'));
 }
+
 function shareRef(){
-  const link='https://t.me/fbskinsbot?start=ref_'+(tg?.initDataUnsafe?.user?.id||'xxx');
-  if(tg)tg.openTelegramLink?.('https://t.me/share/url?url='+encodeURIComponent(link)+'&text='+encodeURIComponent('FB Skins — CS2 skin bozori!'));
-  else showToast('Havola: '+link);
+  const l='https://t.me/fbskinsbot?start=ref_'+(tg?.initDataUnsafe?.user?.id||'xxx');
+  if(tg)tg.openTelegramLink?.('https://t.me/share/url?url='+encodeURIComponent(l)+'&text='+encodeURIComponent('FB Skins PRO — CS2 skin marketplace!'));
 }
-function buyItem(i){const s=SKINS[i];tgAlert('🛒 Sotib olish
 
-'+s.name+'
-'+fmt(s.price)+' so'm
+function buyItem(i){tgA('🛒 Buy
 
-Tez kunda bu funksiya to'liq ishga tushadi!');}
-function setMTab(btn){document.querySelectorAll('.m-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function tgAlert(msg){if(tg)tg.showAlert?.(msg);else alert(msg);}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
-function updateBalance(){document.getElementById('bal-amount').textContent=fmt(balance);document.getElementById('stat-crystals').textContent=fmt(balance);}
-function updateStats(){document.getElementById('stat-cases').textContent=casesOpened;document.getElementById('stat-skins').textContent=skinsOwned;}
+'+SKINS[i].name+'
+'+fmt(SKINS[i].price)+' UZS
+
+Coming soon!');}
+
+function setMTab(b){document.querySelectorAll('.m-tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');}
+
+function showPanel(n,b){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+n)?.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(b)b.classList.add('active');
+  else document.querySelectorAll('.nav-btn')[{home:0,cases:1,market:2,friends:3,profile:4}[n]]?.classList.add('active');
+}
+
+function tgA(m){if(tg)tg.showAlert?.(m);else alert(m);}
+
+function showToast(m){
+  const t=document.getElementById('toast');
+  t.textContent=m;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function updateUI(){
+  const f=fmt(bal);
+  document.getElementById('bal').textContent=f;
+  document.getElementById('sbal').textContent=f;
+  document.getElementById('sc').textContent=co;
+  document.getElementById('ss').textContent=sk;
+}
+
 function initUser(){
   const u=tg?.initDataUnsafe?.user;
   if(u){
-    document.getElementById('prof-name').textContent=(u.first_name||'')+(u.last_name?' '+u.last_name:'');
-    document.getElementById('prof-id').textContent='ID: '+u.id;
-    if(u.id)document.getElementById('ref-link').textContent='t.me/fbskinsbot?start=ref_'+u.id;
+    document.getElementById('pname').textContent=(u.first_name||'')+(u.last_name?' '+u.last_name:'');
+    document.getElementById('pid').textContent='ID: '+u.id;
+    document.getElementById('ref-link').textContent='t.me/fbskinsbot?start=ref_'+u.id;
   }
-  fetch('/api/stats').then(r=>r.json()).then(d=>{}).catch(()=>{});
+  fetch('/api/stats').then(r=>r.json()).then(()=>{}).catch(()=>{});
 }
-renderCarousel();renderCasesGrid();renderMarket();renderLiveFeed();initUser();updateBalance();
-setInterval(renderLiveFeed,8000);
+
+render();renderFeed();initUser();
+setInterval(renderFeed,8000);
 if(tg)tg.onEvent('viewportChanged',()=>{if(!tg.isExpanded)tg.expand();});
 </script>
 </body>
