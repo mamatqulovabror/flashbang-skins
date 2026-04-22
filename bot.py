@@ -22,7 +22,6 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
-nl = "\n"
 
 def get_steam_login_url(return_url):
     from urllib.parse import urlencode
@@ -51,7 +50,7 @@ def extract_steam_id(claimed_id):
 
 def get_steam_profile(steam_id):
     try:
-        url = f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={STEAM_API_KEY}&steamids={steam_id}"
+        url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + STEAM_API_KEY + "&steamids=" + steam_id
         r = requests.get(url, timeout=10)
         data = r.json()
         players = data.get("response", {}).get("players", [])
@@ -61,28 +60,28 @@ def get_steam_profile(steam_id):
 
 def get_steam_inventory(steam_id):
     try:
-        url = f"https://steamcommunity.com/inventory/{steam_id}/730/2?l=english&count=100"
+        url = "https://steamcommunity.com/inventory/" + steam_id + "/730/2?l=english&count=100"
         r = requests.get(url, timeout=15)
         data = r.json()
         if not data or not data.get("assets"):
             return []
         assets = {a["assetid"]: a for a in data.get("assets", [])}
-        descriptions = {f"{d['classid']}_{d['instanceid']}": d for d in data.get("descriptions", [])}
+        descriptions = {str(d["classid"])+"_"+str(d["instanceid"]): d for d in data.get("descriptions", [])}
         items = []
         for asset_id, asset in assets.items():
-            key = f"{asset['classid']}_{asset['instanceid']}"
+            key = str(asset["classid"])+"_"+str(asset["instanceid"])
             desc = descriptions.get(key, {})
             if not desc.get("tradable", 0):
                 continue
             name = desc.get("market_hash_name", desc.get("name", "Unknown"))
             icon = desc.get("icon_url", "")
-            image_url = f"https://steamcommunity-a.akamaihd.net/economy/image/{icon}/256fx256f" if icon else ""
+            image_url = "https://steamcommunity-a.akamaihd.net/economy/image/"+icon+"/256fx256f" if icon else ""
             tags = desc.get("tags", [])
             wear = next((t.get("localized_tag_name", "") for t in tags if t.get("category") == "Exterior"), "")
             items.append({"assetid": asset_id, "name": name, "image": image_url, "wear": wear})
         return items[:50]
     except Exception as e:
-        print(f"Inventory error: {e}")
+        print("Inventory error: " + str(e))
         return []
 
 @dp.message(Command("admin"))
@@ -93,21 +92,20 @@ async def admin_panel(message: Message):
     total, online = get_stats()
     users = get_all_users()
     import datetime
-    text = "ADMIN PANEL\n\n"
-    text += "Jami: " + str(total) + nl + "Online: " + str(online) + nl + nl
+    lines = ["ADMIN PANEL", "", "Jami: " + str(total), "Online: " + str(online), ""]
     for u in users[:20]:
         uid, uname, first_seen, last_seen = u
-        uname_str = f"@{uname}" if uname else f"ID:{uid}"
+        uname_str = "@" + uname if uname else "ID:" + str(uid)
         last = datetime.datetime.fromtimestamp(last_seen).strftime("%d.%m %H:%M")
         is_online = "online" if (int(time.time()) - last_seen) < 300 else "offline"
-        text += is_online + " " + uname_str + " | " + last + nl
-    await message.answer(text)
+        lines.append(is_online + " " + uname_str + " | " + last)
+    await message.answer("\n".join(lines))
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
     save_user(message.from_user.id, message.from_user.username or "")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL + "?v=3"))
+        InlineKeyboardButton(text="Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL + "?v=4"))
     ]])
     await message.answer("FB SKINS\n\nt.me/fbskinsbot/fbskins", reply_markup=keyboard)
 
@@ -130,7 +128,7 @@ async def handle_steam_callback(request):
     if not steam_id or not verify_steam_openid(params):
         raise web.HTTPFound(WEBAPP_URL + "?login=failed")
     profile = get_steam_profile(steam_id)
-    raise web.HTTPFound(f"{WEBAPP_URL}?steam_id={steam_id}&username={profile.get('personaname','Unknown')}&avatar={profile.get('avatarmedium','')}")
+    raise web.HTTPFound(WEBAPP_URL + "?steam_id=" + steam_id + "&username=" + profile.get("personaname", "Unknown"))
 
 async def handle_inventory(request):
     steam_id = request.query.get("steam_id", "")
@@ -176,7 +174,7 @@ def run_bot():
                 print("Bot polling started...")
                 await dp.start_polling(bot, allowed_updates=["message"])
             except Exception as e:
-                print(f"Polling error: {e}, retry in 5s...")
+                print("Polling error: " + str(e) + ", retry in 5s...")
                 await asyncio.sleep(5)
     loop.run_until_complete(_poll())
 
@@ -185,7 +183,7 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     t = threading.Thread(target=run_bot, daemon=True)
     t.start()
-    print(f"Starting on port {port}...")
+    print("Starting on port " + str(port) + "...")
     app = web.Application()
     app.router.add_get("/", handle_index)
     app.router.add_get("/index.html", handle_index)
