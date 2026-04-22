@@ -77,7 +77,7 @@ def get_steam_inventory(steam_id):
             icon = desc.get("icon_url", "")
             image_url = f"https://steamcommunity-a.akamaihd.net/economy/image/{icon}/256fx256f" if icon else ""
             tags = desc.get("tags", [])
-            wear = next((t.get("localized_tag_name","") for t in tags if t.get("category")=="Exterior"), "")
+            wear = next((t.get("localized_tag_name", "") for t in tags if t.get("category") == "Exterior"), "")
             items.append({"assetid": asset_id, "name": name, "image": image_url, "wear": wear})
         return items[:50]
     except Exception as e:
@@ -87,30 +87,28 @@ def get_steam_inventory(steam_id):
 @dp.message(Command("admin"))
 async def admin_panel(message: Message):
     if message.from_user.id != ADMIN_ID:
-        await message.answer("\u274c Ruxsat yo'q.")
+        await message.answer("Ruxsat yoq.")
         return
     total, online = get_stats()
     users = get_all_users()
     import datetime
-    text = f"\U0001f451 *ADMIN PANEL*\n\n\U0001f4ca Jami: *{total}*\n\U0001f7e2 Online: *{online}*\n\n"
+    text = "ADMIN PANEL\n\n"
+    text += f"Jami: {total}\nOnline: {online}\n\n"
     for u in users[:20]:
         uid, uname, first_seen, last_seen = u
         uname_str = f"@{uname}" if uname else f"ID:{uid}"
         last = datetime.datetime.fromtimestamp(last_seen).strftime("%d.%m %H:%M")
-        is_online = "\U0001f7e2" if (int(time.time()) - last_seen) < 300 else "\u26ab"
+        is_online = "online" if (int(time.time()) - last_seen) < 300 else "offline"
         text += f"{is_online} {uname_str} | {last}\n"
-    await message.answer(text, parse_mode="Markdown")
+    await message.answer(text)
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
     save_user(message.from_user.id, message.from_user.username or "")
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="\U0001f6d2 Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL + "?v=3"))
+        InlineKeyboardButton(text="Bozorga kirish", web_app=WebAppInfo(url=WEBAPP_URL + "?v=3"))
     ]])
-    await message.answer(
-        "\U0001f52b FB SKINS | Flashbang\n\n\U0001f447 To'liq ekranda ochish:\nt.me/fbskinsbot/fbskins",
-        reply_markup=keyboard
-    )
+    await message.answer("FB SKINS\n\nt.me/fbskinsbot/fbskins", reply_markup=keyboard)
 
 async def handle_index(request):
     import pathlib
@@ -123,19 +121,15 @@ async def handle_stats(request):
         content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
 
 async def handle_steam_login(request):
-    return_url = WEBAPP_URL + "/steam/callback"
-    raise web.HTTPFound(get_steam_login_url(return_url))
+    raise web.HTTPFound(get_steam_login_url(WEBAPP_URL + "/steam/callback"))
 
 async def handle_steam_callback(request):
     params = dict(request.query)
-    claimed_id = params.get("openid.claimed_id", "")
-    steam_id = extract_steam_id(claimed_id)
+    steam_id = extract_steam_id(params.get("openid.claimed_id", ""))
     if not steam_id or not verify_steam_openid(params):
         raise web.HTTPFound(WEBAPP_URL + "?login=failed")
     profile = get_steam_profile(steam_id)
-    username = profile.get("personaname", "Unknown")
-    avatar = profile.get("avatarmedium", "")
-    raise web.HTTPFound(f"{WEBAPP_URL}?steam_id={steam_id}&username={username}&avatar={avatar}")
+    raise web.HTTPFound(f"{WEBAPP_URL}?steam_id={steam_id}&username={profile.get('personaname','Unknown')}&avatar={profile.get('avatarmedium','')}")
 
 async def handle_inventory(request):
     steam_id = request.query.get("steam_id", "")
@@ -151,8 +145,8 @@ async def handle_add_listing(request):
         if not all([data.get("steam_id"), data.get("trade_url"), data.get("asset_id"), data.get("market_name"), data.get("price")]):
             return web.Response(text=json.dumps({"error": "Missing fields"}),
                 content_type="application/json", headers={"Access-Control-Allow-Origin": "*"}, status=400)
-        add_listing(data["steam_id"], data.get("username",""), data["trade_url"], data["asset_id"],
-            data["market_name"], float(data["price"]), data.get("image_url",""), data.get("float_val",""), data.get("wear",""))
+        add_listing(data["steam_id"], data.get("username", ""), data["trade_url"], data["asset_id"],
+            data["market_name"], float(data["price"]), data.get("image_url", ""), data.get("float_val", ""), data.get("wear", ""))
         return web.Response(text=json.dumps({"success": True}),
             content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
     except Exception as e:
@@ -161,14 +155,16 @@ async def handle_add_listing(request):
 
 async def handle_get_listings(request):
     rows = get_listings()
-    listings = [{"id":r[0],"steam_id":r[1],"username":r[2],"asset_id":r[4],"market_name":r[5],
-        "price":r[6],"image_url":r[7],"float_val":r[8],"wear":r[9],"status":r[10]} for r in rows]
+    listings = [{"id": r[0], "steam_id": r[1], "username": r[2], "asset_id": r[4],
+        "market_name": r[5], "price": r[6], "image_url": r[7], "float_val": r[8],
+        "wear": r[9], "status": r[10]} for r in rows]
     return web.Response(text=json.dumps({"listings": listings}),
         content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
 
 async def handle_options(request):
-    return web.Response(headers={"Access-Control-Allow-Origin":"*",
-        "Access-Control-Allow-Methods":"GET, POST, OPTIONS","Access-Control-Allow-Headers":"Content-Type"})
+    return web.Response(headers={"Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"})
 
 def run_bot():
     loop = asyncio.new_event_loop()
@@ -185,6 +181,10 @@ def run_bot():
 
 if __name__ == "__main__":
     create_db()
+    port = int(os.environ.get("PORT", 8080))
+    t = threading.Thread(target=run_bot, daemon=True)
+    t.start()
+    print(f"Starting on port {port}...")
     app = web.Application()
     app.router.add_get("/", handle_index)
     app.router.add_get("/index.html", handle_index)
@@ -195,8 +195,4 @@ if __name__ == "__main__":
     app.router.add_get("/api/listings", handle_get_listings)
     app.router.add_post("/api/listings", handle_add_listing)
     app.router.add_options("/api/listings", handle_options)
-    port = int(os.environ.get("PORT", 8080))
-    t = threading.Thread(target=run_bot, daemon=True)
-    t.start()
-    print(f"Starting web server on port {port}...")
     web.run_app(app, host="0.0.0.0", port=port)
