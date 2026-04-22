@@ -22,6 +22,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 STEAM_OPENID_URL = "https://steamcommunity.com/openid/login"
+nl = "\n"
 
 def get_steam_login_url(return_url):
     from urllib.parse import urlencode
@@ -93,13 +94,13 @@ async def admin_panel(message: Message):
     users = get_all_users()
     import datetime
     text = "ADMIN PANEL\n\n"
-    text += f"Jami: {total}\nOnline: {online}\n\n"
+    text += "Jami: " + str(total) + nl + "Online: " + str(online) + nl + nl
     for u in users[:20]:
         uid, uname, first_seen, last_seen = u
         uname_str = f"@{uname}" if uname else f"ID:{uid}"
         last = datetime.datetime.fromtimestamp(last_seen).strftime("%d.%m %H:%M")
         is_online = "online" if (int(time.time()) - last_seen) < 300 else "offline"
-        text += f"{is_online} {uname_str} | {last}\n"
+        text += is_online + " " + uname_str + " | " + last + nl
     await message.answer(text)
 
 @dp.message(Command("start"))
